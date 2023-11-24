@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -12,6 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
+    <link rel="icon" href="static/images/ivw2024.ico" type="image/x-icon">
     <title>Workshop on Trust Calibration and Feedback Generation in AI-Enabled Vehicle Systems</title>
 
     <style>
@@ -28,11 +31,12 @@
                 opacity: 1;
             }
         }
-
         .blinking-text {
             animation: blink 2s linear infinite;
         }
-
+        .navbar .nav-item .nav-link {
+            font-size: 1.2em; /* Adjust this value as needed */
+        }
         /* CSS for the text outline */
         .text-outline {
             color: white;
@@ -44,19 +48,23 @@
                 1px 1px 0 #000;
             /* This is the outline color */
         }
-
-        body,
-        html {
-            margin: 0;
-            padding: 0;
+        /* Optional: Makes the navbar semi-transparent */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.5); /* Adjust the alpha for transparency */
+            height: 65px; /* Or any other height */
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 100%;
         }
-
-        .navbar.fixed-top {
-            z-index: 1030;
+       
+        /* Style for the background image container */
+        .background-image-container {
+            background-image: url('static/images/cropped-Jeju-Island-Seogwipo_extended-1-1-1536x806.png'); 
+            background-size: cover;
+            background-position: center;
+            height: 480px; 
         }
-
         .jumbotron.jumbotron-fluid {
             padding: 100px 0;
             /* Adjust the padding to fit your design */
@@ -67,28 +75,50 @@
         }
 
         .container.text-center {
-            padding-top: 60px;
+            padding-top: 120px;
             /* Adjust this value so the text doesn't hide behind the navbar */
         }
-
-        /* You may also want to add some bottom padding to the body to ensure the content doesn't hide behind the fixed navbar */
-        body {
-            padding-bottom: 56px;
-            /* Height of the navbar */
+        .gradient-header {
+            /* Define a horizontal gradient background from blue to lightblue */
+            background: linear-gradient(to right, rgb(237, 246, 249), white);
+        }
+        #myBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            width: 50px; /* Adjust size as needed */
+            height: 50px; /* Same as width for a circle */
+            line-height: 50px; /* Center the content vertically */
+            text-align: center; /* Center the content horizontally */
+            border: none;
+            outline: none;
+            background-color: #007bff; /* Bootstrap primary color */
+            color: white;
+            cursor: pointer;
+            padding: 0; /* Remove padding */
+            border-radius: 50%; /* Additional rounding, if needed */
         }
 
-        :target:before {
-                content: "";
-                display: block;
-                height: 120px; /* Height of the navbar */
-                margin-top: -120px; /* Negative value of the same height */
-                visibility: hidden;
-            }        
+        #myBtn:hover {
+            background-color: #555; /* Darker background on hover */
+        }
     </style>
+
+    <script>
+        // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+
+    </script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <!-- <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: rgba(0, 0, 0, 0.2);"> -->
+    <nav class="navbar navbar-expand-sm navbar-light">
+    <!-- <nav class="navbar navbar-expand-lg navbar-black fixed-top"> -->
         <a class="navbar-brand" href="#">
             <img src="static/images/iv2024jeju_logo.png" alt="iv2024 logo" width="243" height="75" />
         </a>
@@ -116,25 +146,33 @@
         </div>
         <!-- ...rest of your navbar code... -->
     </nav>
-    <header class="jumbotron jumbotron-fluid">
+    <div class="background-image-container">
+        <div class="container text-center text-outline">
+            <h1 class="display-4 font-weight-bold">1st Workshop on Trust Calibration and Feedback Generation in
+                AI-Enabled Vehicle
+                Systems</h1>
+            <p class="lead text-outline font-weight-bold">June 2 - 5, 2024, Jeju Shinhwa World, Jeju Island, Korea</p>
+        </div>
+    </div>
+    <!-- <header class="jumbotron jumbotron-fluid">
         <div class="container text-center text-outline ">
             <h1 class="display-4 font-weight-bold">1st Workshop on Trust Calibration and Feedback Generation in
                 AI-Enabled Vehicle
                 Systems</h1>
             <p class="lead text-outline font-weight-bold">June 2 - 5, 2024, Jeju Shinhwa World, Jeju Island, Korea</p>
         </div>
-    </header>
+    </header> -->
     <main class="container">
         <!-- <main class="flex-fill"> -->
-        <h2>Important Information</h2>
+        <h2 class="mt-4 gradient-header p-1">Important Information</h2>
         <!-- inline header with content -->
-        <p class="font-weight-bold blinking-text text-info" style="display: inline; font-size: larger;">Manuscript
+        <p class="font-weight-bold blinking-text text-success" style="display: inline; font-size: larger;">Manuscript
             submission for the workshop is open now</p>
         <p>Paper can be submitted via the <a href="https://its.papercept.net/conferences/scripts/start.pl">conference
-                paper submission system.</a> </p>
+                paper submission system.</a> Authors will present the accepted papers in the workshop.</p>
         <p><strong>Date and Location: </strong> June 2, 2024, Room XXX</p>
         <p> <strong>Workshop Registration: </strong> <a href="#">Registration Link here</a></p>
-        <h2 id="about">About</h2>
+        <h2 id="about" class="mt-4 gradient-header p-1">About</h2>
         <p>With the fast progress in AI algorithms and their implementations in the automated vehicle (AV) area, highly
             automated
             cars become more mature and closer to people’s daily lives. At the same time, public attitude towards and
@@ -177,7 +215,7 @@
             aim to foster
             collaborations and mentorship relationships that last beyond the workshop.
         </p>
-        <h2 id="topics">Topics of Interests:</h2>
+        <h2 id="topics" class="mt-4 gradient-header p-1">Topics of Interests:</h2>
         <ul>
             <li>Trust calibration</li>
             <li>Trust repairing</li>
@@ -186,8 +224,9 @@
             <li>XAI algorithms</li>
             <li>Intelligent driver interface</li>
         </ul>
-
-        <h2 id="format">Format</h2>
+        <h2 id="format" class="mt-4 gradient-header p-1">Format</h2>
+        <p>... in progress ... </p>
+        <h2 id="schedule" class="mt-4 gradient-header p-1">Schedule</h2>
         A full-day workshop with invited talks, panel discussions, and poster presentations will be held following the
         schedule below:
         <table class="table table-striped">
@@ -246,9 +285,9 @@
             </tbody>
         </table>
 
-        <h2 id="speakers">List of Speakers</h2>
+        <h2 id="speakers" class="mt-4 gradient-header p-1">List of Speakers</h2>
         <p>TBD</p>
-        <h2 id="organizers">Workshop Organizers</h2>
+        <h2 id="organizers" class="mt-4 gradient-header p-1">Workshop Organizers</h2>
         <div class="container">
             <div class="row">
                 <!-- Card for Jing Chen -->
@@ -307,11 +346,15 @@
         </div>
     </main>
     <!-- Footer -->
-    <footer class="bg-dark text-white-50 py-3">
-        <div class="container text-center">
+    <footer class="bg-dark text-white-50 py-3 mt-2">
+        <div class="container text-center" style="padding-top: 50px;">
             <small>&copy; 2023 Demo. All Rights Reserved.</small>
         </div>
     </footer>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top" class="btn btn-primary rounded-circle">
+        <i class="fa fa-arrow-up"></i>
+    </button>
 </body>
 
 </html>
