@@ -64,28 +64,26 @@
             left: 0;
             width: 100%;
         }
-
-        /* Style for the background image container */
         .background-image-container {
-            background-image: url('static/images/cropped-Jeju-Island-Seogwipo_extended-1-1-1536x806.png');
+            background: url('static/images/cropped-Jeju-Island-Seogwipo_extended-1-1-1536x806.png') no-repeat center center;
             background-size: cover;
-            background-position: center;
-            height: 480px;
+            /* Set a minimum height if needed */
+            min-height: 400px;
         }
 
-        .jumbotron.jumbotron-fluid {
-            padding: 100px 0;
-            /* Adjust the padding to fit your design */
-            background: url('static/images/jeju_backdrop.png') no-repeat center center;
-            background-size: cover;
-            color: white;
-            /* Assuming you want white text */
-        }
-
-        .container.text-center {
+        /* Optional: Outline style for text */
+        .text-outline {
             padding-top: 120px;
-            /* Adjust this value so the text doesn't hide behind the navbar */
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
         }
+
+        @media (max-width: 768px) {
+            h1.display-4 {
+                font-size: 1.5rem; /* Smaller font size on smaller screens */
+            }
+        }
+
 
         .gradient-header {
             /* Define a horizontal gradient background from blue to lightblue */
@@ -141,7 +139,8 @@
             <img src="static/images/iv2024jeju_logo.png" alt="iv2024 logo" width="243" height="75" />
         </a>
         <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mx-auto">
+                <!-- <ul class="navbar-nav ml-auto"> -->
                 <li class="nav-item">
                     <a class="nav-link" href="#about">About</a>
                 </li>
@@ -166,29 +165,21 @@
     </nav>
     <div class="background-image-container">
         <div class="container text-center text-outline">
-            <h1 class="display-4 font-weight-bold">1st Workshop on Trust Calibration and Feedback Generation in
-                AI-Enabled Vehicle
-                Systems</h1>
-            <p class="lead text-outline font-weight-bold">June 2 - 5, 2024, Jeju Shinhwa World, Jeju Island, Korea</p>
+            <h1 class="display-4 font-weight-bold">1st Workshop on Trust Calibration and Feedback Generation in AI-Enabled
+                Vehicle Systems</h1>
+            <p class="lead text-outline font-weight-bold" style="padding-top: 20px;">June 2 - 5, 2024, Jeju Shinhwa World, Jeju Island, Korea</p>
         </div>
     </div>
-    <!-- <header class="jumbotron jumbotron-fluid">
-        <div class="container text-center text-outline ">
-            <h1 class="display-4 font-weight-bold">1st Workshop on Trust Calibration and Feedback Generation in
-                AI-Enabled Vehicle
-                Systems</h1>
-            <p class="lead text-outline font-weight-bold">June 2 - 5, 2024, Jeju Shinhwa World, Jeju Island, Korea</p>
-        </div>
-    </header> -->
+
     <main class="container">
         <!-- <main class="flex-fill"> -->
         <h2 class="mt-4 gradient-header p-1">Important Information</h2>
         <!-- inline header with content -->
-        <p class="font-weight-bold blinking-text text-success" style="display: inline; font-size: larger;">Manuscript
+        <p class="blinking-text text-success" style="display: inline; font-size: larger;">Manuscript
             submission for the workshop is open now</p>
         <p>Paper can be submitted via the <a href="https://its.papercept.net/conferences/scripts/start.pl">conference
                 paper submission system.</a> Authors will present the accepted papers in the workshop.</p>
-        <p><strong>Date and Location: </strong> June 2, 2024, Room XXX</p>
+        <p><strong>Date and Location: </strong> June 2, 2024, Jeju Shinhwa World, Jeju Island.</p>
         <p> <strong>Workshop Registration: </strong> <a href="#">Registration Link here</a></p>
         <h2 id="about" class="mt-4 gradient-header p-1">About</h2>
         <p>With the fast progress in AI algorithms and their implementations in the automated vehicle (AV) area, highly
