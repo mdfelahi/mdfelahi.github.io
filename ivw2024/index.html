@@ -45,12 +45,7 @@
         .text-outline {
             color: white;
             /* Or any color; it's the color of the text */
-            text-shadow:
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000;
-            /* This is the outline color */
+            text-shadow: 2px 2px 3px #000000
         }
 
         /* Optional: Makes the navbar semi-transparent */
@@ -71,15 +66,6 @@
             background-size: cover;
             background-position: center;
             height: 480px;
-        }
-
-        .jumbotron.jumbotron-fluid {
-            padding: 100px 0;
-            /* Adjust the padding to fit your design */
-            background: url('static/images/jeju_backdrop.png') no-repeat center center;
-            background-size: cover;
-            color: white;
-            /* Assuming you want white text */
         }
 
         .container.text-center {
@@ -121,6 +107,24 @@
             background-color: #555;
             /* Darker background on hover */
         }
+
+        .navbar-collapse.collapsing,
+        .navbar-collapse.show {
+            background-color: #fff;
+            /* Change this to any color you prefer */
+        }
+
+        @media (max-width: 768px) {
+            h1.display-4 {
+                font-size: 1.3rem;
+                /* Smaller font size on smaller screens */
+            }
+
+            .lead {
+                font-size: 1rem;
+                /* or whatever size you deem appropriate for mobile */
+            }
+        }
     </style>
 
     <script>
@@ -140,9 +144,13 @@
         <a class="navbar-brand" href="https://ieee-iv.org/2024/">
             <img src="static/images/iv2024jeju_logo.png" alt="iv2024 logo" width="243" height="75" />
         </a>
-        <div class="collapse navbar-collapse">
+        <!-- Toggler/collapsible Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav mx-auto">
-            <!-- <ul class="navbar-nav ml-auto"> -->
+                <!-- <ul class="navbar-nav ml-auto"> -->
                 <li class="nav-item">
                     <a class="nav-link" href="#about">About</a>
                 </li>
@@ -235,9 +243,8 @@
             <li>XAI algorithms</li>
             <li>Intelligent driver interface</li>
         </ul>
-        <h2 id="format" class="mt-4 gradient-header p-1">Format</h2>
-        <p>... in progress ... </p>
-        <h2 id="schedule" class="mt-4 gradient-header p-1">Schedule</h2>
+        <!-- <h2 id="format" class="mt-4 gradient-header p-1">Format</h2> -->
+        <h2 id="schedule" class="mt-4 gradient-header p-1">Tentative Schedule</h2>
         A full-day workshop with invited talks, panel discussions, and poster presentations will be held following the
         schedule below:
         <table class="table table-striped">
