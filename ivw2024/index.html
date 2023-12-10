@@ -58,6 +58,7 @@
             top: 0;
             left: 0;
             width: 100%;
+            z-index: 99;
         }
 
         /* Style for the background image container */
@@ -66,6 +67,22 @@
             background-size: cover;
             background-position: center;
             height: 480px;
+            position: relative;
+        }
+
+        .background-image-container::after {
+            content: '';
+            /* Required for pseudo-elements */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            /* Black tint with 50% opacity */
+            z-index: 1;
+            /* Ensures the tint is above the background image */
+            mix-blend-mode: multiply;
         }
 
         .container.text-center {
@@ -120,8 +137,13 @@
                 /* Smaller font size on smaller screens */
             }
 
+            h2 {
+                font-size: 1.2rem;
+                /* Smaller font size on smaller screens */
+            }
+
             .lead {
-                font-size: 1rem;
+                font-size: 1.1rem;
                 /* or whatever size you deem appropriate for mobile */
             }
         }
@@ -158,9 +180,6 @@
                     <a class="nav-link" href="#topics">Topics</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#format">Format</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#schedule">Schedule</a>
                 </li>
                 <li class="nav-item">
@@ -176,21 +195,22 @@
     <div class="background-image-container">
         <div class="container text-center text-outline">
             <h1 class="display-4 font-weight-bold">Workshop on Trust Calibration and Feedback Generation in
-                AI-Enabled Vehicle
-                Systems</h1>
-            <p class="lead text-outline font-weight-bold">June 2 - 5, 2024, Jeju Shinhwa World, Jeju Island, Korea</p>
+                AI-Enabled Vehicle Systems</h1>
+            <h2>At 35th IEEE Intelligent Vehicles Symposium</h2>
+            <p class="lead text-outline font-weight-bold">June 2, 2024, Jeju Shinhwa World, Jeju Island, Korea</p>
         </div>
     </div>
     <main class="container">
         <!-- <main class="flex-fill"> -->
         <h2 class="mt-4 gradient-header p-1">Important Information</h2>
         <!-- inline header with content -->
-        <p class="blinking-text text-success" style="display: inline; font-size: larger;">Manuscript
+        <p class="blinking-text text-danger" style="display: inline; font-size: larger;">Manuscript
             submission for the workshop is open now</p>
-        <p>Paper can be submitted via the <a href="https://its.papercept.net/conferences/scripts/start.pl">conference
-                paper submission system.</a> Authors will present the accepted papers in the workshop.</p>
+        <p>Paper can be submitted via <strong>2024 35th IEEE Intelligent Vehicles Symposium (IV)</strong> <a
+                href="https://its.papercept.net/conferences/scripts/start.pl">
+                submission link</a>. Authors will present the accepted papers in the workshop.</p>
         <p><strong>Date and Location: </strong> June 2, 2024, Jeju Shinhwa World, Jeju Island.</p>
-        <p> <strong>Workshop Registration: </strong> <a href="#">Registration Link here</a></p>
+        <p><a href="https://ieee-iv.org/2024/registration/">Workshop Registration Link</a></p>
         <h2 id="about" class="mt-4 gradient-header p-1">About</h2>
         <p>With the fast progress in AI algorithms and their implementations in the automated vehicle (AV) area, highly
             automated
@@ -386,7 +406,7 @@
     <!-- Footer -->
     <footer class="bg-dark text-white-50 py-3 mt-2">
         <div class="container text-center" style="padding-top: 50px;">
-            <small>&copy; 2023 Demo. All Rights Reserved.</small>
+            <small>&copy; 2023-24 All Rights Reserved by the Organizers.</small>
         </div>
     </footer>
 
