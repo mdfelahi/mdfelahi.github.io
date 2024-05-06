@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>InnoUI</title>
+    <link rel="icon" type="image/x-icon"
+        href="https://escooter-phase4.s3.amazonaws.com/clips_paul_experiment/assets/media/favicon.ico">
+    <script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        .ueqs_row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        }
+    
+        .ueqs_column {
+        flex: 1;
+        }
+    
+        /* Adjustments for the middle column to space out radio buttons */
+        .ueqs_column:nth-child(2) {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        }
+        #snapDiv {
+        max-height: 75vh; /* vh stands for viewport height. 60vh is 60% of the viewport height*/
+        overflow-y: auto; /* This will add a scrollbar when the content exceeds the max-height */
+        }
+
+        .modal-backdrop {
+        opacity:0.99 !important; /* Change this to the opacity you prefer */
+        }
+    </style>
+</head>
+<body>
+    <crowd-form answer-format="flatten-objects" id="parentCrowdForm">
+        <div class="container-fluid p-0">
+            <div class="row ms-0 me-0 p-0" id="rowMain">
+                <div class="row ms-0 me-0 p-0">
+                    <div class="row ms-0 me-0 p-0" id="rowVideoHolders">
+                        <div class="col-sm-8 p-0 justify-content-center" id="videoHolderDivA">
+                            <div class="embed-responsive d-flex flex-column justify-content-center" id="canvasDivA">
+                                <video id='video' class="embed-responsive-item" style="width:auto; height:auto;"
+                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_w_intent.mp4"
+                                    type="video/mp4" muted>
+                                </video>
+                                <div class="progress mt-1" id="progressDiv" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%;" id="progressBarA"
+                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>                            
+                            </div>
+                            <div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <div>
+                                        <button type="button" class="btn btn-outline-primary mb-2" id="instructionsBtn">Instructions</button>                                        
+                                    </div>
+                                    <div>
+                                        <!-- show current video number here-->
+                                        <button type="button" class="btn btn-outline-dark mb-2" id="videoNumberBadge">Video: 1</button>
+                                    </div>
+                                    <div class="d-flex justify-end" >
+                                        <button type="button" class="btn btn-dark mb-2 me-2" id="prevBtn">Previous Video</button>
+                                        <button type="button" class="btn btn-primary mb-2 me-2" id="playBtn">Play</button>
+                                        <button type="button" class="btn btn-dark mb-2" id="nextBtn">Next Video</button>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center" id="navPanel">
+                                    <div class="d-flex justify-content mt-6" style="flex-wrap: wrap;" id="videoListStatusHolder">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center mt-2">
+                                    <div class="col-sm-2">
+                                        <div class="toast rounded-pill mt-2 bg-dark" role="alert" id="notifToast"
+                                            data-bs-delay="1500">
+                                            <div class="toast-body text-center text-white" id="notifToastBody">
+                                                Progress is saved!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                                                 
+                            </div>
+                        </div>
+                        <div class="col-sm-4 ps-2" id="snapshotPanel">
+                            <div class="bg-dark bg-gradient rounded text-white text-center fs-5 p-1">Explanations at Paused moments</div>
+                            <div class="d-flex flex-column align-items-center mt-1" id="snapDiv">
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <crowd-text-area name="hiddenTaskAnswers" id="hiddenTaskAnswers" rows="4"
+                    style="display:none;"></crowd-text-area>
+            </div>
+        </div>
+        <short-instructions>
+            <p>
+                Please check the instructions clicking the instructions button on the bottom left side.
+            </p>
+            <p>If you face technical issues, please reach out to the requester, using <strong>Contact this
+                    Requester</strong> option in MTurk, someone will help fixing the issue.</p>
+        </short-instructions> 
+        <full-instructions header="Task Instructions">
+            <p>Please check the instructions clicking the instructions button on the bottom left side.</p>
+        </full-instructions>
+    </crowd-form>
+    <!-- MODALS -->
+    <!-- CONSENT FORM Modal -->
+    <div class="modal fade" id="consentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" id="welcomeModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Consent Form Aggreement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                <div class="modal-body" id="modalMessage">
+                    <h5 style="text-align: center; line-height: 1;"><span
+                            style="font-family: Calibri, sans-serif; font-weight: bold;">INDIANA UNIVERSITY
+                            INFORMED CONSENT STATEMENT FOR RESEARCH</span></h5>
+                    <h6 style="text-align: center; line-height: 1;"><span
+                            style="font-family: Calibri, sans-serif;font-weight: bold;">[Novel XAI Interface for Automated Driving Decisions]</span></h6>
+                    <h6 style="text-align: center; line-height: 1;"><span
+                            style="font-family: Calibri, sans-serif;font-weight: bold;">[IRB Study XXXX]</span>
+                    </h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;"><br></span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">ABOUT
+                            THIS RESEARCH</span></h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">You are being asked to
+                            participate in a research study sponsored by National Science
+                            Foundation. Scientists do research to answer important questions which might help change or
+                            improve the way we do things
+                            in the future.
+
+                            This consent form will give you information about the study to help you decide whether you
+                            want to participate. Please
+                            read this form, and ask any questions you have via feedback form, before agreeing to be in
+                            the study.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">You may choose not to
+                            take part in the study or may choose to leave the study at any time. Deciding not to
+                            participate,
+                            or deciding to leave the study later, will not result in any penalty or loss of benefits to
+                            which you are entitled.</span></p>
+                    <h6 style="line-height: 1;"><span
+                            style="font-family: Calibri, sans-serif; font-weight: bold;">TAKING PART IN THIS STUDY IS
+                            VOLUNTARY</span></h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">You may choose not to
+                            take part in the study or may choose to leave the study at any time. Deciding not to
+                            participate,
+                            or deciding to leave the study later, will not result in any penalty or loss of benefits to
+                            which you are entitled.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WHY
+                            IS THIS STUDY BEING DONE?</span></h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">When riding self-driving cars like Tesla, the passengers may expect some level of explanation from the car when it drives unexpectedly. This feedback can be communicated through visuals and audio and plays a vital role in assuring the passengers. The purpose of this study is to investigate how different feedback visualization concepts in self-driving car influences the trust and user experience of the passengers. The findings will contribute to improving the communication between the self-driving car and its passengers.
+
+                    You are selected as a possible participant because you own a car and may have sufficient driving experiences.</span></p>
+
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">HOW
+                            MANY PEOPLE WILL TAKE PART?</span></h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">If you agree to
+                            participate, you will be one
+                            of 1000 participants taking part in this study.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WHAT
+                            WILL HAPPEN DURING THE STUDY?</span>
+                    </h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">If you agree to participate in the study, you might need to watch up to four video clips, each lasting up to 15 seconds. You will conduct the entire study online through the Amazon Mechanical Turk (MTurk) platform, accessible at "https://www.mturk.com/." Before starting, you will need to confirm your commitment to providing thoughtful answers to ensure the quality of the data.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">After watching the four videos, you will answer 35 questions using four questionnaires about your experience of feedback visualization interface, how you trust the driving of the automated vehicles, and what you think about this new technology and technology in general. Lastly, we will ask about your age and gender. Your answers will be automatically saved as you move on to the next questionnaires. You will be using the Graphical User Interface provided on MTurk.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">Watching the videos should take less than two minutes, and answering the questionnaires will take about 8 minutes. The HIT can be finished within an estimated time of 10 minutes. You can choose your own pace, but you need to finish within the time limit of 2 hours.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WHAT
+                            ARE THE RISKS OF TAKING PART IN THE
+                            STUDY?</span></h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">The risks of
+                            participating in this research are minimum. Labeling the videos continuously may cause
+                            fatigue.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WHAT
+                            ARE THE POTENTIAL BENEFITS OF TAKING PART IN THE STUDY?</span></h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">We do not expect you to
+                            receive any benefit from taking part in this study, but we hope to learn things that will
+                            help
+                            scientists in the future.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">HOW
+                            WILL MY INFORMATION BE PROTECTED?</span>
+                    </h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">We will protect your
+                            information and make every effort to keep your personal information confidential, but we
+                            cannot
+                            guarantee absolute confidentiality. No information which could identify you will be shared
+                            in publications about this
+                            study.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">Your personal information
+                            may be shared outside the research study if required by law. We also may need to share your
+                            research records with other groups for quality assurance or data analysis. These groups
+                            include the Indiana University
+                            Institutional Review Board or its designees, and state or federal agencies who may need to
+                            access the research records
+                            (as allowed by law). Additionally, your research information may be shared with our sponsors
+                            on this research study at
+                            Toyota Motor North America.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WILL
+                            MY INFORMATION BE USED FOR RESEARCH IN
+                            THE FUTURE?</span></h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">Information collected
+                            from you for this study may be used for future research studies or shared with other
+                            researchers
+                            for future research. If this happens, since no identifying information will be collected, we
+                            will not ask for your
+                            additional consent.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WILL
+                            I BE PAID FOR PARTICIPATION?</span>
+                    </h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">We will pay $2.5 for each HIT containing 4 videos when all the questions are answered reasonably.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WILL
+                            IT COST ME ANYTHING TO
+                            PARTICIPATE?</span></h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">There is no cost to you
+                            for taking part in
+                            this study.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WHO
+                            SHOULD I CALL WITH QUESTIONS OR
+                            PROBLEMS?</span></h6>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">For questions or
+                            suggestions about the study please contact via the support link “Contact this requester”
+                            provided in
+                            the HIT.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">For questions about your
+                            rights as a research participant or to discuss problems, complaints, or concerns about a
+                            research study, or to obtain information, or offer input, please contact the IU Human
+                            Subjects Office at 800-696-2949 or
+                            at irb@iu.edu.</span></p>
+                    <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">CAN I
+                            WITHDRAW FROM THE STUDY?</span></h6>
+
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">If you decide to
+                            participate in this study, you can change your mind and decide to leave the study at any
+                            time by
+                            returning the HIT. If the HIT is rejected your data will be discarded completely.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">Your participation may be
+                            terminated by the investigator without regard to your consent in the following
+                            circumstances:
+                            you cannot annotate the videos following the instructions.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">Thank you for agreeing to
+                            participate in our research. Before you begin, please note that the data you provide may be
+                            collected and used by Amazon as per its privacy agreement. Following mTurk policies, we may
+                            reject your work if the HIT
+                            was not completed correctly, or the instructions were not followed. You must be 18 or older
+                            to participate in this
+                            research.</span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="welcomeMsgNextBtn" onclick="RecordConsent()">I Agree</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Commitment Request Modal -->
+    <div class="modal fade" id="commitmentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" id="commitmentModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Commitment Request</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                <div class="modal-body" id="modalCommitmentMessage">
+                    <p>We care about the quality of the data. Please carefully follow the instructions and pay attention while completing the task.</p>
+                    <h5>Do you commit to providing thoughtful answers to the questions in this HIT?</h5>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="mb-1">
+                            <input type="radio" class="btn-check" id="commitAmbiguousRadio" name="commitAnswer"
+                                value="ambiguous" autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="commitAmbiguousRadio"> I cannot promise
+                                either way</label>
+                        </div>
+                        <div class="mb-1">
+                            <input type="radio" class="btn-check" id="commitYesRadio" name="commitAnswer" value="yes"
+                                autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="commitYesRadio">Yes, I will</label>
+                        </div>
+                        <div>
+                            <input type="radio" class="btn-check" id="commitNoRadio" name="commitAnswer" value="no"
+                                autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="commitNoRadio">No, I will not</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="proceedExperimentBtn"
+                        onclick="ProceedToExperiment()">Proceed to Experiment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="instructionsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" id="instructionsModalDialog">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h5 class="modal-title">Instructions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                <div class="modal-body" id="instructionsModalHolder">
+                    <!-- ordered list of instructions -->
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item">In this task, you will watch some videos. These videos show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars.</li>
+                        <li class="list-group-item mt-2">You will see the <strong>speed and driving decision statuses</strong> of self-driving car (highlighted inside red rounded rectangle):
+                            <div class="row d-flex justify-content-around mt-1 mb-1">
+                                <div class="col-sm-6 d-flex flex-column align-items-center">
+                                        <video style="width: 100%;"
+                                        src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-speed.mp4"
+                                        type="video/mp4" controls loop autoplay>
+                                        </video>
+                                        <p>Speed status</p>                            
+                                </div>
+                                <div class="col-md-6 d-flex flex-column align-items-center">
+                                    <video style="width: 100%;"
+                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-direction.mp4"
+                                    type="video/mp4" controls loop autoplay>
+                                    </video>
+                                    <p>Direction status</p>                            
+                                </div>
+                            </div>                            
+                        </li>
+                        <li class="list-group-item mt-2">Self-driving car's detection of the <strong>pedestrians and other cars</strong> (indicated by yellow arrow):
+                            <div class="row d-flex justify-content-around mt-1 mb-1">
+                                <div class="col-sm-6 d-flex flex-column align-items-center">
+                                        <video style="width: 100%;"
+                                        src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-pedes-box.mp4"
+                                        type="video/mp4" controls loop autoplay>
+                                        </video>
+                                        <p>Pedestrian detection (red box)</p>                            
+                                </div>
+                                <div class="col-md-6 d-flex flex-column align-items-center">
+                                    <video style="width: 100%;"
+                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-car-box.mp4"
+                                    type="video/mp4" controls loop autoplay>
+                                    </video>
+                                    <p>Car detection (yellow box)</p>                            
+                                </div>
+                            </div>                            
+                        </li>
+                        <li class="list-group-item mt-2">Self-driving car's understanding of the <strong>crossing intention and motion of pedestrians and cars</strong>(highlighted inside yellow rounded rectangle):
+                            <div class="row d-flex justify-content-around mt-1 mb-1">
+                                <div class="col-sm-6 d-flex flex-column align-items-center">
+                                        <video style="width: 100%;"
+                                        src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-pedes-intent.mp4"
+                                        type="video/mp4" controls loop autoplay>
+                                        </video>
+                                        <p>Crossing intention before car</p>                            
+                                </div>
+                                <div class="col-md-6 d-flex flex-column align-items-center">
+                                    <video style="width: 100%;"
+                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-pedes-motion.mp4"
+                                    type="video/mp4" controls loop autoplay>
+                                    </video>
+                                    <p>Direction of motion of the pedestrian</p>                            
+                                </div>
+                            </div>                            
+                        </li>
+                        <li class="list-group-item mt-2">The video may automatically pause at certain moments. At these moments, a snapshot of the video with brief text explanation will appear to the right side of the video.</li>
+                            <div class="row d-flex justify-content-around mt-1 mb-1">
+                                <div class="col-sm-6 d-flex flex-column align-items-center align-self-end">
+                                        <video style="width: 100%;"
+                                        src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-L2-snapshot-appear.mp4"
+                                        type="video/mp4" controls loop autoplay>
+                                        </video>
+                                        <p>Appearance of Snapshot at paused moments</p>                            
+                                </div>
+                                <div class="col-sm-6 d-flex flex-column align-items-center ">                                
+                                    <img style="width: 90%;"
+                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_level2_snap_1.jpg">
+                                    <p>Brief explanation of why AI system is braking.</p>                            
+                                </div>                                
+                            </div>                            
+                        </li>
+                        <li class="list-group-item">Click the snapshot to zoom-in. Click the play button to continue watching the video.</li>
+                        <li class="list-group-item">Please make sure to finish one video before starting the next one.</li>
+                        <li class="list-group-item">After watching the videos, you will answer some questions about these visualizations and self driving technology. This should take about 7-8 minutes.</li>
+                    </ol>
+                    <div class="mt-2 d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I have read the Instructions</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Background question Modal -->
+    <div class="modal fade" id="backgroundQuestionModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" id="backgroundQuestionModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">About You (page 1 of 5)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                <div class="modal-body" id="backgroundQuestionsHolder">
+                    <!-- background questions about age, gender, state location, driving habits -->
+                    <!-- what is your age -->
+                    <div class="mb-3">
+                        <label for="ageInput" class="form-label">1. What is your age?</label>
+                        <input type="number" class="form-control" id="ageInput" placeholder="Enter your age, e.g., 19">
+                    </div>
+                    <!-- what is your gender -->
+                    <div class="mb-3">
+                        <label for="genderInput" class="form-label">2. What is your gender?</label>
+                        <input type="text" class="form-control" id="genderInput" placeholder="Enter your gender">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="attnChk1Input" class="form-label">3. In this task, did you watch any video recorded at night?</label>
+                        <div class="d-flex align-items-start">
+                            <div class="mb-1">
+                                <input type="radio" class="btn-check" id="chkQ1YesRadio" name="chkQ1RadioInput" value="yes"
+                                    autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary me-1" for="chkQ1YesRadio">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" class="btn-check" id="chkQ1NoRadio" name="chkQ1RadioInput" value="no"
+                                    autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary ms-1" for="chkQ1NoRadio">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"
+                        onclick="GoToUeqsQuestionnaire()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- STS-AD QUESTIONNAIRE Modal-->
+    <div class="modal fade" id="stsADModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" id="stsADModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="stsADModalTitle">Please answer each of the six questions (page 3 of 5)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                <div class="modal-body" id="stsADQuestionsHolder">
+                    <!-- questions from situational trust towards Autonmous Driving questionnaire -->
+                    <div class="modal-body" id="stsADQuestionsHolder">
+                        <!-- questions from questionnaire with 5 point Likert-scale -->
+                        <div class="mb-3">
+                        <!-- <div class="mb-3" style="background-color:#D3D3D3"> -->
+                            <label class="form-label">1. I trust the automation in these situations.</label>
+                            <div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion1" id="stsADQ1StronglyDisagree" value="1">
+                                <label class="form-check-label" for="stsADq1StronglyDisagree">Strongly Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion1" id="stsADQ1Disagree" value="2">
+                                <label class="form-check-label" for="stsADQ1Disagree">Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion1" id="stsADQ1Neutral" value="3">
+                                <label class="form-check-label" for="stsADQ1Neutral">Neutral</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion1" id="stsADQ1Agree" value="4">
+                                <label class="form-check-label" for="stsADQ1Agree">Agree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion1" id="stsADQ1StronglyAgree" value="5">
+                                <label class="form-check-label" for="stsADQ1StronglyAgree">Strongly Agree</label>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">2. I would have performed better than the automated vehicle in these situations.</label>
+                            <div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion2" id="stsADQ2StronglyDisagree" value="1">
+                                <label class="form-check-label" for="stsADQ2StronglyDisagree">Strongly Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion2" id="stsADQ2Disagree" value="2">
+                                <label class="form-check-label" for="stsADQ2Disagree">Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion2" id="stsADQ2Neutral" value="3">
+                                <label class="form-check-label" for="stsADQ2Neutral">Neutral</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion2" id="stsADQ2Agree" value="4">
+                                <label class="form-check-label" for="stsADQ2Agree">Agree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion2" id="stsADQ2StronglyAgree" value="5">
+                                <label class="form-check-label" for="stsADQ2StronglyAgree">Strongly Agree</label>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="mb-3">
+                            <label class="form-label">3. In these situations, the automated vehicle performs well enough for me to engage in other activities (such as reading).</label>
+                            <div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion3" id="stsADQ3StronglyDisagree" value="1">
+                                <label class="form-check-label" for="stsADQ3StronglyDisagree">Strongly Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion3" id="stsADQ3Disagree" value="2">
+                                <label class="form-check-label" for="stsADQ3Disagree">Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion3" id="stsADQ3Neutral" value="3">
+                                <label class="form-check-label" for="stsADQ3Neutral">Neutral</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion3" id="stsADQ3Agree" value="4">
+                                <label class="form-check-label" for="stsADQ3Agree">Agree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion3" id="stsADQ3StronglyAgree" value="5">
+                                <label class="form-check-label" for="stsADQ3StronglyAgree">Strongly Agree</label>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="mb-3">
+                            <label class="form-label">4. The situations were risky.</label>
+                            <div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion4" id="stsADQ4StronglyDisagree" value="1">
+                                <label class="form-check-label" for="stsADQ4StronglyDisagree">Strongly Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion4" id="stsADQ4Disagree" value="2">
+                                <label class="form-check-label" for="stsADQ4Disagree">Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion4" id="stsADQ4Neutral" value="3">
+                                <label class="form-check-label" for="stsADQ4Neutral">Neutral</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion4" id="stsADQ4Agree" value="4">
+                                <label class="form-check-label" for="stsADQ4Agree">Agree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion4" id="stsADQ4StronglyAgree" value="5">
+                                <label class="form-check-label" for="stsADQ4StronglyAgree">Strongly Agree</label>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="mb-3">
+                            <label class="form-label">5. The automated vehicle made an unsafe judgement in these situations.</label>
+                            <div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion5" id="stsADQ5StronglyDisagree" value="1">
+                                <label class="form-check-label" for="stsADQ5StronglyDisagree">Strongly Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion5" id="stsADQ5Disagree" value="2">
+                                <label class="form-check-label" for="stsADQ5Disagree">Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion5" id="stsADQ5Neutral" value="3">
+                                <label class="form-check-label" for="stsADQ5Neutral">Neutral</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion5" id="stsADQ5Agree" value="4">
+                                <label class="form-check-label" for="stsADQ5Agree">Agree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion5" id="stsADQ5StronglyAgree" value="5">
+                                <label class="form-check-label" for="stsADQ5StronglyAgree">Strongly Agree</label>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="mb-3">
+                            <label class="form-label">6. The automated vehicle reacted appropriately to the environment.</label>
+                            <div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion6" id="stsADQ6StronglyDisagree" value="1">
+                                <label class="form-check-label" for="stsADQ6StronglyDisagree">Strongly Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion6" id="stsADQ6Disagree" value="2">
+                                <label class="form-check-label" for="stsADQ6Disagree">Disagree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion6" id="stsADQ6Neutral" value="3">
+                                <label class="form-check-label" for="stsADQ6Neutral">Neutral</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion6" id="stsADQ6Agree" value="4">
+                                <label class="form-check-label" for="stsADQ6Agree">Agree</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="stsADQuestion6" id="stsADQ6StronglyAgree" value="5">
+                                <label class="form-check-label" for="stsADQ6StronglyAgree">Strongly Agree</label>
+                              </div>
+                            </div>
+                          </div>
+                                                  
+                    </div>
+                                                     
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="ueqsQBtn"
+                        onclick="GoToPiitQuestionnaire()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UEQS QUESTIONNAIRE Modal-->
+    <div class="modal fade" id="ueqsModal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" id="ueqsModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ueqsModalTitle">How do you feel about the visualization concepts of the interface? (page 2 of 5)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                    <!-- questions from situational trust towards Autonmous Driving questionnaire -->
+                <div class="modal-body" id="ueqsQuestionsHolder">
+                    <!-- questions from questionnaire with 5 point Likert-scale -->
+                    <form>
+                        <div class="ueqs_row" style="width: 50%;" >
+                          <div class="ueqs_column">obstructive</div>
+                          <div class="ueqs_column">
+                            <input type="radio" name="obstructiveSupportive" id="obstructiveSupportive1" value="1">
+                            <input type="radio" name="obstructiveSupportive" id="obstructiveSupportive2" value="2">
+                            <input type="radio" name="obstructiveSupportive" id="obstructiveSupportive3" value="3">
+                            <input type="radio" name="obstructiveSupportive" id="obstructiveSupportive4" value="4">
+                            <input type="radio" name="obstructiveSupportive" id="obstructiveSupportive5" value="5">
+                          </div>
+                          <div class="ueqs_column">supportive</div>
+                        </div>
+                        
+                        <div class="ueqs_row" style="width: 50%;">
+                          <div class="ueqs_column">complicated</div>
+                          <div class="ueqs_column">
+                            <input type="radio" name="complicatedEasy" id="complicatedEasy1" value="1">
+                            <input type="radio" name="complicatedEasy" id="complicatedEasy2" value="2">
+                            <input type="radio" name="complicatedEasy" id="complicatedEasy3" value="3">
+                            <input type="radio" name="complicatedEasy" id="complicatedEasy4" value="4">
+                            <input type="radio" name="complicatedEasy" id="complicatedEasy5" value="5">
+                          </div>
+                          <div class="ueqs_column">easy</div>
+                        </div>
+                        
+                        <div class="ueqs_row" style="width: 50%;">
+                          <div class="ueqs_column">inefficient</div>
+                          <div class="ueqs_column">
+                            <input type="radio" name="inefficientEfficient" id="inefficientEfficient1" value="1">
+                            <input type="radio" name="inefficientEfficient" id="inefficientEfficient2" value="2">
+                            <input type="radio" name="inefficientEfficient" id="inefficientEfficient3" value="3">
+                            <input type="radio" name="inefficientEfficient" id="inefficientEfficient4" value="4">
+                            <input type="radio" name="inefficientEfficient" id="inefficientEfficient5" value="5">
+                          </div>
+                          <div class="ueqs_column">efficient</div>
+                        </div>
+                        <div class="ueqs_row" style="width: 50%;">
+                            <div class="ueqs_column">confusing</div>
+                            <div class="ueqs_column">
+                              <input type="radio" name="confusingClear" id="confusingClear1" value="1">
+                              <input type="radio" name="confusingClear" id="confusingClear2" value="2">
+                              <input type="radio" name="confusingClear" id="confusingClear3" value="3">
+                              <input type="radio" name="confusingClear" id="confusingClear4" value="4">
+                              <input type="radio" name="confusingClear" id="confusingClear5" value="5">
+                            </div>
+                            <div class="ueqs_column">clear</div>
+                          </div>
+                          
+                          <div class="ueqs_row" style="width: 50%;">
+                            <div class="ueqs_column">boring</div>
+                            <div class="ueqs_column">
+                              <input type="radio" name="boringExciting" id="boringExciting1" value="1">
+                              <input type="radio" name="boringExciting" id="boringExciting2" value="2">
+                              <input type="radio" name="boringExciting" id="boringExciting3" value="3">
+                              <input type="radio" name="boringExciting" id="boringExciting4" value="4">
+                              <input type="radio" name="boringExciting" id="boringExciting5" value="5">
+                            </div>
+                            <div class="ueqs_column">exciting</div>
+                          </div>
+                          
+                          <div class="ueqs_row" style="width: 50%;">
+                            <div class="ueqs_column">not interesting</div>
+                            <div class="ueqs_column">
+                              <input type="radio" name="notInterestingInteresting" id="notInterestingInteresting1" value="1">
+                              <input type="radio" name="notInterestingInteresting" id="notInterestingInteresting2" value="2">
+                              <input type="radio" name="notInterestingInteresting" id="notInterestingInteresting3" value="3">
+                              <input type="radio" name="notInterestingInteresting" id="notInterestingInteresting4" value="4">
+                              <input type="radio" name="notInterestingInteresting" id="notInterestingInteresting5" value="5">
+                            </div>
+                            <div class="ueqs_column">interesting</div>
+                          </div>
+                          
+                          <div class="ueqs_row" style="width: 50%;">
+                            <div class="ueqs_column">conventional</div>
+                            <div class="ueqs_column">
+                              <input type="radio" name="conventionalInventive" id="conventionalInventive1" value="1">
+                              <input type="radio" name="conventionalInventive" id="conventionalInventive2" value="2">
+                              <input type="radio" name="conventionalInventive" id="conventionalInventive3" value="3">
+                              <input type="radio" name="conventionalInventive" id="conventionalInventive4" value="4">
+                              <input type="radio" name="conventionalInventive" id="conventionalInventive5" value="5">
+                            </div>
+                            <div class="ueqs_column">inventive</div>
+                          </div>
+                          
+                          <div class="ueqs_row" style="width: 50%;">
+                            <div class="ueqs_column">usual</div>
+                            <div class="ueqs_column">
+                              <input type="radio" name="usualLeadingEdge" id="usualLeadingEdge1" value="1">
+                              <input type="radio" name="usualLeadingEdge" id="usualLeadingEdge2" value="2">
+                              <input type="radio" name="usualLeadingEdge" id="usualLeadingEdge3" value="3">
+                              <input type="radio" name="usualLeadingEdge" id="usualLeadingEdge4" value="4">
+                              <input type="radio" name="usualLeadingEdge" id="usualLeadingEdge5" value="5">
+                            </div>
+                            <div class="ueqs_column">leading edge</div>
+                          </div>                          
+                    </form>                      
+                </div>
+                                                     
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="ueqsQBtn"
+                        onclick="GoToStsAdQuestionnaire()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- piit Questionnaire Modal -->
+    <div class="modal fade" id="piitModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" id="piitModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="piitModalTitle">Please tell us to what extent you are interested in trying out new features or add-ons. (page 4 of 5)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                <!-- questions from situational trust towards Autonmous Driving questionnaire -->
+                <div class="modal-body" id="piitQuestionsHolder">
+                    <!-- questions from questionnaire with 5 point Likert-scale -->
+                    <div class="mb-3">
+                    <!-- <div class="mb-3" style="background-color:#D3D3D3"> -->
+                        <label class="form-label">1. If I heard about a new technology, I would look for ways to experiment with it. 
+                        </label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion1" id="piitQ1StronglyDisagree" value="1">
+                                <label class="form-check-label" for="piitq1StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion1" id="piitQ1Disagree" value="2">
+                                <label class="form-check-label" for="piitQ1Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion1" id="piitQ1Neutral" value="3">
+                                <label class="form-check-label" for="piitQ1Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion1" id="piitQ1Agree" value="4">
+                                <label class="form-check-label" for="piitQ1Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion1" id="piitQ1StronglyAgree" value="5">
+                                <label class="form-check-label" for="piitQ1StronglyAgree">Strongly Agree</label>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">2. Among my peers, I am usually the first to try out new technologies.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion2" id="piitQ2StronglyDisagree" value="1">
+                                <label class="form-check-label" for="piitQ2StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion2" id="piitQ2Disagree" value="2">
+                                <label class="form-check-label" for="piitQ2Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion2" id="piitQ2Neutral" value="3">
+                                <label class="form-check-label" for="piitQ2Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion2" id="piitQ2Agree" value="4">
+                                <label class="form-check-label" for="piitQ2Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion2" id="piitQ2StronglyAgree" value="5">
+                                <label class="form-check-label" for="piitQ2StronglyAgree">Strongly Agree</label>
+                            </div>                            
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">3. In general, I am hesitant to try out new technologies.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion3" id="piitQ3StronglyDisagree" value="1">
+                                <label class="form-check-label" for="piitQ3StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion3" id="piitQ3Disagree" value="2">
+                                <label class="form-check-label" for="piitQ3Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion3" id="piitQ3Neutral" value="3">
+                                <label class="form-check-label" for="piitQ3Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion3" id="piitQ3Agree" value="4">
+                                <label class="form-check-label" for="piitQ3Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion3" id="piitQ3StronglyAgree" value="5">
+                                <label class="form-check-label" for="piitQ3StronglyAgree">Strongly Agree</label>
+                            </div>                            
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">4. I like to experiment with new technologies.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion4" id="piitQ4StronglyDisagree" value="1">
+                                <label class="form-check-label" for="piitQ4StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion4" id="piitQ4Disagree" value="2">
+                                <label class="form-check-label" for="piitQ4Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion4" id="piitQ4Neutral" value="3">
+                                <label class="form-check-label" for="piitQ4Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion4" id="piitQ4Agree" value="4">
+                                <label class="form-check-label" for="piitQ4Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="piitQuestion4" id="piitQ4StronglyAgree" value="5">
+                                <label class="form-check-label" for="piitQ4StronglyAgree">Strongly Agree</label>
+                            </div>                            
+                        </div>
+                    </div>                    
+                </div>                                                 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="piitBtn"
+                        onclick="BackgroundQuestionnaire2()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="backgroundQuestion2Modal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" id="backgroundQuestion2ModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Last Questions (page 5 of 5)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                <div class="modal-body" id="backgroundQuestions2Holder">
+                    <div class="mb-3">
+                        <label class="form-label">1. Overall, I find the automation of tasks using AI beneficial.
+                        </label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="likeAiRadioInput" id="bgQ1StronglyDisagree" value="1">
+                                <label class="form-check-label" for="bgq1StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="likeAiRadioInput" id="bgQ1Disagree" value="2">
+                                <label class="form-check-label" for="bgQ1Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="likeAiRadioInput" id="bgQ1Neutral" value="3">
+                                <label class="form-check-label" for="bgQ1Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="likeAiRadioInput" id="bgQ1Agree" value="4">
+                                <label class="form-check-label" for="bgQ1Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="likeAiRadioInput" id="bgQ1StronglyAgree" value="5">
+                                <label class="form-check-label" for="bgQ1StronglyAgree">Strongly Agree</label>
+                            </div>                        
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="rideAvInput" class="form-label">2. Have you ever ridden in a self-driving car, e.g., Tesla auto-pilot, Robotaxis?</label>
+                        <div class="d-flex align-items-start">
+                            <div class="mb-1">
+                                <input type="radio" class="btn-check" id="rideAvYesRadio" name="rideAvRadioInput"
+                                    value="yes" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary me-1" for="rideAvYesRadio">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" class="btn-check" id="rideAvNoRadio" name="rideAvRadioInput"
+                                    value="no" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary ms-1" for="rideAvNoRadio">No</label>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="mb-3">
+                        <label for="attnChk2Input" class="form-label">3. In this task, how many videos did you watch?</label>
+                        <div class="d-flex align-items-start">
+                            <div class="mb-1">
+                                <input type="radio" class="btn-check" id="chkQ2RadioValue2" name="chkQ2RadioInput" value="2"
+                                    autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary me-1" for="chkQ2RadioValue2">2</label>
+                            </div>
+                            <div class="mb-1">
+                                <input type="radio" class="btn-check" id="chkQ2RadioValue3" name="chkQ2RadioInput" value="3"
+                                    autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary ms-1" for="chkQ2RadioValue3">3</label>
+                            </div>
+                            <div class="mb-1">
+                                <input type="radio" class="btn-check" id="chkQ2RadioValue4" name="chkQ2RadioInput" value="4"
+                                    autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary ms-1" for="chkQ2RadioValue4">4</label>
+                            </div>
+                            <div class="mb-1">
+                                <input type="radio" class="btn-check" id="chkQ2RadioValue5" name="chkQ2RadioInput" value="5"
+                                    autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary ms-1" for="chkQ2RadioValue5">5</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"
+                        onclick="FinishStudy()" id="finishBtn">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="attAVModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" id="attAVModalDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="attAVModalTitle">Please tell us what you think of Self-driving Technology.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                <!-- questions from situational trust towards Autonmous Driving questionnaire -->
+                <h6 class="ms-1">Please give us your opinion in terms of your agreement for the following statements:</h6>
+                <div class="modal-body" id="attAVQuestionsHolder">
+                    <!-- questions from questionnaire with 5 point Likert-scale -->
+                    <div class="mb-3">
+                    <!-- <div class="mb-3" style="background-color:#D3D3D3"> -->
+                        <label class="form-label">1. I would be comfortable with driving or riding in an autonomous or self-driving vehicle. 
+                        </label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion1" id="attAVQ1StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVq1StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion1" id="attAVQ1Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ1Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion1" id="attAVQ1Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ1Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion1" id="attAVQ1Agree" value="4">
+                                <label class="form-check-label" for="attAVQ1Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion1" id="attAVQ1StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ1StronglyAgree">Strongly Agree</label>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">2. I would be concerned about driving or riding in an autonomous or self-driving technology.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion2" id="attAVQ2StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ2StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion2" id="attAVQ2Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ2Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion2" id="attAVQ2Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ2Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion2" id="attAVQ2Agree" value="4">
+                                <label class="form-check-label" for="attAVQ2Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion2" id="attAVQ2StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ2StronglyAgree">Strongly Agree</label>
+                            </div>                        
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">3. If self-driving technology were now available as optional equipment on my next car purchase, I would buy or lease this technology.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion3" id="attAVQ3StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ3StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion3" id="attAVQ3Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ3Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion3" id="attAVQ3Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ3Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion3" id="attAVQ3Agree" value="4">
+                                <label class="form-check-label" for="attAVQ3Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion3" id="attAVQ3StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ3StronglyAgree">Strongly Agree</label>
+                            </div>                        
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">4. I would buy or lease a completely autonomous vehicle (Level 4) if one were available.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion4" id="attAVQ4StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ4StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion4" id="attAVQ4Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ4Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion4" id="attAVQ4Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ4Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion4" id="attAVQ4Agree" value="4">
+                                <label class="form-check-label" for="attAVQ4Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion4" id="attAVQ4StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ4StronglyAgree">Strongly Agree</label>
+                            </div>                        
+                        </div>
+                    </div> 
+                    <div class="mb-3">
+                        <label class="form-label">5. I think that autonomous vehicles can never be safer than those driven by humans.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion5" id="attAVQ5StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ5StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion5" id="attAVQ5Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ5Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion5" id="attAVQ5Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ5Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion5" id="attAVQ5Agree" value="4">
+                                <label class="form-check-label" for="attAVQ5Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion5" id="attAVQ5StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ5StronglyAgree">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">6. I think advances in science and technology will allow driverless cars to be as safe as human drivers.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion6" id="attAVQ6StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ6StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion6" id="attAVQ6Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ6Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion6" id="attAVQ6Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ6Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion6" id="attAVQ6Agree" value="4">
+                                <label class="form-check-label" for="attAVQ6Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion6" id="attAVQ6StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ6StronglyAgree">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Repeat the above structure for questions 7 to the rest of the questions, updating the question label and input names accordingly -->
+                    
+                    <!-- Question 7 -->
+                    <div class="mb-3">
+                        <label class="form-label">7. Computers are capable of the same quality of decision making as human drivers.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion7" id="attAVQ7StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ7StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion7" id="attAVQ7Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ7Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion7" id="attAVQ7Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ7Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion7" id="attAVQ7Agree" value="4">
+                                <label class="form-check-label" for="attAVQ7Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion7" id="attAVQ7StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ7StronglyAgree">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 8 -->
+                    <div class="mb-3">
+                        <label class="form-label">8. I can drive better than a computer.</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion8" id="attAVQ8StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ8StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion8" id="attAVQ8Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ8Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion8" id="attAVQ8Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ8Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion8" id="attAVQ8Agree" value="4">
+                                <label class="form-check-label" for="attAVQ8Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion8" id="attAVQ8StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ8StronglyAgree">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6>How concerned are you about the following possible scenarios with completely self-driving vehicles (Level 4)?</h6>
+                    <!-- <div class="mb-3"></div> -->
+                    <!-- Question 9 -->
+                    <div class="mb-3">
+                        <label class="form-label">9. I would be concerned with riding in a vehicle with no driver controls available (no steering wheel, no brake pedal, and no gas pedal/accelerator)</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion9" id="attAVQ9StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ9StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion9" id="attAVQ9Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ9Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion9" id="attAVQ9Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ9Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion9" id="attAVQ9Agree" value="4">
+                                <label class="form-check-label" for="attAVQ9Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion9" id="attAVQ9StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ9StronglyAgree">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 10 -->
+                    <div class="mb-3">
+                        <label class="form-label">10. I would be concerned with self-driving vehicles moving by themselves from one location to another while unoccupied:</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion10" id="attAVQ10StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ10StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion10" id="attAVQ10Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ10Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion10" id="attAVQ10Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ10Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion10" id="attAVQ10Agree" value="4">
+                                <label class="form-check-label" for="attAVQ10Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion10" id="attAVQ10StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ10StronglyAgree">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Question 11 -->
+                    <div class="mb-3">
+                        <label class="form-label">11. I would be concerned with commercial vehicles such as heavy trucks or semi-trailer trucks that are completely self-driving:</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion11" id="attAVQ11StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ11StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion11" id="attAVQ11Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ11Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion11" id="attAVQ11Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ11Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion11" id="attAVQ11Agree" value="4">
+                                <label class="form-check-label" for="attAVQ11Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion11" id="attAVQ11StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ11StronglyAgree">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 12 -->
+                    <div class="mb-3">
+                        <label class="form-label">12. I would be concerned with public transportation such as busses that are completely self-driving:</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion12" id="attAVQ12StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ12StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion12" id="attAVQ12Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ12Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion12" id="attAVQ12Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ12Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion12" id="attAVQ12Agree" value="4">
+                                <label class="form-check-label" for="attAVQ12Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion12" id="attAVQ12StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ12StronglyAgree">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 13 -->
+                    <div class="mb-3">
+                        <label class="form-label">13. I would be concerned with taxis that are completely self-driving:</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion13" id="attAVQ13StronglyDisagree" value="1">
+                                <label class="form-check-label" for="attAVQ13StronglyDisagree">Strongly Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion13" id="attAVQ13Disagree" value="2">
+                                <label class="form-check-label" for="attAVQ13Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion13" id="attAVQ13Neutral" value="3">
+                                <label class="form-check-label" for="attAVQ13Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion13" id="attAVQ13Agree" value="4">
+                                <label class="form-check-label" for="attAVQ13Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attAVQuestion13" id="attAVQ13StronglyAgree" value="5">
+                                <label class="form-check-label" for="attAVQ13StronglyAgree">Strongly Agree</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>                                                 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="attAVBtn"
+                        onclick="TestQuestionFunctionality()">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+ 
+    <!-- Video Completion Modal -->
+    <div class="modal fade" id="notifMsg" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" id="notifMsgDialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notifMsgTitle">Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="notifMsgBody">
+                    <h6>You can submit the HIT now.</h6>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-bs-dismiss="modal">Okay, Got it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="imageModal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Explanation behind driving decision</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:block;">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="" id="modalImage" class="img-fluid" alt="Modal Image">
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- END Modals -->
+
+
+</body>
+
+<script>
+    // HELPER FUNCTIONS
+    function shuffle(array) {
+        //https://stackoverflow.com/a/2450976
+        let currentIndex = array.length, randomIndex;
+
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
+
+        return array;
+    }
+    function JsDeepCopy(obj) {
+        // loses complext data type like date but we can parse from string in backend, and don't care
+        let x = JSON.stringify(obj);
+        var klone = JSON.parse(x);
+        return klone;
+    }
+    function XfrHtml2Js(vars) {
+        //makes a pipe between "html imported variable" and js to xfr html variable (flask variables hitdata) to js for saving
+        return vars;
+    }
+    function RadioGroupResponse(radioGrpName) {
+        var selector = document.querySelector('input[name=' + radioGrpName + ']:checked');
+        let retValue = 'not_selected'; //undefined but not C
+        if (selector) {
+            retValue = selector.value;
+        }
+        // console.log('radio response is ', retValue);
+        return retValue;
+    }
+    function ResetRadios(radioGroupName) {
+        let radioBtns = document.getElementsByName(radioGroupName);
+        radioBtns.forEach((x, i) => { x.checked = false; });
+    }
+    // Function to add the card div
+    function addCardDiv(parentDivId,url,snapCount,snapTime) {
+        parentDiv=document.querySelector('#'+parentDivId);
+        // Create the card div element
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card', 'mb-1');
+        cardDiv.id="snap_"+snapCount;
+
+        // Create the image element
+        const img = document.createElement('img');
+        img.classList.add('card-img-top');
+        img.src = url;
+        
+        // Create the card body element
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body', 'p-0');
+
+        // Create the card text element
+        const cardText = document.createElement('p');
+        cardText.classList.add('card-text', 'text-center', 'p-0');
+        cardText.textContent = 'Snapshot at: '+snapTime+'s, Click the thumbnail to zoom-in';
+
+        // Append the elements to the card div
+        cardBody.appendChild(cardText);
+        cardDiv.appendChild(img);
+        cardDiv.appendChild(cardBody);
+
+        // Append the card div to the parent div
+        parentDiv.appendChild(cardDiv);
+
+       
+        // Add click event listener to open the modal with the image
+        cardDiv.addEventListener('click', function() {
+                document.getElementById('modalImage').src = url; // Set the source of the modal image to the card imag e 
+                  $('#imageModal').modal('show'); // Use Bootstrap's modal method to show the modal
+            });        
+    }
+
+    //clear the children of a div
+    function clearChildren(parentDivId) {
+        parentDiv = document.querySelector('#' + parentDivId);
+        // handle case where parentDiv is null
+        if (parentDiv) {
+            // remove all children
+        while (parentDiv.firstChild) {
+            parentDiv.removeChild(parentDiv.firstChild);
+        }
+        }
+        return;
+    }
+    // END HELPER FUNCTIONS
+    
+    // Global Variables
+    var g = {
+        caseSeq: [], // array of case sequence, basically pointer to sources
+        attnIndices: [6, 13],
+        currentVideoNumber: 1, // current video number
+        vid: document.getElementById('video'), // video element
+        dataPoints: {}, // data points
+        // bqIds: ['ageInput', 'genderInput', 'stateInput', 'driveRadioInput', 'lastDriveInput', 'transportationRadioInput', 'driveDaysInput'],
+        bqIds: ['ageInput', 'genderInput','chkQ1RadioInput'],
+        bq2Ids:["likeAiRadioInput", "rideAvRadioInput",'chkQ2RadioInput'],
+        bqRadioInputIds: ['driveRadioInput',],
+        backgroundQAnswers: {},
+        questionStart: "Question: In the recorded scene, the pedestrian is currently ",
+        questionAsk: ", do you think the pedestrian will ",
+        baseSourceUrl: "https://escooter-phase4.s3.amazonaws.com/action_prediction/videos/",
+        attnCheckQs: ["Is the scene recorded during the night?", "Is the color of the car in front is yellow?"],
+        sources: [],
+        attnCheckSources: ["195_attnChk_cut_at_5s.mp4", "43_attnChk_cut_at_5s.mp4"],
+        reframeQuestions: { "walking": " stop walking", "standing": " start walking" },
+        stsADAnswers: {},
+        ueqsAnswers: {},
+        ueqsRadioInputIds: ['obstructiveSupportive', 'complicatedEasy', 'inefficientEfficient', 'confusingClear', 'boringExciting', 'notInterestingInteresting', 'conventionalInventive', 'usualLeadingEdge'],
+        piitAnswers: {},
+        attAVAnswers: {},
+        parentVidObjs:[
+            {
+                url:"https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_intent_traj_box.mp4",
+                pauseTimes:[1.33,6,10.13], 
+                snapUrl:[
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_level2_snap_1.jpg",
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_level2_snap_2.jpg",
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_level2_snap_3.jpg",
+                ]
+            },
+            {
+                url:"https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_intent_traj_box.mp4",
+                pauseTimes:[1.2,8.1,9.03], 
+                snapUrl:[
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_level2_snap_1.jpg",
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_level2_snap_2.jpg",
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_level2_snap_3.jpg",
+                ]
+            },
+            {
+                url:"https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0141_intent_traj_box.mp4",
+                pauseTimes:[2.2,5.27], 
+                snapUrl:[
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0141_level2_snap_1.jpg",
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0141_level2_snap_2.jpg",
+                ]
+            },
+            {
+                url:"https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0151_intent_traj_box.mp4",
+                pauseTimes:[1.4,5.07], 
+                snapUrl:[
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0151_level2_snap_1.jpg",
+                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0151_level2_snap_2.jpg",
+                ]
+            },
+        ], // contains url, pauseTimes, and snapshotUrls
+        vidObjs: [],
+        pauseTimes: [],
+        pauseCount:0,
+        validationStepsCount:0,
+    }
+    // END Global Variables
+
+    
+
+    // use url from g.vidObjs to get variable videoSources
+    var videoSources = g.vidObjs.map(x => x.url);
+
+
+    // var videoSources = [
+    // "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_intent_traj_box.mp4",
+    // // "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_intent_traj_box.mp4",
+    // // "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_intent_traj_box.mp4",
+    // // "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_intent_traj_box.mp4",
+    // ];
+
+    
+
+    // FUNCTIONS FOR EVENT LISTENERS
+    function updateProgressBar() {
+        var video = document.getElementById('video');
+        var progress = document.getElementById('progressBarA');
+        var value = (100 / video.duration) * video.currentTime;
+        progress.style.width = value + '%';
+    }  
+    // add function to the timeupdate event, when time exceeds the pause time, pause the video
+    function pauseAtTime() {
+        // get the current time of the video
+        let currentTime = g.vid.currentTime;
+        // get the pause times for the current video
+        g.pauseTimes = g.vidObjs[g.currentVideoNumber - 1].pauseTimes;
+
+        if (g.pauseCount < g.pauseTimes.length) {
+            if (currentTime >= g.pauseTimes[g.pauseCount]) {
+            g.vid.pause();
+            console.log("pausetimes now:", g.pauseTimes[g.pauseCount]);
+            // do these things
+            addCardDiv("snapDiv",g.vidObjs[g.currentVideoNumber - 1].snapUrl[g.pauseCount],g.pauseCount,g.pauseTimes[g.pauseCount]);
+            // alert('video paused');
+            document.getElementById('playBtn').innerHTML = "Play";
+            g.pauseCount++;
+
+            }
+        }
+    }
+    
+    function playPause() {
+        if (g.vid.paused) {
+                    g.vid.play();
+                    document.getElementById('playBtn').innerHTML = "Pause";
+                } else {
+                    g.vid.pause();
+                    document.getElementById('playBtn').innerHTML = "Play";
+                }
+    }
+    function VideoOnFinishedPlaying(){
+        // enable the next button
+        document.getElementById('nextBtn').disabled = false;
+        g.vid.pause();
+        document.getElementById('playBtn').innerHTML = "Play";
+        if (g.currentVideoNumber==(g.vidObjs.length)){
+            document.getElementById('nextBtn').innerHTML = "Next";
+        } 
+    }
+
+    function videoOnLoadedHandler() {
+        //get window height
+        var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        document.getElementById('snapDiv').style.maxHeight = 0.8 * vh+"px";
+        // console.log('video height:', g.vid.videoHeight);
+    }
+    function instructionsBtnHandler() {
+        // show the instructions modal
+        $('#instructionsModal').modal('show');
+    }
+
+    function prevBtnHandler() {
+                // go to previous video
+                if (g.currentVideoNumber > 1) {
+                    g.currentVideoNumber--;                    
+                    
+                }
+                if (g.currentVideoNumber == 1) {
+                    document.getElementById('prevBtn').disabled = true;
+                }
+                LoadVideoObj();
+                document.getElementById('nextBtn').innerHTML = "Next";
+                UpdateVideoCounterDisplay();    
+                        //clear the children of the snapDiv
+                clearChildren('snapDiv');    
+    }
+    // END-- FUNCTIONS FOR EVENT LISTENERS
+
+    function MakeVideoStatusListButton(divId, idx) {
+        var b = document.createElement('button');
+        b.className = "btn btn-outline-secondary btn-sm me-1 mb-1";
+        // b.style.flex="0!important";
+        b.type = "button";
+        // b.dataset.bsToggle="button";
+        var inValue = (idx + 1);
+        b.id = "vsrc_" + (inValue);
+        b.innerHTML = inValue.toString();
+        return b;
+    }
+    function populateFromCsv_old() {
+        // populate videoSources from csv file
+        let htmlVideoSources = document.getElementById("sourceList").innerHTML;
+        videoSources = htmlVideoSources.split(',');
+        g.vidObjs = shuffle(videoSources);
+        g.attnIndices.forEach((idx, i) => {
+            g.vidObjs.splice(idx, 0, g.attnCheckSources[i]);
+        });
+    }
+    function populateFromCsv() {
+        // does not use csv file anymore
+        // g.vidObjs = shuffle(videoSources);
+        g.vidObjs=shuffle(JsDeepCopy(g.parentVidObjs));
+        g.sources = g.vidObjs.map(x => x.url);
+        // g.attnIndices.forEach((idx, i) => {
+        //     g.vidObjs.splice(idx, 0, g.attnCheckSources[i]);
+        // });
+    }
+
+    function init() {
+        populateFromCsv();
+        if(g.currentVideoNumber==1){
+            // disable the previous button
+            document.getElementById('prevBtn').disabled = true;
+        }
+        // EVENT LISTENERS
+            g.vid.addEventListener('timeupdate', updateProgressBar, false);
+            g.vid.addEventListener('timeupdate', pauseAtTime, false);
+            // add event listener to the playBtn so it toggles play/pause
+            document.getElementById('playBtn').addEventListener('click', playPause, false);
+            // video onload change width of progressDiv
+            g.vid.addEventListener('loadeddata', videoOnLoadedHandler, false);
+            // when video ends, evt listener function
+            g.vid.addEventListener('ended', VideoOnFinishedPlaying, false);
+
+            // add function to instructionsBtn
+            document.getElementById('instructionsBtn').addEventListener('click', instructionsBtnHandler, false);
+            document.getElementById('nextBtn').addEventListener('click', nextBtnHandler, false);
+            document.getElementById('prevBtn').addEventListener('click', prevBtnHandler, false);
+
+            // match snapshot div height to video height
+            
+            $(window).resize(function() {
+            // var viewportHeight = $(window).height();
+            var viewportHeight = $(window).height();
+            $('#snapDiv').css('max-height', 0.8 * viewportHeight);
+            });
+
+        // END EVENT LISTENERS
+        document.getElementById('nextBtn').disabled = true;
+        g.vid.src=g.vidObjs[g.currentVideoNumber - 1].url;
+    }
+
+
+
+    function nextBtnHandler() {
+        // deactivate the next button
+        document.getElementById('nextBtn').disabled = true;
+        //clear the children of the snapDiv
+        clearChildren('snapDiv');
+        g.currentVideoNumber++;
+        g.validationStepsCount++;
+        UpdateVideoCounterDisplay();
+        if (g.currentVideoNumber> 1) {
+                document.getElementById('prevBtn').disabled = false;
+            }             
+        if (g.currentVideoNumber > g.vidObjs.length) {
+            g.currentVideoNumber = g.vidObjs.length;
+            UpdateVideoCounterDisplay();
+            // hide the video counter
+            document.getElementById('videoNumberBadge').style.display = 'none';
+            // pop up first questionnaire            
+            $('#backgroundQuestionModal').modal('show');
+            // hide the nextBtn
+            // document.getElementById('nextBtn').style.display = 'none';
+            return;
+        }
+        LoadVideoObj();
+        //show the toast
+        $('#notifToast').toast('show');                    
+    }
+
+    function LoadVideoObj(){
+        // load the video object
+        g.vid.src=g.vidObjs[g.currentVideoNumber - 1].url;
+        //reset the pause count
+        g.pauseCount=0;
+        // load pauseTimes
+        g.pauseTimes = g.vidObjs[g.currentVideoNumber - 1].pauseTimes;
+        //set time of video to 0
+        g.vid.currentTime = 0;
+        //set the progress bar to 0
+        document.getElementById('progressBarA').style.width = "0%";
+    }
+    function UpdateVideoCounterDisplay() {
+        let elem=document.getElementById('videoNumberBadge');
+        elem.innerHTML = "Video: "+g.currentVideoNumber;
+    }
+
+    function ChangeVideoSource() {
+        g.currentVideoNumber = parseInt(this.innerHTML);
+        // process meta data for updating the questions
+        var sstring = g.vidObjs[g.currentVideoNumber - 1].url;
+        // g.vid.src = sstring; // dont allow changing video source only next button can change
+        g.vid.pause();
+        //      HANDLE LIST OF BUTTONS
+        // make this active, others inactive
+        let btns = $(this).parent().children();
+        for (let j = 0; j < btns.length; j++) {
+            let btn = btns[j];
+            if (!($(btn).hasClass('btn-primary'))) {
+                $(btn).attr("class", "btn btn-outline-secondary");
+            }
+        }
+        // if selected button is not blue, make it highlighted
+        if (!($(this).hasClass('btn-primary'))) { $(this).attr("class", "btn btn-secondary"); }
+        // just highlight it for now
+        // $(this).attr("class", "btn btn-secondary");
+    }
+
+    function RecordConsent() {
+        //records the consent and hides the modal window
+        $('#consentModal').modal('hide');
+        //show commitment modal
+        $('#commitmentModal').modal('show');
+    }
+
+    function CommitmentCheck() {
+        // check if user is committed to the task
+        // From commitment radio button, get the value commitAnswer
+        var commitAnswer = $('input[name="commitAnswer"]:checked').val();
+
+        // if value is ambiguous, show warning and do not proceed
+        if (commitAnswer == "yes") {
+            return true;
+        }
+        else {
+            alert("You must commit to the task to proceed, otherwise you can return the HIT for someone else to complete.");
+            return false;
+        }
+    }
+
+    function ProceedToExperiment() {
+        // do response check before proceeding
+        if (!CommitmentCheck()) {
+            return;
+        }
+        //hide commitment modal
+        $('#commitmentModal').modal('hide');
+        //show instructions modal
+        $('#instructionsModal').modal('show');
+        // $('#stsADModal').modal('show');
+    }
+
+    function BackgroundQuestionValidation() {
+        // checks if all background questions are answered from bqIds
+        for (var i = 0; i < g.bqIds.length; i++) {
+            var id = g.bqIds[i];
+            console.log("checking id answer" ,id);
+            // check if id has Radio substring
+            if(id.includes('Radio')){
+                var value = $('input[name="' + id + '"]:checked').val();
+                    g.backgroundQAnswers[id] = value;
+                    if (value == undefined) {
+                        alert("Please answer all the questions.");
+                        return false;
+                    }
+                    continue;                             
+            }
+            // else get value using this way
+            var value = document.getElementById(id).value;
+            g.backgroundQAnswers[id] = value;
+            if (value == "") {
+                alert("Please answer all the questions.");
+                return false;
+            }
+        }
+        g.validationStepsCount++;
+        return true;
+    }
+
+    function GetBackgroundData() {
+        console.log('in background data, ', g.backgroundQAnswers);
+    }
+    function StsADQuestionsValidation() {
+        // checks if all background questions are answered from bqIds
+        for (var i = 0; i < 6; i++) {
+            var id = 'stsADQuestion' + (i + 1);
+            var value=$('input[name="' + id + '"]:checked').val();
+            if (value == undefined) {
+                    alert("Please answer all the questions before you proceed.");
+                    return false;
+                }
+                continue;        
+        }
+        g.validationStepsCount++;
+        return true;
+    }    
+    function GetStsADData() {
+        g.stsADAnswers["stsADQuestion1"] = RadioGroupResponse('stsADQuestion1');
+        g.stsADAnswers["stsADQuestion2"] = RadioGroupResponse('stsADQuestion2');
+        g.stsADAnswers["stsADQuestion3"] = RadioGroupResponse('stsADQuestion3');
+        g.stsADAnswers["stsADQuestion4"] = RadioGroupResponse('stsADQuestion4');
+        g.stsADAnswers["stsADQuestion5"] = RadioGroupResponse('stsADQuestion5');
+        g.stsADAnswers["stsADQuestion6"] = RadioGroupResponse('stsADQuestion6');        
+        
+        //test
+        console.log('stsADAnswers: ', g.stsADAnswers);
+    }
+    function GoToUeqsQuestionnaire() {
+        // do response check before proceeding
+        if (!BackgroundQuestionValidation()) {
+            return;
+        }
+        //get the data
+        GetBackgroundData();
+        $('#backgroundQuestionModal').modal('hide');
+        $('#ueqsModal').modal('show');
+    }
+    function UeqsQuestionsValidation(){
+        for(var i=0;i<g.ueqsRadioInputIds.length;i++){
+            var id = g.ueqsRadioInputIds[i];
+            var value=$('input[name="' + id + '"]:checked').val();
+            if (value == undefined) {
+                    alert("Please answer all the questions before you proceed.");
+                    return false;
+                }
+                continue;        
+        }
+        g.validationStepsCount++;
+        return true;    
+    }
+    function GetUeqsData() {
+        for(var i=0;i<g.ueqsRadioInputIds.length;i++){
+            var id = g.ueqsRadioInputIds[i];
+            g.ueqsAnswers[id] = RadioGroupResponse(id);
+        }
+        
+        //test
+        console.log('ueqsAnswers in GetUeqsData ', g.ueqsAnswers);
+    }
+    function GoToStsAdQuestionnaire(){
+        // do response check before proceeding
+        if (!UeqsQuestionsValidation()) {
+            return;
+        }
+        //get the data
+        GetUeqsData();
+        //hide  modal
+        $('#ueqsModal').modal('hide');
+        //show stsAD question modal
+        $('#stsADModal').modal('show');
+    }
+    function GoToPiitQuestionnaire() {
+        // do response check before proceeding
+        if (!StsADQuestionsValidation()) {
+            return;
+        }
+        //get the data
+        GetStsADData();
+        //hide stsAD modal
+        $('#stsADModal').modal('hide');
+        //show background question modal
+        $('#piitModal').modal('show');
+
+    }
+    function PiitQuestionsValidation(){
+        for(var i=0;i<4;i++){
+            var id = 'piitQuestion'+(i+1);
+            var value=$('input[name="' + id + '"]:checked').val();
+            if (value == undefined) {
+                    alert("Please answer all the questions before you proceed.");
+                    return false;
+                }
+                continue;        
+        }
+        g.validationStepsCount++;
+        return true;    
+    }
+    function GetPiitData() {
+        for(var i=0;i<4;i++){
+            var id = 'piitQuestion'+(i+1);
+            g.piitAnswers[id] = RadioGroupResponse(id);
+        }
+        
+        //test
+        console.log('piitAnswers in GetPiitData ', g.piitAnswers);
+    }
+    function AttAVQuestionsValidation(){
+        for(var i=0;i<13;i++){
+            var id = 'attAVQuestion'+(i+1);
+            var value=$('input[name="' + id + '"]:checked').val();
+            if (value == undefined) {
+                    alert("Please answer all the questions before you proceed.");
+                    return false;
+                }
+                continue;        
+        }
+        return true;
+    }
+
+    function GetAttAVData() {
+        for(var i=0;i<13;i++){
+            var id = 'attAVQuestion'+(i+1);
+            g.attAVAnswers[id] = RadioGroupResponse(id);
+        }
+        
+        //test
+        console.log('attAVAnswers in GetAttAVData ', g.attAVAnswers);
+    }
+
+    function BackgroundQuestionnaire2() {
+        // do response check before proceeding
+        if (!PiitQuestionsValidation()) {
+            return;
+        }
+        //get the data
+        GetPiitData();
+        //hide stsAD modal
+        $('#piitModal').modal('hide');
+        //show attitude towards AV modal
+        $('#backgroundQuestion2Modal').modal('show');
+    }
+
+    function BackgroundQuestion2Validation(){
+    // checks if all background questions are answered from bqIds
+    for (var i = 0; i < g.bq2Ids.length; i++) {
+                var id = g.bq2Ids[i];
+                console.log("checking id answer" ,id);
+                // check if id has Radio substring
+                if(id.includes('Radio')){
+                    var value = $('input[name="' + id + '"]:checked').val();
+                        g.backgroundQAnswers[id] = value;
+                        if (value == undefined) {
+                            alert("Please answer all the questions.");
+                            return false;
+                        }
+                        continue;                             
+                }
+                // else get value using this way
+                var value = document.getElementById(id).value;
+                g.backgroundQAnswers[id] = value;
+                if (value == "") {
+                    alert("Please answer all the questions.");
+                    return false;
+                }
+            }
+        g.validationStepsCount++;
+            return true;
+    }
+
+    function GetBackgroundData2() {
+        console.log('in background data, ', g.backgroundQAnswers);
+    }
+
+    function GoToAttAVQuestionnaire() {
+        // do response check before proceeding
+        if (!PiitQuestionsValidation()) {
+            return;
+        }
+        //get the data
+        GetPiitData();
+        //hide stsAD modal
+        $('#piitModal').modal('hide');
+        //show attitude towards AV modal
+        $('#attAVModal').modal('show');
+    }
+
+    function TestQuestionFunctionality(){
+        // do response check before proceeding
+        if (!AttAVQuestionsValidation()) {
+            return;
+        }
+        //get the data
+        GetAttAVData();
+        //hide stsAD modal
+        $('#attAVModal').modal('hide');
+        $('#backgroundQuestionModal').modal('show');             
+    }
+
+    function FinishStudy(){
+        if (!BackgroundQuestion2Validation()) {
+            return;
+        }
+        //get the data
+        GetBackgroundData2();
+        //hide commitment modal
+        $('#backgroundQuestion2Modal').modal('hide'); 
+        $('#notifMsg').modal('show');               
+    }
+    function ProceedToWatchVideo() {
+        // do response check before proceeding
+        if (!BackgroundQuestionValidation()) {
+            return;
+        }
+        //get the data
+        GetBackgroundData();
+        //hide commitment modal
+        $('#backgroundQuestionModal').modal('hide');
+    }
+    function SkipBackgroundQuestions() {
+        StsADQuestionsValidation();
+        GetStsADData();
+        //hide commitment modal
+        $('#backgroundQuestionModal').modal('hide');
+    }
+    function CalculateProgress() {
+        let pValue = Math.round(Object.keys(g.dataPoints).length / (g.vidObjs.length) * 100);
+        return pValue;
+    }
+    function ValidateForm() {
+        
+        let status = false;
+
+        if (g.validationStepsCount<9) {
+            status = confirm('You might have missed some videos or questions, Are you sure you want to submit the HIT? Incomplete HIT may be rejected.');
+        } else {
+            status = true;
+        }
+
+        return status;
+    }
+    init();
+    $(document).ready(function () {
+        // document.getElementById("crowd-form-content").style="";
+        // $('#consentModal').modal('hide');
+        $('#consentModal').modal('show');
+
+        // hide commitment modal
+        $('#commitmentModal').modal('hide');
+        // hide background question modal
+        $('#backgroundQuestionModal').modal('hide');
+        // show stsAD modal
+        // $('#stsADModal').modal('show');
+        // show ueqsModal
+        // $('#ueqsModal').modal('show');
+        // show piitModal
+        $('#piitModal').modal('hide');
+        //show attitude towards AV modal
+        $('#attAVModal').modal('hide');
+        // $('#backgroundQuestion2Modal').modal('show');
+        // $('#instructionsModal').modal('show');
+        
+
+    });
+
+    document.querySelector('#parentCrowdForm').onsubmit = function (e) {
+        if (!ValidateForm()) {
+            e.preventDefault(); //dont do submission
+        }
+        else {
+            //do the submission
+            let saveData = {
+                submissionTimeStamp: Date.now(),
+                demogQuestionData: g.backgroundQAnswers,
+                stsADQuestionData: g.stsADAnswers,
+                ueqsQuestionData: g.ueqsAnswers,
+                piitQuestionData: g.piitAnswers,                
+                // demogQuestionData: "age:" + g.backgroundQAnswers["age"] + "gender:" + g.backgroundQAnswers["gender"] + "state:" + g.backgroundQAnswers["state"] + "lastDriveMonthYear:" + g.backgroundQAnswers["lastDriveMonthYear"] + "driveDaysPerWeek:" + g.backgroundQAnswers["driveDaysPerWeek"] + "isDrivingNow:" + g.backgroundQAnswers["isDrivingNow"] + "transportation:" + g.backgroundQAnswers["transportation"] ,
+                // demogQuestionData: "perceptionOfAi:" + document.getElementById(g.openQuestionsIds[0]).value + ";distinguishingReasons:" + document.getElementById(g.openQuestionsIds[1]).value + ';selfDrivingPerception: ' + $('input[name="drivingResponseRadio"]:checked').val(),
+            }
+            let answerString = JSON.stringify(saveData);
+            document.querySelector('#hiddenTaskAnswers').value = answerString; // very important line
+
+            // console.log('answer string on submit is: ', answerString);
+
+            // for sending to backend, unavailable in MTurk
+            jsbody = {};
+            jsbody['response'] = answerString;
+            jsbody['hit_type'] = 'cognitive_state';
+
+            // //-START-------------------------------
+            // Fetch block, in MTurk remove it
+            // var hostAddress = "";
+            // // hostAddress="https://konfigurator.ml"; //uncomment this line when in production
+            // // console.log('answer string on submit is: ', answerString);
+            // fetch(hostAddress + "/recordResponses", {
+            //     method: "POST",
+            //     body: JSON.stringify(jsbody),
+            //     headers: {
+            //         "Content-type": "application/json; charset=UTF-8"
+            //     }
+
+            // }).then(response => response.json())
+            //     .then(function (json) {
+            //         console.log('data post: ', json);
+            //     })
+            // // //==END===============================                   
+        }
+
+    }    
+</script>
