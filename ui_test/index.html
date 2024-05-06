@@ -29,7 +29,7 @@
     gap: 10px;
     }
         #snapDiv {
-        max-height: 8vh; /* vh stands for viewport height. 60vh is 60% of the viewport height*/
+        max-height: 75vh; /* vh stands for viewport height. 60vh is 60% of the viewport height*/
         overflow-y: auto; /* This will add a scrollbar when the content exceeds the max-height */
         }
 
@@ -76,7 +76,7 @@
                                     </div>
                                 </div>                                 
                             <div class="d-flex justify-content-center mt-2">
-                                <div class="col-sm-8">
+                                    <div class="col-sm-2">
                                         <div class="toast rounded-pill mt-2 bg-dark" role="alert" id="notifToast"
                                         data-bs-delay="1500">
                                         <div class="toast-body text-center text-white" id="notifToastBody">
@@ -296,19 +296,19 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="instructionsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="instructionsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable" id="instructionsModalDialog">
             <div class="modal-content">
                 <div class="modal-header" >
                     <h5 class="modal-title">Instructions</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        style="display:block;">
+                        style="display:none;">
                     </button>
                 </div>
                 <div class="modal-body" id="instructionsModalHolder">
                     <!-- ordered list of instructions -->
                     <ol class="list-group list-group-numbered">
-                        <li class="list-group-item">In this task, you will watch four videos. These videos show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars.</li>
+                        <li class="list-group-item">In this task, you will watch some videos. These videos show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars.</li>
                         <li class="list-group-item mt-2">You will see the <strong>speed and driving decision statuses</strong> of self-driving car (highlighted inside red rounded rectangle):
                             <div class="row d-flex justify-content-around mt-1 mb-1">
                                 <div class="col-sm-6 d-flex flex-column align-items-center">
@@ -364,8 +364,11 @@
                             </div>                            
                         </li>
                         <li class="list-group-item">Please make sure to finish one video before starting the next one.</li>
-                        <li class="list-group-item">After watching the videos, you will answer some questions. This should take about 7-8 minutes.</li>
+                        <li class="list-group-item">After watching the videos, you will answer some questions about these visualizations and self driving technology. This should take about 7-8 minutes.</li>
                     </ol>
+                    <div class="mt-2 d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I have read the Instructions</button>
+                    </div>
                 </div>
             </div>
         </div>
