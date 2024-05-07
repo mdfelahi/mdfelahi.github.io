@@ -1558,6 +1558,8 @@
             if (currentTime >= g.pauseTimes[g.pauseCount]) {
             g.vid.pause();
             console.log("pausetimes now:", g.pauseTimes[g.pauseCount]);
+            // clear the children of the snapDiv
+            clearChildren('snapDiv');
             // do these things
             addCardDiv("snapDiv",g.vidObjs[g.currentVideoNumber - 1].snapUrl[g.pauseCount],g.pauseCount,g.pauseTimes[g.pauseCount]);
             // alert('video paused');
