@@ -307,8 +307,8 @@
                 <div class="modal-body" id="instructionsModalHolder">
                     <!-- ordered list of instructions -->
                     <ol class="list-group list-group-numbered">
-                        <li class="list-group-item">In this task, you will watch some videos. These videos show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars.</li>
-                        <li class="list-group-item mt-2">You will see the <strong>speed and driving decision statuses</strong> of self-driving car (highlighted inside red rounded rectangle):
+                        <li class="list-group-item">In this experiment, you will watch some videos. These videos show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars.</li>
+                        <li class="list-group-item mt-2">You will see the <strong>speed and driving decision statuses</strong> of self-driving car (highlighted inside red rounded rectangle). Please click to play the video if it is not playing automatically.
                             <div class="row d-flex justify-content-around mt-1 mb-1">
                                 <div class="col-sm-6 d-flex flex-column align-items-center">
                                         <video style="width: 100%;"
@@ -365,6 +365,14 @@
                         <li class="list-group-item">Please make sure to finish one video before starting the next one.</li>
                         <li class="list-group-item">After watching the videos, you will answer some questions about these visualizations and self driving technology. This should take about 7-8 minutes.</li>
                     </ol>
+                    <div id="legend">
+                        <div class="d-flex flex-column align-items-center">
+                            <div>
+                                <h5>Legend</h5>
+                            </div>
+                                <img class="img-fluid" src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/legend_icons/legend-all-exported-table-picture.png" alt="Legend">
+                        </div>
+                    </div>
                     <div class="mt-2 d-flex justify-content-end">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I have read the Instructions</button>
                     </div>
@@ -397,7 +405,7 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="attnChk1Input" class="form-label">3. In this task, did you watch any video recorded at night?</label>
+                        <label for="attnChk1Input" class="form-label">3. In this experiment, did you watch any video recorded at night?</label>
                         <div class="d-flex align-items-start">
                             <div class="mb-1">
                                 <input type="radio" class="btn-check" id="chkQ1YesRadio" name="chkQ1RadioInput" value="yes"
@@ -858,7 +866,7 @@
                 </div>
                 <div class="modal-body" id="backgroundQuestions2Holder">
                     <div class="mb-3">
-                        <label class="form-label">1. Overall, I find the automation of tasks using AI beneficial.
+                        <label class="form-label">1. I want to use technologies that rely on AI.
                         </label>
                             <div>
                             <div class="form-check form-check-inline">
@@ -900,7 +908,7 @@
                         </div>                        
                     </div>
                     <div class="mb-3">
-                        <label for="attnChk2Input" class="form-label">3. In this task, how many videos did you watch?</label>
+                        <label for="attnChk2Input" class="form-label">3. In this experiment, how many videos did you watch?</label>
                         <div class="d-flex align-items-start">
                             <div class="mb-1">
                                 <input type="radio" class="btn-check" id="chkQ2RadioValue2" name="chkQ2RadioInput" value="2"
@@ -924,7 +932,34 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label">4. I would rather avoid technologies that are based on AI.
+                        </label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="dislikeAiRadioInput" id="bgQ4StronglyDisagree" value="1">
+                                <label class="form-check-label" for="bgQ4StronglyDisagree">Strongly Disagree</label>
                 </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="dislikeAiRadioInput" id="bgQ4Disagree" value="2">
+                                <label class="form-check-label" for="bgQ4Disagree">Disagree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="dislikeAiRadioInput" id="bgQ4Neutral" value="3">
+                                <label class="form-check-label" for="bgQ4Neutral">Neutral</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="dislikeAiRadioInput" id="bgQ4Agree" value="4">
+                                <label class="form-check-label" for="bgQ4Agree">Agree</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="dislikeAiRadioInput" id="bgQ4StronglyAgree" value="5">
+                                <label class="form-check-label" for="bgQ4StronglyAgree">Strongly Agree</label>
+                            </div>                        
+                        </div>
+                    </div>                    
+                </div>
+                               
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary"
                         onclick="FinishStudy()" id="finishBtn">Finish</button>
@@ -1445,7 +1480,7 @@
         dataPoints: {}, // data points
         // bqIds: ['ageInput', 'genderInput', 'stateInput', 'driveRadioInput', 'lastDriveInput', 'transportationRadioInput', 'driveDaysInput'],
         bqIds: ['ageInput', 'genderInput','chkQ1RadioInput'],
-        bq2Ids:["likeAiRadioInput", "rideAvRadioInput",'chkQ2RadioInput'],
+        bq2Ids:["likeAiRadioInput", "rideAvRadioInput",'chkQ2RadioInput',"dislikeAiRadioInput"],
         bqRadioInputIds: ['driveRadioInput',],
         backgroundQAnswers: {},
         questionStart: "Question: In the recorded scene, the pedestrian is currently ",
@@ -1930,8 +1965,7 @@
 
     function BackgroundQuestion2Validation(){
     // checks if all background questions are answered from bqIds
-    for (var i = 0; i < g.bq2Ids.length; i++) 
-            {
+    for (var i = 0; i < g.bq2Ids.length; i++) {
                 var id = g.bq2Ids[i];
                 console.log("checking id answer" ,id);
                 // check if id has Radio substring
