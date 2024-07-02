@@ -403,9 +403,44 @@
                         <label for="genderInput" class="form-label">2. What is your gender?</label>
                         <input type="text" class="form-control" id="genderInput" placeholder="Enter your gender">
                     </div>
-                    
+
+                    <div class="mb-3"> 
+                        <!-- https://ir.aa.ufl.edu/surveys/race-and-ethnicity-survey/ -->
+                        <!-- https://www.census.gov/quickfacts/fact/note/US/RHI625222 -->
+                        <label class="form-label">3. What is your racial or ethnic background??</label>
+                        <div class="flex-column">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="raceQuestion" id="hispanic_latino" value="hispanic_latino">
+                            <label class="form-check-label" for="hispanic_latino">Hispanic or Latino or Spanish Origin of any race</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="raceQuestion" id="american_indian_or_alaskan_native" value="american_indian_or_alaskan_native">
+                            <label class="form-check-label" for="american_indian_or_alaskan_native">American Indian or Alaskan Native</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="raceQuestion" id="asian" value="asian">
+                            <label class="form-check-label" for="asian">Asian</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="raceQuestion" id="native_hawaiian_or_other_pacific_islander" value="native_hawaiian_or_other_pacific_islander">
+                            <label class="form-check-label" for="native_hawaiian_or_other_pacific_islander">Native Hawaiian or Other Pacific Islander</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="raceQuestion" id="black_or_african_american" value="black_or_african_american">
+                            <label class="form-check-label" for="black_or_african_american">Black or African American</label>
+                          </div>                        
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="raceQuestion" id="white" value="white">
+                            <label class="form-check-label" for="white">White</label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="raceQuestion" id="others" value="others">
+                            <label class="form-check-label" for="others">Others</label>
+                          </div>                          
+                        </div>
+                    </div>                                        
                     <div class="mb-3">
-                        <label for="attnChk1Input" class="form-label">3. In this experiment, did you watch any video recorded at night?</label>
+                        <label for="attnChk1Input" class="form-label">4. In this experiment, was any video recorded at nighttime??</label>
                         <div class="d-flex align-items-start">
                             <div class="mb-1">
                                 <input type="radio" class="btn-check" id="chkQ1YesRadio" name="chkQ1RadioInput" value="yes"
@@ -433,7 +468,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable" id="stsADModalDialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="stsADModalTitle">Please answer each of the six questions (page 3 of 5)</h5>
+                    <h5 class="modal-title" id="stsADModalTitle">Please answer these questions based on the videos you have just watched. (page 3 of 5)</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="display:none;">
                     </button>
@@ -615,7 +650,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable" id="ueqsModalDialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ueqsModalTitle">How do you feel about the visualization concepts of the interface? (page 2 of 5)</h5>
+                    <h5 class="modal-title" id="ueqsModalTitle">How do you feel about the interface of the self-driving car to show how the system works? (page 2 of 5)</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="display:none;">
                     </button>
@@ -892,7 +927,7 @@
                         </div>                        
                     </div>
 
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="rideAvInput" class="form-label">2. Have you ever ridden in a self-driving car, e.g., Tesla auto-pilot, Robotaxis?</label>
                         <div class="d-flex align-items-start">
                             <div class="mb-1">
@@ -906,7 +941,26 @@
                                 <label class="btn btn-sm btn-outline-primary ms-1" for="rideAvNoRadio">No</label>
                             </div>
                         </div>                        
+                    </div> -->
+
+                    <div class="mb-3">
+                        <label for="rideAvInput" class="form-label">2. Have you ever ridden in a vehicle with the following advanced driving technology?(Click all that apply.)</label>
+                        <div class="d-flex align-items-start flex-column">
+                            <div class="mb-1">
+                                <input type="checkbox" class="btn-check" id="autopilot" name="rideAvCheckboxInput" value="autopilot" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary me-1" for="autopilot">self-driving car, e.g., Tesla auto-pilot, Robotaxis</label>
+                            </div>
+                            <div class="mb-1">
+                                <input type="checkbox" class="btn-check" id="adaptive_cruise_control" name="rideAvCheckboxInput" value="adaptive_cruise_control" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="adaptive_cruise_control">Adaptive Cruise Control</label>
+                            </div>
+                            <div class="mb-1">
+                                <input type="checkbox" class="btn-check" id="lane_assist" name="rideAvCheckboxInput" value="lane_assist" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="lane_assist">Lane Assist</label>
+                            </div>
+                        </div>                       
                     </div>
+
                     <div class="mb-3">
                         <label for="attnChk2Input" class="form-label">3. In this experiment, how many videos did you watch?</label>
                         <div class="d-flex align-items-start">
@@ -2063,9 +2117,13 @@
     }
     init();
     $(document).ready(function () {
+        // show modal
+        // $('#backgroundQuestionModal').modal('show');
+        $('#backgroundQuestion2Modal').modal('show');
+
         // document.getElementById("crowd-form-content").style="";
         // $('#consentModal').modal('hide');
-        $('#consentModal').modal('show');
+        // $('#consentModal').modal('show');
 
         // hide commitment modal
         $('#commitmentModal').modal('hide');
