@@ -4,7 +4,7 @@
     <title>InnoUI</title>
     <link rel="icon" type="image/x-icon"
         href="https://escooter-phase4.s3.amazonaws.com/clips_paul_experiment/assets/media/favicon.ico">
-    <script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+    <!-- <script src="https://assets.crowd.aws/crowd-html-elements.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -39,7 +39,6 @@
     </style>
 </head>
 <body>
-    <crowd-form answer-format="flatten-objects" id="parentCrowdForm">
         <div class="container-fluid p-0">
             <div class="row ms-0 me-0 p-0" id="rowMain">
                 <div class="row ms-0 me-0 p-0">
@@ -47,7 +46,7 @@
                         <div class="col-sm-8 p-0 justify-content-center" id="videoHolderDivA">
                             <div class="embed-responsive d-flex flex-column justify-content-center" id="canvasDivA">
                                 <video id='video' class="embed-responsive-item" style="width:auto; height:auto;"
-                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_w_intent.mp4"
+                                    src="./assets/videos//0104_w_intent.mp4"
                                     type="video/mp4" muted>
                                 </video>
                                 <div class="progress mt-1" id="progressDiv" style="height: 5px;">
@@ -94,23 +93,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <crowd-text-area name="hiddenTaskAnswers" id="hiddenTaskAnswers" rows="4"
-                    style="display:none;"></crowd-text-area>
-            </div>
-        </div>
-        <short-instructions>
-            <p>
-                Please check the instructions clicking the instructions button on the bottom left side.
-            </p>
-            <p>If you face technical issues, please reach out to the requester, using <strong>Contact this
-                    Requester</strong> option in MTurk, someone will help fixing the issue.</p>
-        </short-instructions> 
-        <full-instructions header="Task Instructions">
-            <p>Please check the instructions clicking the instructions button on the bottom left side.</p>
-        </full-instructions>
-    </crowd-form>
     <!-- MODALS -->
     <!-- CONSENT FORM Modal -->
     <div class="modal fade" id="consentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -125,12 +107,12 @@
                 </div>
                 <div class="modal-body" id="modalMessage">
                     <h5 style="text-align: center; line-height: 1;"><span
-                            style="font-family: Calibri, sans-serif; font-weight: bold;">INDIANA UNIVERSITY
+                            style="font-family: Calibri, sans-serif; font-weight: bold;">NORTH CAROLINA STATE UNIVERSITY
                             INFORMED CONSENT STATEMENT FOR RESEARCH</span></h5>
                     <h6 style="text-align: center; line-height: 1;"><span
                             style="font-family: Calibri, sans-serif;font-weight: bold;">[Novel XAI Interface for Automated Driving Decisions]</span></h6>
                     <h6 style="text-align: center; line-height: 1;"><span
-                            style="font-family: Calibri, sans-serif;font-weight: bold;">[IRB Study 22443]</span>
+                            style="font-family: Calibri, sans-serif;font-weight: bold;">[IRB Study X]</span>
                     </h6>
                     <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;"><br></span></p>
                     <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">ABOUT
@@ -145,11 +127,6 @@
                             want to participate. Please
                             read this form, and ask any questions you have via feedback form, before agreeing to be in
                             the study.</span></p>
-                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">You may choose not to
-                            take part in the study or may choose to leave the study at any time. Deciding not to
-                            participate,
-                            or deciding to leave the study later, will not result in any penalty or loss of benefits to
-                            which you are entitled.</span></p>
                     <h6 style="line-height: 1;"><span
                             style="font-family: Calibri, sans-serif; font-weight: bold;">TAKING PART IN THIS STUDY IS
                             VOLUNTARY</span></h6>
@@ -173,8 +150,8 @@
                     <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WHAT
                             WILL HAPPEN DURING THE STUDY?</span>
                     </h6>
-                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">If you agree to participate in the study, you may watch up to four 15-second video clips followed by answering some questions. You will conduct the entire study online through the Amazon Mechanical Turk (MTurk) platform, accessible at "https://www.mturk.com/." Before starting, you will need to confirm your commitment to providing thoughtful answers to ensure the quality of the data. To help complete the task, there will be instructions accompanying video previews for quick understanding of the requirements.</span></p>
-                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">As the first step, you will watch some recorded videos that show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars. The videos contain the visuals of how the AI driving system adjusts the car's speed and direction and how it recognizes pedestrians' crossing intention and motion of the road users, such as people and other vehicles. The interface may automatically pause the videos at some moments, and you may also see brief or detailed text explanations about how the car makes driving decisions during those moments. After watching these videos, you will answer some questions about your experience with the visualization interface in the videos, how much you trust the car’s driving, and your opinions on self-driving technology. Your answers will be saved automatically.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">If you agree to participate in the study, you may watch up to four 15-second video clips followed by answering some questions. You will conduct the entire study online through the Prolific platform, accessible at "https://www.prolific.com/." Before starting, you will need to confirm your commitment to providing thoughtful answers to ensure the quality of the data. To help complete the task, there will be instructions accompanying illustrations for quick understanding of the requirements. Your understanding will be evaluated with as short quiz. You need to <strong>correctly answer all the questions</strong> in the quiz before attempting the task.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">As the first step in experiment, you will watch some recorded videos that show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars. The videos contain the visuals of how the AI driving system adjusts the car's speed and direction and how it recognizes pedestrians' crossing intention and motion of the road users, such as people and other vehicles. The interface may automatically pause the videos at some moments, and you may also see brief or detailed text explanations about how the car makes driving decisions during those moments. After watching these videos, you will answer some questions about you, your experience with the visualization interface in the videos, how much you trust the car’s driving, and your opinions on Advanced driver-assistence systems. Your answers will be saved automatically.</span></p>
                     <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">Watching all the videos should take less than two minutes, and answering the questionnaires will take about 7-8 minutes. The task should take about 10 minutes to complete. You can choose your own pace, but you need to finish within the time limit of 2 hours.</span></p>
                     <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WHAT
                             ARE THE RISKS OF TAKING PART IN THE
@@ -198,7 +175,7 @@
                     <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">Your personal information
                             may be shared outside the research study if required by law. We also may need to share your
                             research records with other groups for quality assurance or data analysis. These groups
-                            include the Indiana University
+                            include the North Carolina State University
                             Institutional Review Board or its designees, and state or federal agencies who may need to
                             access the research records
                             (as allowed by law). Additionally, your research information may be shared with our sponsors
@@ -216,7 +193,7 @@
                     <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WILL
                             I BE PAID FOR PARTICIPATION?</span>
                     </h6>
-                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">We will pay $2.5 for each HIT containing 4 videos when all the questions are answered reasonably.</span></p>
+                    <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">We will pay $2.5 for each task containing 4 videos when all the questions are answered reasonably.</span></p>
                     <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">WILL
                             IT COST ME ANYTHING TO
                             PARTICIPATE?</span></h6>
@@ -229,27 +206,27 @@
                     <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">For questions or
                             suggestions about the study please contact via the support link “Contact this requester”
                             provided in
-                            the HIT.</span></p>
+                            the task.</span></p>
                     <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">For questions about your
                             rights as a research participant or to discuss problems, complaints, or concerns about a
-                            research study, or to obtain information, or offer input, please contact the IU Human
-                            Subjects Office at 800-696-2949 or
-                            at irb@iu.edu.</span></p>
+                            research study, or to obtain information, or offer input, please contact the NCSU Human
+                            Subjects Office at 123-xxx-1234 or
+                            at XXX@ncsu.edu.</span></p>
                     <h6 style="line-height: 1;"><span style="font-family: Calibri, sans-serif; font-weight: bold;">CAN I
                             WITHDRAW FROM THE STUDY?</span></h6>
 
                     <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">If you decide to
                             participate in this study, you can change your mind and decide to leave the study at any
                             time by
-                            returning the HIT. If the HIT is rejected your data will be discarded completely.</span></p>
+                            returning the task. If the task is rejected your data will be discarded completely.</span></p>
                     <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">Your participation may be
                             terminated by the investigator without regard to your consent in the following
                             circumstances:
                             you cannot annotate the videos following the instructions.</span></p>
                     <p style="line-height: 1;"><span style="font-family: Calibri, sans-serif;">Thank you for agreeing to
                             participate in our research. Before you begin, please note that the data you provide may be
-                            collected and used by Amazon as per its privacy agreement. Following mTurk policies, we may
-                            reject your work if the HIT
+                            collected and used by Prolific as per its privacy agreement. Following prolific policies, we may
+                            reject your work if the task
                             was not completed correctly, or the instructions were not followed. You must be 18 or older
                             to participate in this
                             research.</span></p>
@@ -273,7 +250,7 @@
                 </div>
                 <div class="modal-body" id="modalCommitmentMessage">
                     <p>We care about the quality of the data. Please carefully follow the instructions and pay attention while completing the task.</p>
-                    <h5>Do you commit to providing thoughtful answers to the questions in this HIT?</h5>
+                    <h5>Do you commit to providing thoughtful answers to the questions in this task?</h5>
                     <div class="d-flex flex-column align-items-center">
                         <div class="mb-1">
                             <input type="radio" class="btn-check" id="commitAmbiguousRadio" name="commitAnswer"
@@ -304,29 +281,34 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable" id="instructionsModalDialog">
             <div class="modal-content">
                 <div class="modal-header" >
-                    <h5 class="modal-title">Instructions</h5>
+                    <h5 class="modal-title">Legend and Instructions: Please read them carefully, You need to pass a <strong>short quiz</strong> to attempt the task.</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="display:none;">
                     </button>
                 </div>
                 <div class="modal-body" id="instructionsModalHolder">
+                    <ul class="list-group">
+                        <li class="list-group-item">In this experiment, you will watch some videos. These videos show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars.</li>
+                        <li class="list-group-item">Before you attempt the task, Please review these guidelines to understand the legends and interface designs. After reading the instructions, you'll take a <strong>short quiz</strong> to make sure you're ready to begin the experiment.</li>
+                    </ul>
+                    <div id="legend">
+                        <div class="d-flex flex-column align-items-center">
+                            <div>
+                                <h5>Legend</h5>
+                            </div>
+                                <img class="img-fluid" src="./assets/images/legend-all-exported-table-picture3.png" alt="Legend">
+                        </div>
+                    </div>                    
                     <!-- ordered list of instructions -->
                     <ol class="list-group list-group-numbered">
-                        <li class="list-group-item">In this experiment, you will watch some videos. These videos show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars.</li>
-                        <li class="list-group-item mt-2">You will see the <strong>speed and driving decision statuses</strong> of self-driving car (highlighted inside red rounded rectangle). Please click to play the video if it is not playing automatically.
+                        <li class="list-group-item mt-2">You will see the <strong>speed and driving decision statuses</strong> of self-driving car (indicated by yellow arrow.)
                             <div class="row d-flex justify-content-around mt-1 mb-1">
                                 <div class="col-sm-6 d-flex flex-column align-items-center">
-                                        <video style="width: 100%;"
-                                        src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-speed.mp4"
-                                        type="video/mp4" controls loop autoplay>
-                                        </video>
+                                    <img class="img-fluid" src="./assets/images/speed-status.png">
                                         <p>Speed status</p>                            
                                 </div>
                                 <div class="col-md-6 d-flex flex-column align-items-center">
-                                    <video style="width: 100%;"
-                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-direction.mp4"
-                                    type="video/mp4" controls loop autoplay>
-                                    </video>
+                                    <img class="img-fluid" src="./assets/images/car-direction-status.png">
                                     <p>Direction status</p>                            
                                 </div>
                             </div>                            
@@ -334,74 +316,191 @@
                         <li class="list-group-item mt-2">Self-driving car's detection of the <strong>pedestrians and other cars</strong> (indicated by yellow arrow):
                             <div class="row d-flex justify-content-around mt-1 mb-1">
                                 <div class="col-sm-6 d-flex flex-column align-items-center">
-                                        <video style="width: 100%;"
-                                        src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-pedes-box.mp4"
-                                        type="video/mp4" controls loop autoplay>
-                                        </video>
-                                        <p>Pedestrian detection (red box)</p>                            
+                                        <img class="img-fluid" src="./assets/images/ego-pedes-detection.png">
+                                        <p>Pedestrian detection (red boxes)</p>                            
                                 </div>
                                 <div class="col-md-6 d-flex flex-column align-items-center">
-                                    <video style="width: 100%;"
-                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-car-box.mp4"
-                                    type="video/mp4" controls loop autoplay>
-                                    </video>
-                                    <p>Car detection (yellow box)</p>                            
+                                    <img class="img-fluid" src="./assets/images/ego-vehicle-detection.png">
+                                    <p>Car detection (yellow boxes)</p>                            
                                 </div>
                             </div>                            
                         </li>
-                        <li class="list-group-item mt-2">Self-driving car's understanding of the <strong>crossing intention and motion of pedestrians and cars</strong>(highlighted inside yellow rounded rectangle):
+                        <li class="list-group-item mt-2">Self-driving car's understanding of the <strong>crossing intention and motion of pedestrians and cars</strong>(indicated by yellow arrow):
                             <div class="row d-flex justify-content-around mt-1 mb-1">
                                 <div class="col-sm-6 d-flex flex-column align-items-center">
-                                        <video style="width: 100%;"
-                                        src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-pedes-intent.mp4"
-                                        type="video/mp4" controls loop autoplay>
-                                        </video>
-                                        <p>Crossing intention before car</p>                            
+                                        <img class="img-fluid" src="./assets/images/ego-pedes-intent-detection.png">
+                                        <p>Pedestrian's crossing intention before car</p>                            
                                 </div>
                                 <div class="col-md-6 d-flex flex-column align-items-center">
-                                    <video style="width: 100%;"
-                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-highlight-pedes-motion.mp4"
-                                    type="video/mp4" controls loop autoplay>
-                                    </video>
+                                    <img class="img-fluid" src="./assets/images/ego-pedes-direction-highlight.png">
                                     <p>Direction of motion of the pedestrian</p>                            
                                 </div>
                             </div>                            
                         </li>
-                        <li class="list-group-item mt-2">The video will automatically pause at certain moments. At these moments, a snapshot of the video with brief text explanation will appear to the right side of the video.</li>
+                        <li class="list-group-item mt-2">The video will automatically pause at certain moments. At these moments, a snapshot of the video with a text explanation will appear to the right side of the video.</li>
                             <div class="row d-flex justify-content-around mt-1 mb-1">
-                                <div class="col-sm-6 d-flex flex-column align-items-center align-self-end">
+                                <div class="col-sm-6 d-flex flex-column align-items-center align-self-end">                                
+                                    <img style="width: 100%;"
+                                    src="./assets/videos//snapshot_appearance_level2.jpg">
+                                    <p>Appearance of Snapshot at paused moments.</p>                            
+                                </div>                                  
+                                <!-- <div class="col-sm-6 d-flex flex-column align-items-center align-self-end">
                                         <video style="width: 100%;"
-                                        src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/instruction_short_videos/instructions-L2-snapshot-appear.mp4"
+                                        src="./assets/videos//snapshot_appearance_level2.jpg"
                                         type="video/mp4" controls loop autoplay>
                                         </video>
                                         <p>Appearance of Snapshot at paused moments</p>                            
-                                </div>
+                                </div> -->
                                 <div class="col-sm-6 d-flex flex-column align-items-center ">                                
                                     <img style="width: 90%;"
-                                    src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_level2_snap_1.jpg">
-                                    <p>Brief explanation of why AI system is braking.</p>                            
+                                    src="./assets/videos//explanation_highlight_level2.jpg">
+                                    <p>Explanation of why AI system is braking.</p>                            
                                 </div>                                
                             </div>                            
                         </li>
                         <li class="list-group-item">Click the snapshot to zoom-in. Click the play button to continue watching the video.</li>
-                        <li class="list-group-item">Please make sure to finish one video before starting the next one.</li>
-                        <li class="list-group-item">After watching the videos, you will answer some questions about these visualizations and self driving technology. This should take about 7-8 minutes.</li>                        
+                        <li class="list-group-item">After watching the videos, you will answer some questions about these visualizations and self driving technology. This should take about 7-8 minutes.</li>
+                        <li class="list-group-item">You need to pass the quiz to start the experiment. You can return to this page if you fail the quiz.</li>                       
                     </ol>
-                    <div id="legend">
-                        <div class="d-flex flex-column align-items-center">
-                            <div>
-                                <h5>Legend</h5>
-                            </div>
-                                <img class="img-fluid" src="https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/assets/legend_icons/legend-all-exported-table-picture.png" alt="Legend">
-                        </div>
-                    </div>
                     <div class="mt-2 d-flex justify-content-end">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">I have read the Instructions</button>
+                        <button id="quizBtn" onclick="ShowQuiz()" type="button" class="btn btn-primary" data-bs-dismiss="modal">I'm ready to take the Quiz</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="quizModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable" id="quizModalDialog">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h5 class="modal-title">Quiz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="display:none;">
+                    </button>
+                </div>
+                <div class="modal-body" id="quizModalHolder">                   
+                    <!-- ordered list of instructions -->
+                    <p class="fs-5">Please answer all the questions below based on the snapshot below. To pass the quiz, you need to <strong>correctly answer all the questions</strong>.</p>
+                    <div class="d-flex align-items-center flex-column">                        
+                        <img class="img-fluid" style="width: 80%;" src="./assets/images/quiz-snapshot-L1.png">
+                        <p>A snapshot of a self-driving car's recording.</p> 
+                    </div>                          
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item">Which option best describes the direction of the self-driving car?
+                            <div class="d-flex align-items-start">
+                                <div class="mb-1">
+                                    <input type="radio" class="form-check-input me-1" id="qEgoDirectionLeft" name="qEgoDirection" value="turning_left"
+                                        autocomplete="off">
+                                    <label class="form-check-label me-3" for="qEgoDirectionLeft">Turning Left</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qEgoDirectionStraight" name="qEgoDirection" value="straight"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-3" for="qEgoDirectionStraight">Straight</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qEgoDirectionRight" name="qEgoDirection" value="turning_right"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-1" for="qEgoDirectionRight">Turning Right</label>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="list-group-item">Which option best describes the speed-change of the self-driving car?
+                            <div class="d-flex align-items-start">
+                                <div class="mb-1">
+                                    <input type="radio" class="form-check-input me-1" id="qEgoSpeedAcc" name="qEgoSpeed" value="accelarate"
+                                        autocomplete="off">
+                                    <label class="form-check-label me-3" for="qEgoSpeedAcc">Speeding Up</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qEgoSpeedMaintain" name="qEgoSpeed" value="maintain"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-3" for="qEgoSpeedMaintain">Maintain</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qEgoSpeedSlowing" name="qEgoSpeed" value="slowing_down"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-1" for="qEgoSpeedSlowing">Slowing Down</label>
+                                </div>
+                            </div>                            
+                        </li>
+                        <li class="list-group-item">What does the self-driving car think of the crossing intention of the detected pedestrian?
+                            <div class="d-flex align-items-start">
+                                <div class="mb-1">
+                                    <input type="radio" class="form-check-input me-1" id="qPedesIntentUnsure" name="qPedesIntent" value="unsure"
+                                        autocomplete="off">
+                                    <label class="form-check-label me-3" for="qPedesIntentUnsure">Unsure</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qPedesIntentCross" name="qPedesIntent" value="cross"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-3" for="qPedesIntentCross">Cross</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qPedesIntentNotCross" name="qPedesIntent" value="not_cross"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-1" for="qPedesIntentNotCross">Not Cross</label>
+                                </div>
+                            </div>                             
+                        </li>
+                        <li class="list-group-item">What does the self-driving car think of the movement direction of the detected pedestrian?
+                            <div class="d-flex align-items-start">
+                                <div class="mb-1">
+                                    <input type="radio" class="form-check-input me-1" id="qPedesDirectionForward" name="qPedesDirection" value="forward"
+                                        autocomplete="off">
+                                    <label class="form-check-label me-3" for="qPedesDirectionForward">Moving Forward</label>
+                                </div>
+                                <div class="mb-1">
+                                    <input type="radio" class="form-check-input me-1" id="qPedesDirectionBackward" name="qPedesDirection" value="backward"
+                                        autocomplete="off">
+                                    <label class="form-check-label me-3" for="qPedesDirectionBackward">Moving Backward</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qPedesDirectionRight" name="qPedesDirection" value="right"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-3" for="qPedesDirectionRight">Turning Right</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qPedesDirectionLeft" name="qPedesDirection" value="left"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-1" for="qPedesDirectionLeft">Turning Left</label>
+                                </div>
+                            </div>
+                        </li>                          
+                        <li class="list-group-item">What does the self-driving car think of the movement direction of the identified car?
+                            <div class="d-flex align-items-start">
+                                <div class="mb-1">
+                                    <input type="radio" class="form-check-input me-1" id="qCarDirectionForward" name="qCarDirection" value="forward"
+                                        autocomplete="off">
+                                    <label class="form-check-label me-3" for="qCarDirectionForward">Moving Forward</label>
+                                </div>
+                                <div class="mb-1">
+                                    <input type="radio" class="form-check-input me-1" id="qCarDirectionBackward" name="qCarDirection" value="backward"
+                                        autocomplete="off">
+                                    <label class="form-check-label me-3" for="qCarDirectionBackward">Moving Backward</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qCarDirectionRight" name="qCarDirection" value="right"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-3" for="qCarDirectionRight">Turning Right</label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="form-check-input me-1" id="qCarDirectionLeft" name="qCarDirection" value="left"
+                                        autocomplete="off">
+                                        <label class="form-check-label me-1" for="qCarDirectionLeft">Turning Left</label>
+                                </div>
+                            </div>
+                        </li>                        
+                    </ol>
+                    <div class="mt-2 d-flex justify-content-end">
+                        <button id="quizSubmitBtn" onclick="reviseInstructions()" type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Instructions Page</button>
+                    <button id="quizSubmitBtn" onclick="submitQuiz()" type="button" class="btn btn-primary">Submit the answers</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
     <!-- Background question Modal -->
     <div class="modal fade" id="backgroundQuestionModal" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -427,7 +526,58 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label for="attnChk1Input" class="form-label">3. In this experiment, did you watch any video recorded at night?</label>
+                        <label for="hispanic_latino_reponse_Radio_input" class="form-label">3. Are you Hispanic or Latino?</label>
+                        <div class="d-flex align-items-start">
+                            <div class="mb-1">
+                                <input type="radio" class="form-check-input" id="hispanic_yes" name="hispanic_latino_reponse_Radio_input" value="hispanic_yes"
+                                    autocomplete="off">
+                                <label class="form-check-label me-1" for="hispanic_yes">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" class="form-check-input" id="hispanic_no" name="hispanic_latino_reponse_Radio_input" value="hispanic_no"
+                                    autocomplete="off">
+                                <label class="form-check-label me-1" for="hispanic_no">No</label>
+                            </div>
+                            <div>
+                                <input type="radio" class="form-check-input" id="hispanic_wont_say" name="hispanic_latino_reponse_Radio_input" value="hispanic_wont_say"
+                                    autocomplete="off">
+                                <label class="form-check-label me-1" for="hispanic_wont_say">Prefer Not to say</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3"> 
+                        <!-- https://ir.aa.ufl.edu/surveys/race-and-ethnicity-survey/ -->
+                        <!-- https://www.census.gov/quickfacts/fact/note/US/RHI625222 -->
+                        <label class="form-label">4. Please select your race. (You can choose one or more races if applicable)</label>
+                        <div class="flex-column">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="raceQuestions[]" id="white" value="white" aria-label="White">
+                                <label class="form-check-label" for="white">White</label>
+                            </div>      
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="raceQuestions[]" id="black_or_african_american" value="black_or_african_american" aria-label="Black or African American">
+                                <label class="form-check-label" for="black_or_african_american">Black or African American</label>
+                            </div>   
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="raceQuestions[]" id="american_indian_or_alaskan_native" value="american_indian_or_alaskan_native" aria-label="American Indian and Alaskan Native">
+                                <label class="form-check-label" for="american_indian_or_alaskan_native">American Indian and Alaskan Native</label>
+                            </div>  
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="raceQuestions[]" id="asian" value="asian" aria-label="Asian">
+                                <label class="form-check-label" for="asian">Asian</label>
+                            </div>                                                                                                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="raceQuestions[]" id="native_hawaiian_or_other_pacific_islander" value="native_hawaiian_or_other_pacific_islander" aria-label="Native Hawaiian and Other Pacific Islander">
+                                <label class="form-check-label" for="native_hawaiian_or_other_pacific_islander">Native Hawaiian and Other Pacific Islander</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="raceQuestions[]" id="prefer_not_to_say_race" value="prefer_not_to_say_race" aria-label="Prefer Not to say">
+                                <label class="form-check-label" for="prefer_not_to_say_race">Prefer Not to say</label>
+                            </div>  
+                        </div>
+                    </div>                                        
+                    <div class="mb-3">
+                        <label for="attnChk1Input" class="form-label">5. In this experiment, was any video recorded at nighttime??</label>
                         <div class="d-flex align-items-start">
                             <div class="mb-1">
                                 <input type="radio" class="btn-check" id="chkQ1YesRadio" name="chkQ1RadioInput" value="yes"
@@ -455,7 +605,7 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable" id="stsADModalDialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="stsADModalTitle">Please answer each of the six questions (page 3 of 5)</h5>
+                    <h5 class="modal-title" id="stsADModalTitle">Please answer these questions based on the videos you have just watched. (page 3 of 5)</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="display:none;">
                     </button>
@@ -637,13 +787,18 @@
         <div class="modal-dialog modal-lg modal-dialog-scrollable" id="ueqsModalDialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ueqsModalTitle">How do you feel about the visualization concepts of the interface? (page 2 of 5)</h5>
+                    <h5 class="modal-title" id="ueqsModalTitle">How do you feel about the interface of the self-driving car to show how the system works? (page 2 of 5)</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="display:none;">
                     </button>
                 </div>
                     <!-- questions from situational trust towards Autonmous Driving questionnaire -->
                 <div class="modal-body" id="ueqsQuestionsHolder">
+                    <!-- show the UI here as image -->
+                    <div class="d-flex align-items-center flex-column">                        
+                        <img class="img-fluid" style="width: 80%;" src="./assets/videos/explanation_highlight_level2.jpg">
+                        <p>Explanation Interface showing how the AI system works.</p>
+                    </div>
                     <!-- questions from questionnaire with 5 point Likert-scale -->
                     <form>
                         <div class="ueqs_row" style="width: 50%;" >
@@ -913,22 +1068,24 @@
                             </div>                        
                         </div>
                     </div>
-
                     <div class="mb-3">
-                        <label for="rideAvInput" class="form-label">2. Have you ever ridden in a self-driving car, e.g., Tesla auto-pilot, Robotaxis?</label>
-                        <div class="d-flex align-items-start">
+                        <label for="rideAvInput" class="form-label">2. Have you ever ridden in a vehicle with the following advanced driving technology?(Click all that apply.)</label>
+                        <div class="d-flex align-items-start flex-column">
                             <div class="mb-1">
-                                <input type="radio" class="btn-check" id="rideAvYesRadio" name="rideAvRadioInput"
-                                    value="yes" autocomplete="off">
-                                <label class="btn btn-sm btn-outline-primary me-1" for="rideAvYesRadio">Yes</label>
+                                <input type="checkbox" class="btn-check" id="autopilot" name="questionsADS[]" value="autopilot" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary me-1" for="autopilot">self-driving car, e.g., Tesla auto-pilot, Robotaxis</label>
                             </div>
-                            <div>
-                                <input type="radio" class="btn-check" id="rideAvNoRadio" name="rideAvRadioInput"
-                                    value="no" autocomplete="off">
-                                <label class="btn btn-sm btn-outline-primary ms-1" for="rideAvNoRadio">No</label>
+                            <div class="mb-1">
+                                <input type="checkbox" class="btn-check" id="adaptive_cruise_control" name="questionsADS[]" value="adaptive_cruise_control" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="adaptive_cruise_control">Adaptive Cruise Control</label>
                             </div>
+                            <div class="mb-1">
+                                <input type="checkbox" class="btn-check" id="lane_assist" name="questionsADS[]" value="lane_assist" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="lane_assist">Lane Assist</label>
                         </div>                        
                     </div>
+                    </div>
+
                     <div class="mb-3">
                         <label for="attnChk2Input" class="form-label">3. In this experiment, how many videos did you watch?</label>
                         <div class="d-flex align-items-start">
@@ -1368,7 +1525,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="notifMsgBody">
-                    <h6>You can submit the HIT now.</h6>
+                    <h6>The task is complete! You can submit it now.</h6>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-success" data-bs-dismiss="modal">Okay, Got it!</button>
@@ -1501,10 +1658,13 @@
         vid: document.getElementById('video'), // video element
         dataPoints: {}, // data points
         // bqIds: ['ageInput', 'genderInput', 'stateInput', 'driveRadioInput', 'lastDriveInput', 'transportationRadioInput', 'driveDaysInput'],
-        bqIds: ['ageInput', 'genderInput','chkQ1RadioInput'],
-        bq2Ids:["likeAiRadioInput", "rideAvRadioInput",'chkQ2RadioInput',"dislikeAiRadioInput"],
+        bqIds: ['ageInput', 'genderInput','chkQ1RadioInput', 'hispanic_latino_reponse_Radio_input', "raceQuestions[]"],
+        bq2Ids:["likeAiRadioInput", "questionsADS[]",'chkQ2RadioInput',"dislikeAiRadioInput"],
         bqRadioInputIds: ['driveRadioInput',],
+        quizIds:["qEgoDirection","qEgoSpeed","qPedesIntent","qPedesDirection","qCarDirection"],
         backgroundQAnswers: {},
+        quizGroundTruth: ['turning_right','slowing_down','cross','right','forward'], //change dirty implementation
+        quizAnswers: [], //change dirty implementation
         questionStart: "Question: In the recorded scene, the pedestrian is currently ",
         questionAsk: ", do you think the pedestrian will ",
         baseSourceUrl: "https://escooter-phase4.s3.amazonaws.com/action_prediction/videos/",
@@ -1519,40 +1679,102 @@
         attAVAnswers: {},
         parentVidObjs:[
             {
-                url:"https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_intent_traj_box.mp4",
-                pauseTimes:[1.33,6,10.13], 
-                snapUrl:[
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_level2_snap_1.jpg",
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_level2_snap_2.jpg",
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_level2_snap_3.jpg",
+                url: "./assets/videos//0104_intent_traj_box.mp4",
+                snapshots: [
+                    {
+                        frameNumber: 40,
+                        snapUrl: "./assets/videos//0104_level2_snap_0040.jpg"
+                    },
+                    {
+                        frameNumber: 180,
+                        snapUrl: "./assets/videos//0104_level2_snap_0180.jpg"
+                    },
+                    {
+                        frameNumber: 304,
+                        snapUrl: "./assets/videos//0104_level2_snap_0304.jpg"
+                    }
                 ]
             },
             {
-                url:"https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_intent_traj_box.mp4",
-                pauseTimes:[1.2,8.1,9.03], 
-                snapUrl:[
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_level2_snap_1.jpg",
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_level2_snap_2.jpg",
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_level2_snap_3.jpg",
+                url: "./assets/videos//0080_intent_traj_box.mp4",
+                snapshots: [
+                    {
+                        frameNumber: 36, // 1.2 * 30
+                        snapUrl: "./assets/videos//0080_level2_snap_0036.jpg"
+                    },
+                    {
+                        frameNumber: 243, // 8.1 * 30
+                        snapUrl: "./assets/videos//0080_level2_snap_0243.jpg"
+                    },
+                    {
+                        frameNumber: 271, // 9.03 * 30
+                        snapUrl: "./assets/videos//0080_level2_snap_0271.jpg"
+                    }
                 ]
             },
             {
-                url:"https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0141_intent_traj_box.mp4",
-                pauseTimes:[2.2,5.27], 
-                snapUrl:[
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0141_level2_snap_1.jpg",
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0141_level2_snap_2.jpg",
+                url: "./assets/videos//0141_intent_traj_box.mp4",
+                snapshots: [
+                    {
+                        frameNumber: 66, // 2.2 * 30
+                        snapUrl: "./assets/videos//0141_level2_snap_0066.jpg"
+                    },
+                    {
+                        frameNumber: 158, // 5.27 * 30
+                        snapUrl: "./assets/videos//0141_level2_snap_0158.jpg"
+                    }
                 ]
             },
             {
-                url:"https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0151_intent_traj_box.mp4",
-                pauseTimes:[1.4,5.07], 
-                snapUrl:[
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0151_level2_snap_1.jpg",
-                "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0151_level2_snap_2.jpg",
+                url: "./assets/videos//0151_intent_traj_box.mp4",
+                snapshots: [
+                    {
+                        frameNumber: 42, // 1.4 * 30
+                        snapUrl: "./assets/videos//0151_level2_snap_0042.jpg"
+                    },
+                    {
+                        frameNumber: 152, // 5.07 * 30
+                        snapUrl: "./assets/videos//0151_level2_snap_0152.jpg"
+                    }
                 ]
-            },
-        ], // contains url, pauseTimes, and snapshotUrls
+            },            
+        ],
+        // parentVidObjs:[
+        //     {
+        //         url:"./assets/videos//0104_intent_traj_box.mp4",
+        //         pauseTimes:[1.33,6,10.13], 
+        //         snapUrl:[
+        //         "./assets/videos//0104_level2_snap_1.jpg",
+        //         "./assets/videos//0104_level2_snap_2.jpg",
+        //         "./assets/videos//0104_level2_snap_3.jpg",
+        //         ]
+        //     },
+        //     {
+        //         url:"./assets/videos//0080_intent_traj_box.mp4",
+        //         pauseTimes:[1.2,8.1,9.03], 
+        //         snapUrl:[
+        //         "./assets/videos//0080_level2_snap_1.jpg",
+        //         "./assets/videos//0080_level2_snap_2.jpg",
+        //         "./assets/videos//0080_level2_snap_3.jpg",
+        //         ]
+        //     },
+        //     {
+        //         url:"./assets/videos//0141_intent_traj_box.mp4",
+        //         pauseTimes:[2.2,5.27], 
+        //         snapUrl:[
+        //         "./assets/videos//0141_level2_snap_1.jpg",
+        //         "./assets/videos//0141_level2_snap_2.jpg",
+        //         ]
+        //     },
+        //     {
+        //         url:"./assets/videos//0151_intent_traj_box.mp4",
+        //         pauseTimes:[1.4,5.07], 
+        //         snapUrl:[
+        //         "./assets/videos//0151_level2_snap_1.jpg",
+        //         "./assets/videos//0151_level2_snap_2.jpg",
+        //         ]
+        //     },
+        // ], // contains url, pauseTimes, and snapshotUrls
         vidObjs: [],
         pauseTimes: [],
         pauseCount:0,
@@ -1567,10 +1789,10 @@
 
 
     // var videoSources = [
-    // "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_intent_traj_box.mp4",
-    // // "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_intent_traj_box.mp4",
-    // // "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0104_intent_traj_box.mp4",
-    // // "https://escooter-phase4.s3.amazonaws.com/invehicle_modality_app/test_videos/0080_intent_traj_box.mp4",
+    // "./assets/videos//0104_intent_traj_box.mp4",
+    // // "./assets/videos//0080_intent_traj_box.mp4",
+    // // "./assets/videos//0104_intent_traj_box.mp4",
+    // // "./assets/videos//0080_intent_traj_box.mp4",
     // ];
 
     
@@ -1586,17 +1808,22 @@
     function pauseAtTime() {
         // get the current time of the video
         let currentTime = g.vid.currentTime;
+        //get the snap object
+        g.snapshots = g.vidObjs[g.currentVideoNumber - 1].snapshots;
         // get the pause times for the current video
         g.pauseTimes = g.vidObjs[g.currentVideoNumber - 1].pauseTimes;
 
-        if (g.pauseCount < g.pauseTimes.length) {
-            if (currentTime >= g.pauseTimes[g.pauseCount]) {
+        if (g.pauseCount < g.snapshots.length) {
+            let snapTime=g.snapshots[g.pauseCount].frameNumber/30;
+            // round snapTime to 2 decimal places
+            snapTime = Math.round(snapTime * 100) / 100;        
+            if (currentTime >= snapTime) {
             g.vid.pause();
-            console.log("pausetimes now:", g.pauseTimes[g.pauseCount]);
+            console.log("pausetimes now:", snapTime);
             // clear the children of the snapDiv
             clearChildren('snapDiv');
             // do these things
-            addCardDiv("snapDiv",g.vidObjs[g.currentVideoNumber - 1].snapUrl[g.pauseCount],g.pauseCount,g.pauseTimes[g.pauseCount]);
+            addCardDiv("snapDiv",g.vidObjs[g.currentVideoNumber - 1].snapshots[g.pauseCount].snapUrl,g.pauseCount,snapTime);
             // alert('video paused');
             document.getElementById('playBtn').innerHTML = "Play";
             g.pauseCount++;
@@ -1649,6 +1876,48 @@
                 UpdateVideoCounterDisplay();    
                         //clear the children of the snapDiv
                 clearChildren('snapDiv');    
+    }
+    
+    function ShowQuiz(){
+        // show the quiz modal
+        $('#quizModal').modal('show');
+    }
+
+    function submitQuiz(){
+        // validate the quiz answers
+        if (ValidateQuizAnswers()){
+            // hide the quiz modal
+            $('#quizModal').modal('hide');
+            // show experiment ui
+        }
+    }
+
+    function ValidateQuizAnswers(){
+        // todo: validate the answers from quiz
+        for (var i = 0; i < g.quizIds.length; i++) {
+            var id = g.quizIds[i];
+            console.log("checking id answer" ,id);
+            // check if id has Radio substring
+            
+            var value = $('input[name="' + id + '"]:checked').val();
+                g.quizAnswers[id] = value;
+                if (value == undefined) {
+                    alert("Please answer all the questions.");
+                    // break;
+                    return false;
+                }
+            // check if the answer is correct
+            if (value != g.quizGroundTruth[i]) {
+                alert("Your answers to one or more questions are incorrect. Please review the instructions.");
+                // $('#quizModal').modal('hide');
+                // $('#instructionsModal').modal('show');
+                return false;
+            }
+        }
+        console.log("quiz answers", g.quizAnswers);
+        return true;
+        g.validationStepsCount++;
+
     }
     // END-- FUNCTIONS FOR EVENT LISTENERS
 
@@ -1800,7 +2069,7 @@
             return true;
         }
         else {
-            alert("You must commit to the task to proceed, otherwise you can return the HIT for someone else to complete.");
+            alert("You must commit to the task to proceed, otherwise you can return the task for someone else to complete.");
             return false;
         }
     }
@@ -1817,6 +2086,16 @@
         // $('#stsADModal').modal('show');
     }
 
+    function collectMultipleChoices(form_id){
+        const checkboxes = document.querySelectorAll('input[name="' + form_id + '"]:checked');
+        const selectedValues = [];
+        checkboxes.forEach((checkbox) => {
+            selectedValues.push(checkbox.value);
+        });
+        console.log("Selected values:", selectedValues);
+        return selectedValues;
+    }
+
     function BackgroundQuestionValidation() {
         // checks if all background questions are answered from bqIds
         for (var i = 0; i < g.bqIds.length; i++) {
@@ -1827,6 +2106,14 @@
                 var value = $('input[name="' + id + '"]:checked').val();
                     g.backgroundQAnswers[id] = value;
                     if (value == undefined) {
+                        alert("Please answer all the questions.");
+                        return false;
+                    }
+                    continue;                             
+            } else if(id.includes('[]')){
+                const selectedValues=collectMultipleChoices(id);
+                g.backgroundQAnswers[id] = selectedValues;
+                if (selectedValues.length == 0) {
                         alert("Please answer all the questions.");
                         return false;
                     }
@@ -2001,6 +2288,14 @@
                             return false;
                         }
                         continue;                             
+                }else if(id.includes('[]')){
+                const selectedValues=collectMultipleChoices(id);
+                g.backgroundQAnswers[id] = selectedValues;
+                if (selectedValues.length == 0) {
+                            alert("Please answer all the questions.");
+                            return false;
+                        }
+                        continue;                             
                 }
                 // else get value using this way
                 var value = document.getElementById(id).value;
@@ -2077,44 +2372,48 @@
         
         let status = false;
 
-        if (g.validationStepsCount<9) {
-            status = confirm('You might have missed some videos or questions, Are you sure you want to submit the HIT? Incomplete HIT may be rejected.');
+        if (g.validationStepsCount<10) {
+            status = confirm('You might have missed some videos or questions, Are you sure you want to submit the task? Incomplete task may be rejected.');
         } else {
             status = true;
         }
 
         return status;
     }
+    function reviseInstructions(){
+        // $('#quizModal').modal('hide');
+        $('#instructionsModal').modal('show');
+
+    }
     init();
     $(document).ready(function () {
+        // show modal
+        $('#consentModal').modal('show'); //irb
+        // $('#instructionsModal').modal('show');
+        // $('#quizModal').modal('show');
+        // $('#backgroundQuestionModal').modal('show');
+        // $('#ueqsModal').modal('show');
+        // $('#stsADModal').modal('show');
+        // $('#piitModal').modal('show');
+        // $('#backgroundQuestion2Modal').modal('show');
+
         // document.getElementById("crowd-form-content").style="";
         // $('#consentModal').modal('hide');
-        $('#consentModal').modal('show');
+        // $('#consentModal').modal('show');
 
         // hide commitment modal
         $('#commitmentModal').modal('hide');
-        // hide background question modal
-        $('#backgroundQuestionModal').modal('hide');
-        // show stsAD modal
-        // $('#stsADModal').modal('show');
-        // show ueqsModal
-        // $('#ueqsModal').modal('show');
-        // show piitModal
-        $('#piitModal').modal('hide');
-        //show attitude towards AV modal
-        $('#attAVModal').modal('hide');
-        // $('#backgroundQuestion2Modal').modal('show');
-        // $('#instructionsModal').modal('show');
+        //show attitude towards AV modal, retired
+        // $('#attAVModal').modal('hide');
         
 
     });
 
-    document.querySelector('#parentCrowdForm').onsubmit = function (e) {
-        if (!ValidateForm()) {
-            e.preventDefault(); //dont do submission
+    function submitTask(){
+        if(!ValidateForm()){
+            return;
         }
-        else {
-            //do the submission
+        else{
             let saveData = {
                 submissionTimeStamp: Date.now(),
                 demogQuestionData: g.backgroundQAnswers,
@@ -2125,7 +2424,7 @@
                 // demogQuestionData: "perceptionOfAi:" + document.getElementById(g.openQuestionsIds[0]).value + ";distinguishingReasons:" + document.getElementById(g.openQuestionsIds[1]).value + ';selfDrivingPerception: ' + $('input[name="drivingResponseRadio"]:checked').val(),
             }
             let answerString = JSON.stringify(saveData);
-            document.querySelector('#hiddenTaskAnswers').value = answerString; // very important line
+            // document.querySelector('#hiddenTaskAnswers').value = answerString; // very important line
 
             // console.log('answer string on submit is: ', answerString);
 
@@ -2152,6 +2451,5 @@
             //     })
             // // //==END===============================                   
         }
-
     }    
 </script>
