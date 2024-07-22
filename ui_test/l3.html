@@ -288,7 +288,7 @@
                 </div>
                 <div class="modal-body" id="instructionsModalHolder">
                     <ul class="list-group">
-                        <li class="list-group-item">In this experiment, you will watch some videos. These videos show how a self-driving car makes driving decisions based on the motions and intentions of pedestrians and other cars.</li>
+                        <li class="list-group-item">In this experiment, you will watch some videos. These videos show how a <strong>self-driving car</strong> or <strong>ego car</strong> makes driving decisions based on the motions and intentions of pedestrians and other cars.</li>
                         <li class="list-group-item">Before you attempt the task, Please review these guidelines to understand the legends and interface designs. After reading the instructions, you'll take a <strong>short quiz</strong> to make sure you're ready to begin the experiment.</li>
                     </ul>
                     <div id="legend">
@@ -446,49 +446,57 @@
                         </li>
                         <li class="list-group-item">What does the self-driving car think of the movement direction of the detected pedestrian?
                             <div class="d-flex align-items-start">
-                                <div class="mb-1">
-                                    <input type="radio" class="form-check-input me-1" id="qPedesDirectionForward" name="qPedesDirection" value="forward"
-                                        autocomplete="off">
-                                    <label class="form-check-label me-3" for="qPedesDirectionForward">Moving Forward</label>
+                                <div class="mb-2 d-flex align-items-center">
+                                    <input type="radio" class="form-check-input me-2" id="qPedesDirectionForward" name="qPedesDirection" value="forward" autocomplete="off">
+                                    <label class="form-check-label pe-4" for="qPedesDirectionForward">
+                                        <img class="img-fluid" style="width: 40px;" src="./assets/icons/straight.png">
+                                    </label>
                                 </div>
-                                <div class="mb-1">
-                                    <input type="radio" class="form-check-input me-1" id="qPedesDirectionBackward" name="qPedesDirection" value="backward"
-                                        autocomplete="off">
-                                    <label class="form-check-label me-3" for="qPedesDirectionBackward">Moving Backward</label>
+                                <div class="mb-2 d-flex align-items-center">
+                                    <input type="radio" class="form-check-input me-2" id="qPedesDirectionBackward" name="qPedesDirection" value="backward" autocomplete="off">
+                                    <label class="form-check-label pe-4" for="qPedesDirectionBackward">
+                                        <img class="img-fluid" style="width: 40px;" src="./assets/icons/straight-reverse.png">
+                                    </label>
                                 </div>
-                                <div>
-                                    <input type="radio" class="form-check-input me-1" id="qPedesDirectionRight" name="qPedesDirection" value="right"
-                                        autocomplete="off">
-                                        <label class="form-check-label me-3" for="qPedesDirectionRight">Turning Right</label>
+                                <div class="mb-2 d-flex align-items-center">
+                                    <input type="radio" class="form-check-input me-2" id="qPedesDirectionRight" name="qPedesDirection" value="right" autocomplete="off">
+                                    <label class="form-check-label pe-4" for="qPedesDirectionRight">
+                                        <img class="img-fluid" style="width: 40px;" src="./assets/icons/right_turn.png">
+                                    </label>
                                 </div>
-                                <div>
-                                    <input type="radio" class="form-check-input me-1" id="qPedesDirectionLeft" name="qPedesDirection" value="left"
-                                        autocomplete="off">
-                                        <label class="form-check-label me-1" for="qPedesDirectionLeft">Turning Left</label>
+                                <div class="mb-2 d-flex align-items-center">
+                                    <input type="radio" class="form-check-input me-2" id="qPedesDirectionLeft" name="qPedesDirection" value="left" autocomplete="off">
+                                    <label class="form-check-label pe-4" for="qPedesDirectionLeft">
+                                        <img class="img-fluid" style="width: 40px;" src="./assets/icons/left_turn.png">
+                                    </label>
                                 </div>
                             </div>
                         </li>                          
                         <li class="list-group-item">What does the self-driving car think of the movement direction of the identified car?
                             <div class="d-flex align-items-start">
-                                <div class="mb-1">
-                                    <input type="radio" class="form-check-input me-1" id="qCarDirectionForward" name="qCarDirection" value="forward"
-                                        autocomplete="off">
-                                    <label class="form-check-label me-3" for="qCarDirectionForward">Moving Forward</label>
+                                <div class="mb-2 d-flex align-items-center">
+                                    <input type="radio" class="form-check-input me-2" id="qCarDirectionForward" name="qCarDirection" value="forward" autocomplete="off">
+                                    <label class="form-check-label pe-4" for="qCarDirectionForward">
+                                        <img class="img-fluid" style="width: 40px;" src="./assets/icons/straight.png">
+                                    </label>
                                 </div>
-                                <div class="mb-1">
-                                    <input type="radio" class="form-check-input me-1" id="qCarDirectionBackward" name="qCarDirection" value="backward"
-                                        autocomplete="off">
-                                    <label class="form-check-label me-3" for="qCarDirectionBackward">Moving Backward</label>
+                                <div class="mb-2 d-flex align-items-center">
+                                    <input type="radio" class="form-check-input me-2" id="qCarDirectionBackward" name="qCarDirection" value="backward" autocomplete="off">
+                                    <label class="form-check-label pe-4" for="qCarDirectionBackward">
+                                        <img class="img-fluid" style="width: 40px;" src="./assets/icons/straight-reverse.png">
+                                    </label>
                                 </div>
-                                <div>
-                                    <input type="radio" class="form-check-input me-1" id="qCarDirectionRight" name="qCarDirection" value="right"
-                                        autocomplete="off">
-                                        <label class="form-check-label me-3" for="qCarDirectionRight">Turning Right</label>
+                                <div class="mb-2 d-flex align-items-center">
+                                    <input type="radio" class="form-check-input me-2" id="qCarDirectionRight" name="qCarDirection" value="right" autocomplete="off">
+                                    <label class="form-check-label pe-4" for="qCarDirectionRight">
+                                        <img class="img-fluid" style="width: 40px;" src="./assets/icons/right_turn.png">
+                                    </label>
                                 </div>
-                                <div>
-                                    <input type="radio" class="form-check-input me-1" id="qCarDirectionLeft" name="qCarDirection" value="left"
-                                        autocomplete="off">
-                                        <label class="form-check-label me-1" for="qCarDirectionLeft">Turning Left</label>
+                                <div class="mb-2 d-flex align-items-center">
+                                    <input type="radio" class="form-check-input me-2" id="qCarDirectionLeft" name="qCarDirection" value="left" autocomplete="off">
+                                    <label class="form-check-label pe-4" for="qCarDirectionLeft">
+                                        <img class="img-fluid" style="width: 40px;" src="./assets/icons/left_turn.png">
+                                    </label>
                                 </div>
                             </div>
                         </li>                        
@@ -2353,8 +2361,8 @@
     init();
     $(document).ready(function () {
         // show modal
-        $('#consentModal').modal('show'); //irb
-        // $('#instructionsModal').modal('show');
+        // $('#consentModal').modal('show'); //irb
+        $('#instructionsModal').modal('show');
         // $('#quizModal').modal('show');
         // $('#backgroundQuestionModal').modal('show');
         // $('#ueqsModal').modal('show');
