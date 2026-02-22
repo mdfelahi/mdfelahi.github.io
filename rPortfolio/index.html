@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Fazle Elahi | Academic Portfolio</title>
+    <style>
+        :root {
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #555555;
+            --border-color: #e0e0e0;
+            --header-gradient: linear-gradient(135deg, #000000 0%, #2c2c2c 100%);
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            --nav-height: 50px;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.4;
+            color: var(--text-main);
+            background-color: var(--bg-primary);
+            margin: 0;
+            padding-top: var(--nav-height);
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        nav a:hover { color: #666; }
+
+        /* --- Floating Back to Top --- */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #000;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        #backToTop:hover { opacity: 1; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            text-align: center;
+            background: var(--header-gradient);
+            color: #ffffff;
+            border-bottom: 3px solid #333;
+        }
+
+        h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.5px; }
+        .sub-header { color: #cccccc; font-size: 0.95rem; margin: 0.25rem 0; font-weight: 300; }
+        .contact-minimal { font-size: 0.85rem; }
+        .contact-minimal a { color: #ffffff; text-decoration: none; border-bottom: 1px solid #666; }
+
+        section { padding: 1rem 0; border-bottom: 1px solid #eee; scroll-margin-top: var(--nav-height); }
+        section:last-of-type { border-bottom: none; }
+
+        h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin: 0 0 0.75rem 0;
+            color: #000;
+            border-left: 3px solid #000;
+            padding-left: 0.6rem;
+        }
+
+        .card-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0.85rem;
+            flex: 1 1 calc(33% - 0.75rem);
+            min-width: 250px;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover { border-color: #000; box-shadow: var(--card-shadow); }
+        .card h3 { margin: 0 0 0.25rem 0; font-size: 0.95rem; }
+        .card-date { font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem; }
+
+        .teaching-header { display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .teaching-header h3 { font-size: 1rem; margin: 0; }
+        ul { padding-left: 1.1rem; margin: 0.35rem 0; }
+        li { margin-bottom: 0.2rem; font-size: 0.9rem; }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .research-card {
+            position: relative;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 2px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .research-card .reveal-content {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #1a1a1a; color: #fff; padding: 0.75rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 400; opacity: 0; transition: opacity 0.2s ease;
+        }
+
+        .research-card:hover .reveal-content { opacity: 1; }
+
+        .pub-category h4 { border-bottom: 1px solid #eee; padding-bottom: 0.2rem; margin: 1rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; }
+        .pub-list { list-style: none; padding: 0; margin: 0; }
+        .pub-list li { margin-bottom: 0.6rem; font-size: 0.85rem; line-height: 1.35; }
+
+        .skill-tag { display: inline-block; background: #f0f0f0; border: 1px solid #ddd; padding: 0.1rem 0.4rem; margin: 0.1rem; font-size: 0.75rem; }
+
+        @media (max-width: 768px) {
+            nav a { font-size: 0.55rem; margin: 0 4px; }
+            .card { min-width: 100%; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#summary">Summary</a>
+    <a href="#education">Education</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#awards">Awards</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#service">Service</a>
+</nav>
+
+<header>
+    <div class="container">
+        <h1>Md Fazle Elahi</h1>
+        <p class="sub-header">PhD Candidate in Electrical & Computer Engineering at Purdue University</p>
+        <div class="contact-minimal">
+            <a href="mailto:melahi@purdue.edu">melahi@purdue.edu</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <section id="summary">
+        <h2>Summary</h2>
+        <div class="summary-text">
+            I am a PhD candidate in Electrical and Computer Engineering at Purdue University specializing in <strong>Human-Centered AI</strong>, <strong>Human-Automation Interaction</strong>, and <strong>Cognitive Engineering</strong>. My research focuses on designing socially intelligent, explainable computer systems—such as automated vehicles and user interfaces—that understand nuances in human behavior and proactively interact with humans. Working with my advisor, <strong><a href="https://ise.ncsu.edu/people/rtian2/" target="_blank">Dr. Renran Tian</a></strong>, at the <a href="https://ise.ncsu.edu/icel/">Intelligent Cognitive and Ergonomics Laboratory (ICEL)</a> at North Carolina State University, I conduct interdisciplinary research grounded in behavioral science, cognitive psychology, and machine learning. My work is published in leading human factors and HCI venues, including <strong>ACM SIGCHI</strong>, the <strong>HFES Annual Meeting</strong>, and the <strong>HILDA Workshop</strong>. Additionally, I have been serving as the <strong>lead instructor</strong> for undergraduate laboratory courses at Purdue ECE for the past four semesters, demonstrating a strong foundation in teaching and technical leadership.
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="card-row">
+            <div class="card">
+                <span class="card-date">Expected May 2026</span>
+                <h3>Ph.D. in Electrical and Computer Engineering</h3>
+                <p style="font-size: 0.85rem; margin: 0.2rem 0;">Purdue University, West Lafayette, IN</p>
+                <p style="font-size: 0.75rem; font-style: italic; color: var(--text-muted);">Thesis: Enhancing Social Decisions of Autonomous Cars through Understanding Human Cognition: Organization, Visualization, and Timing of Feedback.</p>
+            </div>
+            <div class="card">
+                <span class="card-date">2012 – 2017</span>
+                <h3>B. Sc. in Electrical and Electronic Engineering</h3>
+                <p style="font-size: 0.85rem; margin: 0.2rem 0;">Bangladesh University of Engineering and Technology (BUET)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="research">
+        <h2>Research Experience</h2>
+        <div class="research-grid">
+            <div class="research-card">XAI & Situation Awareness <div class="reveal-content">Improving XAI by grouping Feedback based on Driverless car’s Situation Awareness.</div></div>
+            <div class="research-card">Cognitive Labels <div class="reveal-content">Enhancing quality of Crowdsourced Cognitive Labels via Question Rephrasing.</div></div>
+            <div class="research-card">MinDReaD Annotation <div class="reveal-content">Enriching Scene Understanding Datasets by Designing Data Annotation Tool: MinDReaD.</div></div>
+            <div class="research-card">Temporal Segmentation <div class="reveal-content">Investigating Driver Temporal Segmentation of Pedestrian Crossing Intention.</div></div>
+            <div class="research-card">Knowledge Graphs <div class="reveal-content">Designing Framework for Modeling Knowledge Graphs from Natural Text Description.</div></div>
+            <div class="research-card">R&D Software Engineer <div class="reveal-content">Hardware/software co-design of wireless penetration testing solutions at Celltron (2017-2018).</div></div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <h2>Publications</h2>
+        <div class="pub-category">
+            <h4>Journal Articles</h4>
+            <ul class="pub-list">
+                <li>1. <strong>Elahi, Md Fazle</strong>, Jiachen Jiang, Joshua Domeyer, and Renran Tian. "The Social Aptitude of AI: Quantifying and Assessing Driving Automation-Pedestrian Interactions." <em>International Journal of Human–Computer Interaction</em> (2026) (In Press).</li>
+                <li>2. Zhang, Zhengming, <strong>Md Fazle Elahi</strong>, Joshua Domeyer, and Renran Tian. "Driver temporal segmentation of pedestrian crossing intentions during negotiations." <em>Transportation Research Part F: Traffic Psychology and Behaviour</em> 114 (2025): 953-969.</li>
+                <li>3. <strong>Elahi, Md Fazle</strong>, Taotao Jing, Zhengming Ding, and Renran Tian. "MindReaD: Enhancing Pedestrian-Vehicle Interaction with Micro-Level Reasoning Data Annotation." <em>International Journal of Human–Computer Interaction</em> 41, no. 13 (2025): 8194-8209.</li>
+            </ul>
+        </div>
+        <div class="pub-category">
+            <h4>Conference Papers</h4>
+            <ul class="pub-list">
+                <li>1. <strong>Elahi, Md Fazle</strong>, Yin-Chun Lu, Jing Chen, and Renran Tian. "Matching Explanation Detail to Scene Complexity: Studying Situational Awareness-Specific Feedback in Pedestrian Encounter Driving Scenarios." <em>In Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems</em>, ACM, Barcelona, Spain. (Accepted*).</li>
+                <li>2. <strong>Elahi, Md Fazle</strong>, Tianyi Li, and Renran Tian. "Exploring Collective Theory of Mind on Pedestrian Behavioral Intentions." <em>In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems</em>, pp. 1-8. (2024).</li>
+                <li>3. <strong>Elahi, Md Fazle</strong>, Renran Tian, and Xiao Luo. "Flexible and scalable annotation tool to develop scene understanding datasets." <em>In Proceedings of the Workshop on Human-In-the-Loop Data Analytics (HILDA)</em>, pp. 1-7. (2022).</li>
+                <li>4. <strong>Elahi, Md Fazle</strong>, Jithesh Gugan Sreeram, Xiao Luo, and Renran Tian. "A Novel Adaptation of Information Extraction Algorithm to Process Natural Text Descriptions of Pedestrian Encounters." <em>In 2021 IEEE International Intelligent Transportation Systems Conference (ITSC)</em>, pp. 1906-1912. (2021).</li>
+                <li>5. <strong>Elahi, Md Fazle</strong>, Xiao Luo, and Renran Tian. "A framework for modeling knowledge graphs via processing natural descriptions of vehicle-pedestrian interactions." <em>In International Conference on Human-Computer Interaction</em>, pp. 40-50. (2020).</li>
+            </ul>
+        </div>
+        <div class="pub-category">
+            <h4>Posters</h4>
+            <ul class="pub-list">
+                <li>1. <strong>Md Fazle Elahi</strong>, Yin-Chun Lu, Jing Chen, and Renran Tian. "Studying Situational Awareness-Specific Feedback in Improving In-Vehicle Visualization." <em>ASPIRE – The 69th HFES International Annual Meeting</em>, Chicago, IL, October 13-17, 2025.</li>
+                <li>2. <strong>Md Fazle Elahi</strong>, Jiachen Jiang, Joshua Domeyer, and Renran Tian. "Assessing AI Social Aptitude Using Crowd Sourced Cognitive Labels." <em>ASPIRE – The 68th HFES International Annual Meeting</em>, Phoenix, AZ, September 9 -13, 2024.</li>
+            </ul>
+        </div>
+    </section>
+    <section id="teaching">
+        <h2>Teaching & Mentorship</h2>
+        <div class="teaching-item">
+            <div class="teaching-header">
+                <h3>Graduate Teaching Assistant: Lab Instructor</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Aug 2024 – Present</span>
+            </div>
+            <p style="font-size: 0.85rem; margin: 0.1rem 0;"><strong>Purdue University, Indianapolis, IN</strong></p>
+            <ul>
+                <li><strong>Lead Instructor for EE Lab I:</strong> Responsible for laboratory lectures and hands-on experiments for freshman/sophomores.</li>
+                <li><strong>Supervision:</strong> Coordinated schedules and instruction for 4 Graduate TAs and 2 Undergraduate TAs across 7 sections.</li>
+                <li><strong>Curriculum:</strong> Designed lectures on circuit analysis, measurement techniques, and modern electronic instrumentation.</li>
+                <li><strong>Assessment:</strong> Managed grading for 8 lab reports, practical exams, and projects via Brightspace.</li>
+            </ul>
+        </div>
+        <div class="teaching-item">
+            <div class="teaching-header">
+                <h3>Research Mentor (NSF REU)</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Summer 2023</span>
+            </div>
+            <ul>
+                <li>Mentored two senior undergraduate students in design/implementation of pedestrian crossing intention prediction models.</li>
+                <li>Guided students through full research lifecycle from literature review to model development.</li>
+            </ul>
+        </div>
+    </section>
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="card-row">
+            <div class="card">
+                <h3>Programming</h3>
+                <span class="skill-tag">C</span> <span class="skill-tag">Python</span> <span class="skill-tag">Verilog HDL</span> <span class="skill-tag">MATLAB</span>
+            </div>
+            <div class="card">
+                <h3>Instrumentation</h3>
+                <span class="skill-tag">Oscilloscopes</span> <span class="skill-tag">Digital Multimeters</span> <span class="skill-tag">Signal Generators</span> <span class="skill-tag">Power Supplies</span>
+            </div>
+            <div class="card">
+                <h3>Software & LMS</h3>
+                <span class="skill-tag">LTspice</span> <span class="skill-tag">Quartus</span> <span class="skill-tag">Brightspace</span> <span class="skill-tag">Canvas</span> <span class="skill-tag">Gradescope</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards">
+        <h2>Awards & Scholarships</h2>
+        <div class="card-row">
+            <div class="card">
+                <h3>Travel Grants</h3>
+                <p style="font-size: 0.8rem;">PGSG Travel Award ($1000) by Purdue Graduate Student Government, 2025.</p>
+                <p style="font-size: 0.8rem;">IUPUI Graduate Travel Fellowship ($750) by Indiana University Graduate School, 2024.</p>
+            </div>
+            <div class="card">
+                <h3>Assistantships</h3>
+                <p style="font-size: 0.8rem;">Graduate Teaching Assistantship, Purdue University (2024-Present).</p>
+                <p style="font-size: 0.8rem;">Graduate ResearchAssistantship, IUPUI (2019-2024).</p>
+            </div>
+        </div>
+    </section>
+    <section id="service">
+        <h2>Professional Service</h2>
+        <div class="card-row">
+            <div class="card">
+                <h3>Peer Review</h3>
+                <p style="font-size: 0.8rem;">IEEE Intelligent Vehicles Symposium (IV) 2021-2025.</p>
+                <p style="font-size: 0.8rem;">IEEE International Conference on Intelligent Transportation Systems (ITSC) 2021-2025.</p>
+                <p style="font-size: 0.8rem;">IISE Transactions on Healthcare Systems Engineering 2025.</p>
+            </div>
+            <div class="card">
+                <h3>Memberships</h3>
+                <p style="font-size: 0.8rem;">Student Member: IEEE, HFES, ACM.</p>
+                <p style="font-size: 0.8rem;">Student Volunteer: IEEE ITSC 2021.</p>
+            </div>
+            <div class="card">
+                <h3>Website Management</h3>
+                <p style="font-size: 0.8rem;">Maintainer: 3rd Workshop on Pedestrian Behaviors (ITSC 2023).</p>
+                <p style="font-size: 0.8rem;">Maintainer: Workshop on Trust Calibration in AI-Enabled Vehicle Systems.</p>
+            </div>
+        </div>
+    </section>   
+</div>
+
+<div id="backToTop" onclick="window.scrollTo(0,0)">↑</div>
+
+<footer style="text-align: center; padding: 1.5rem; color: #777; font-size: 0.75rem; background: #fff; border-top: 1px solid #eee;">
+    &copy; 2025 Md Fazle Elahi.
+</footer>
+
+<script>
+    window.onscroll = function() {
+        const btn = document.getElementById("backToTop");
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.style.display = "flex";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+</script>
+
+</body>
+</html>
