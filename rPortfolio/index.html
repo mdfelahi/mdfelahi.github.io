@@ -158,6 +158,152 @@
 
         .research-card:hover .reveal-content { opacity: 1; }
 
+        /* Detailed Research Item */
+        .research-item-detailed {
+            grid-column: 1 / -1;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+        }
+
+        .research-content-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Side-by-side layout for enhanced research items */
+        .research-content-row.side-by-side {
+            grid-template-columns: 70% 30%;
+            gap: 1rem;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        /* Full-screen overlay for click-to-pin modal */
+        .research-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.3);
+            z-index: 1999;
+            display: none;
+            cursor: default;
+        }
+        .research-modal-overlay.active { display: block; }
+
+        /* Modal: slides in from the right */
+        .research-modal {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%) translateX(110%);
+            background: #ffffff;
+            border: 2px solid #000;
+            border-right: none;
+            padding: 1rem;
+            box-shadow: -4px 0 24px rgba(0,0,0,0.25);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            z-index: 2000;
+            max-width: min(82vw, 1125px);
+            width: max-content;
+        }
+
+        .research-modal img {
+            max-width: 1050px;
+            max-height: 85vh;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .research-modal .modal-hint {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.4rem;
+        }
+
+        .research-modal.show {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .research-teaser {
+            cursor: zoom-in;
+        }
+
+        .research-teaser:hover img {
+            opacity: 0.8;
+        }
+
+        .research-teaser .teaser-hint {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.3rem;
+        }
+
+        .research-teaser img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid var(--border-color);
+        }
+
+
+
+        .research-description h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .research-description ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .research-description li {
+            font-size: 1rem;
+            line-height: 1.4;
+            margin-bottom: 0.4rem;
+        }
+
+        .research-links-row {
+            display: none;
+            gap: 1rem;
+            padding-left: 0;
+        }
+
+        .research-link {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background 0.2s ease;
+        }
+
+        .research-link:hover {
+            background: #333;
+        }
+
+        @media (max-width: 768px) {
+            .research-content-row {
+                grid-template-columns: 1fr;
+            }
+            .research-links-row {
+                padding-left: 0;
+            }
+        }
+
         .pub-category h4 { border-bottom: 1px solid #eee; padding-bottom: 0.2rem; margin: 1rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; }
         .pub-list { list-style: none; padding: 0; margin: 0; }
         .pub-list li { margin-bottom: 0.6rem; font-size: 0.85rem; line-height: 1.35; }
@@ -197,7 +343,7 @@
     <section id="summary">
         <h2>Summary</h2>
         <div class="summary-text">
-            I am a PhD candidate in Electrical and Computer Engineering at Purdue University specializing in <strong>Human-Centered AI</strong>, <strong>Human-Automation Interaction</strong>, and <strong>Cognitive Engineering</strong>. My research focuses on designing socially intelligent, explainable computer systems—such as automated vehicles and user interfaces—that understand nuances in human behavior and proactively interact with humans. Working with my advisor, <strong><a href="https://ise.ncsu.edu/people/rtian2/" target="_blank">Dr. Renran Tian</a></strong>, at the <a href="https://ise.ncsu.edu/icel/">Intelligent Cognitive and Ergonomics Laboratory (ICEL)</a> at North Carolina State University, I conduct interdisciplinary research grounded in behavioral science, cognitive psychology, and machine learning. My work is published in leading human factors and HCI venues, including <strong>ACM SIGCHI</strong>, the <strong>HFES Annual Meeting</strong>, and the <strong>HILDA Workshop</strong>. Additionally, I have been serving as the <strong>lead instructor</strong> for undergraduate laboratory courses at Purdue ECE for the past four semesters, demonstrating a strong foundation in teaching and technical leadership.
+            I am a PhD candidate in Electrical and Computer Engineering at Purdue University specializing in <strong>Human-Centered AI</strong>, <strong>Human-Automation Interaction</strong>, and <strong>Cognitive Engineering</strong>. My research focuses on designing socially intelligent, explainable computer systems—such as automated vehicles and user interfaces—that understand nuances in human behavior and proactively interact with humans. Working with my advisor, <a href="https://ise.ncsu.edu/people/rtian2/" target="_blank">Dr. Renran Tian</a>, at the <a href="https://ise.ncsu.edu/icel/">Intelligent Cognitive and Ergonomics Laboratory (ICEL)</a> at North Carolina State University, I conduct interdisciplinary research grounded in behavioral science, cognitive psychology, and machine learning. My work is published in leading human factors and HCI venues, including <strong>ACM SIGCHI</strong>, the <strong>HFES Annual Meeting</strong>, and the <strong>HILDA Workshop</strong>. Additionally, I have been serving as the <strong>lead instructor</strong> for undergraduate laboratory courses at Purdue ECE for the past four semesters, demonstrating a strong foundation in teaching and technical leadership.
         </div>
     </section>
 
@@ -221,12 +367,173 @@
     <section id="research">
         <h2>Research Experience</h2>
         <div class="research-grid">
-            <div class="research-card">XAI & Situation Awareness <div class="reveal-content">Improving XAI by grouping Feedback based on Driverless car’s Situation Awareness.</div></div>
-            <div class="research-card">Cognitive Labels <div class="reveal-content">Enhancing quality of Crowdsourced Cognitive Labels via Question Rephrasing.</div></div>
-            <div class="research-card">MinDReaD Annotation <div class="reveal-content">Enriching Scene Understanding Datasets by Designing Data Annotation Tool: MinDReaD.</div></div>
-            <div class="research-card">Temporal Segmentation <div class="reveal-content">Investigating Driver Temporal Segmentation of Pedestrian Crossing Intention.</div></div>
-            <div class="research-card">Knowledge Graphs <div class="reveal-content">Designing Framework for Modeling Knowledge Graphs from Natural Text Description.</div></div>
-            <div class="research-card">R&D Software Engineer <div class="reveal-content">Hardware/software co-design of wireless penetration testing solutions at Celltron (2017-2018).</div></div>
+            <!-- Adaptive In-Vehicle Feedback - Side-by-side Layout with Modal -->
+            <div class="research-item-detailed">
+                <div class="research-content-row side-by-side">
+                    <div class="research-description">
+                        <h3>Adaptive In-Vehicle UI Feedback via Decision Entropy</h3>
+                        <ul>
+                            <li><strong>Challenge:</strong> UIs with the same depth of information miscalibrates user information needs—overloading in simple scenarios, under-informing in complex pedestrian encounters.</li>
+                            <li><strong>Modeling Scene Complexity:</strong> Defined Perceived Scene Complexity (PSC) as Driving Decision Entropy (DDE)—the statistical diversity in driver action choices.</li>
+                            <li><strong>Intent-Uncertainty Link:</strong> Higher pedestrian intent uncertainty strongly correlates with higher DDE, showing behavioral ambiguity increases decision diversity.</li>
+                            <li><strong>Dynamic Feedback Scaling:</strong> Evaluated three Situational Awareness (SA)-level interface concepts: Perception, Comprehension, and Projection.</li>
+                            <li><strong>Key Findings:</strong> Perception-only feedback suits low-entropy scenarios; richer SA-specific details preferred as complexity rises. Predictive feedback reduces cognitive load and improves perceived system performance.</li>
+                            <li><strong>Contribution:</strong> Empirical foundation for Adaptive UI where feedback detail scales with real-time decision diversity to enhance transparency and reduce cognitive workload.</li>
+                        </ul>
+                    </div>
+                    <div class="research-teaser">
+                        <img src="./assets/images/explanation-scaling-1.png" alt="Adaptive In-Vehicle Feedback Research">
+                        <p class="teaser-hint">Hover to preview &middot; Click to pin</p>
+                    </div>
+                </div>
+                <div class="research-modal">
+                    <img src="./assets/images/explanation-scaling-1.png" alt="Adaptive In-Vehicle Feedback Research - Full View">
+                    <p class="modal-hint">Click outside to dismiss</p>
+                </div>
+                <div class="research-links-row">
+                    <a href="#" class="research-link">PDF</a>
+                    <a href="#" class="research-link">Publication</a>
+                </div>
+            </div>
+            
+            <!-- Driver Temporal Segmentation - Side-by-side Layout with Modal -->
+            <div class="research-item-detailed">
+                <div class="research-content-row side-by-side">
+                    <div class="research-description">
+                        <h3>Driver Temporal Segmentation of Pedestrian Intentions</h3>
+                        <ul>
+                            <li><strong>The Challenge:</strong> Static AI intent labels fail to capture the continuous, dynamic updates human drivers make during real-time road negotiations.</li>
+                            <li><strong>Common Boundaries:</strong> Using DBSCAN clustering, this research identifies temporal "breakpoints" where 72% of drivers simultaneously update their assessment of a pedestrian's intent, typically within a 0.5-second window.</li>
+                            <li><strong>Clarification vs. Confusion:</strong> 75% of these shared boundaries act as "clarifying events" (e.g., lane proximity), while ambiguous cues (e.g., slow movement) trigger "confusion boundaries" where driver interpretations diverge.</li>
+                            <li><strong>Trait-Driven Dynamics:</strong> While personality does not affect initial accuracy, traits like impulsiveness and aggressiveness significantly dictate how frequently and quickly a driver re-segments their understanding of the scene.</li>
+                            <li><strong>Impact:</strong> Provides a framework for automated vehicles to recognize human cognitive breakpoints, enabling more natural and predictable AI-pedestrian negotiation.</li>
+                        </ul>
+                    </div>
+                    <div class="research-teaser">
+                        <img src="./assets/images/driver-temporal.png" alt="Driver Temporal Segmentation Research">
+                        <p class="teaser-hint">Hover to preview &middot; Click to pin</p>
+                    </div>
+                </div>
+                <div class="research-modal">
+                    <img src="./assets/images/driver-temporal.png" alt="Driver Temporal Segmentation Research - Full View">
+                    <p class="modal-hint">Click outside to dismiss</p>
+                </div>
+                <div class="research-links-row">
+                    <a href="#" class="research-link">PDF</a>
+                    <a href="#" class="research-link">Publication</a>
+                </div>
+            </div>
+            
+            <!-- Quantifying Social Aptitude - Side-by-side Layout with Modal -->
+            <div class="research-item-detailed">
+                <div class="research-content-row side-by-side">
+                    <div class="research-description">
+                        <h3>Quantifying AI Social Aptitude in Automated Driving</h3>
+                        <ul>
+                            <li><strong>The Challenge:</strong> Traditional performance metrics like accuracy fail to capture the "social intelligence" required for AI to interact naturally and predictably with pedestrians.</li>
+                            <li><strong>The "Human-Likeness" Gap:</strong> AI models often reach the correct final prediction while following temporal reasoning patterns that humans find counterintuitive or unstable.</li>
+                            <li><strong>The Human-Like Index (HL-i):</strong> This research introduces the HL-i metric, which uses time-series clustering to quantify the alignment between AI and human prediction trajectories.</li>
+                            <li><strong>Experimental Findings:</strong> AI predictions deviated significantly from human decision-making patterns in over 50% of tested scenarios. Transformer-based architectures (TrEP) demonstrated a higher degree of human-likeness compared to traditional LSTM models (PIE).</li>
+                            <li><strong>Validation:</strong> A Turing-inspired study confirmed that humans find it significantly more difficult to distinguish AI predictions from human ones when the HL-i score is high.</li>
+                            <li><strong>Impact:</strong> The framework provides a path toward developing "socially apt" AI that is more trustworthy and aligned with human social cognition.</li>
+                        </ul>
+                    </div>
+                    <div class="research-teaser">
+                        <img src="./assets/images/human-ai.png" alt="Quantifying Social Aptitude Research">
+                        <p class="teaser-hint">Hover to preview &middot; Click to pin</p>
+                    </div>
+                </div>
+                <div class="research-modal">
+                    <img src="./assets/images/human-ai.png" alt="Quantifying Social Aptitude Research - Full View">
+                    <p class="modal-hint">Click outside to dismiss</p>
+                </div>
+                <div class="research-links-row">
+                    <a href="#" class="research-link">PDF</a>
+                    <a href="#" class="research-link">Publication</a>
+                </div>
+            </div>
+            
+            <!-- MinDReaD Annotation Tool - Side-by-side Layout with Modal -->
+            <div class="research-item-detailed">
+                <div class="research-content-row side-by-side">
+                    <div class="research-description">
+                        <h3>MindReaD Annotation Tool: Capturing Micro-Level Reasoning Data</h3>
+                        <ul>
+                            <li><strong>The Challenge:</strong> Safety-critical ML models require "commonsense reasoning" data that connects human cognitive states to specific visual objects, which traditional tools fail to capture.</li>
+                            <li><strong>The MindReaD Framework:</strong> A novel annotation tool that captures human knowledge at three granularities: Event level (timestamps), Context level (textual rationale), and Entity level (grounding text to visual objects).</li>
+                            <li><strong>Point-and-Explain (PaE):</strong> Implements an interaction design that mimics natural human explanation strategies, allowing annotators to link reasoning text directly to visual representations.</li>
+                            <li><strong>Key Findings:</strong> The PaE feature and multi-prompt UI encouraged annotators to include significantly more reasoning factors compared to baseline designs. Training an AI model with micro-level reasoning annotations resulted in a 10% improvement in intent prediction accuracy over traditional models.</li>
+                            <li><strong>Contribution:</strong> Establishes a methodology for acquiring high-fidelity rationale data, bridging the gap between raw video data and human-like algorithmic reasoning.</li>
+                        </ul>
+                    </div>
+                    <div class="research-teaser">
+                        <img src="./assets/images/data_granularity.jpg" alt="MinDReaD Annotation Tool Research">
+                        <p class="teaser-hint">Hover to preview &middot; Click to pin</p>
+                    </div>
+                </div>
+                <div class="research-modal">
+                    <img src="./assets/images/data_granularity.jpg" alt="MinDReaD Annotation Tool Research - Full View">
+                    <p class="modal-hint">Click outside to dismiss</p>
+                </div>
+                <div class="research-links-row">
+                    <a href="#" class="research-link">PDF</a>
+                    <a href="#" class="research-link">Publication</a>
+                </div>
+            </div>
+            
+            <!-- Cognitive Labels - Side-by-side Layout with Modal -->
+            <div class="research-item-detailed">
+                <div class="research-content-row side-by-side">
+                    <div class="research-description">
+                        <h3>Investigating Crowd's Ability for Predicting Pedestrian's Crossing Intent</h3>
+                        <ul>
+                            <li>Designed large-scale crowdsourcing experiments (N = 120) to evaluate prediction accuracy at 1s, 3s, and 5s horizons.</li>
+                            <li>Investigated cognitive bias (status quo bias) in driver intent prediction.</li>
+                            <li>Compared human prediction stability against algorithmic models over longer horizons.</li>
+                            <li>Demonstrated improved accuracy through task framing adjustments (53% to 79% at 1s horizon).</li>
+                        </ul>
+                    </div>
+                    <div class="research-teaser">
+                        <img src="./assets/images/exploring-collectiveToM-1.jpg" alt="Cognitive Labels Research">
+                        <p class="teaser-hint">Hover to preview &middot; Click to pin</p>
+                    </div>
+                </div>
+                <div class="research-modal">
+                    <img src="./assets/images/exploring-collectiveToM-1.jpg" alt="Cognitive Labels Research - Full View">
+                    <p class="modal-hint">Click outside to dismiss</p>
+                </div>
+                <div class="research-links-row">
+                    <a href="#" class="research-link">PDF</a>
+                    <a href="#" class="research-link">Publication</a>
+                </div>
+            </div>
+            
+            <!-- Knowledge Graphs - Side-by-side Layout with Modal -->
+            <div class="research-item-detailed">
+                <div class="research-content-row side-by-side">
+                    <div class="research-description">
+                        <h3>Transforming Natural Text Description to Structured Data</h3>
+                        <ul>
+                            <li><strong>The Challenge:</strong> Converting unstructured human reasoning (natural language) into structured data for training AI models.</li>
+                            <li><strong>The IE Framework:</strong> Adapts a biLSTM-CRF algorithm to automatically map free-form text into structured data objects.</li>
+                            <li><strong>Knowledge Categorization:</strong> Extracts 24 critical factors across six categories (Dynamic, Traffic, Pedestrian States, Social, etc.).</li>
+                            <li><strong>Impact:</strong> Bridges qualitative human observations and quantitative AI training, allowing models to learn "the why" behind human decisions.</li>
+                        </ul>
+                    </div>
+                    <div class="research-teaser">
+                        <img src="./assets/images/biLSTM.png" alt="Knowledge Graphs Research">
+                        <p class="teaser-hint">Hover to preview &middot; Click to pin</p>
+                    </div>
+                </div>
+                <div class="research-modal">
+                    <img src="./assets/images/biLSTM.png" alt="Knowledge Graphs Research - Full View">
+                    <p class="modal-hint">Click outside to dismiss</p>
+                </div>
+                <div class="research-links-row">
+                    <a href="#" class="research-link">PDF</a>
+                    <a href="#" class="research-link">Publication</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -340,6 +647,8 @@
     </section>   
 </div>
 
+<div id="researchModalOverlay" class="research-modal-overlay"></div>
+
 <div id="backToTop" onclick="window.scrollTo(0,0)">↑</div>
 
 <footer style="text-align: center; padding: 1.5rem; color: #777; font-size: 0.75rem; background: #fff; border-top: 1px solid #eee;">
@@ -355,6 +664,43 @@
             btn.style.display = "none";
         }
     };
+
+    // Research teaser: hover shows modal sliding from left; click pins it; overlay click dismisses
+    const researchOverlay = document.getElementById('researchModalOverlay');
+    let lockedModal = null;
+
+    document.querySelectorAll('.research-item-detailed').forEach(item => {
+        const teaser = item.querySelector('.research-teaser');
+        const modal  = item.querySelector('.research-modal');
+        if (!teaser || !modal) return;
+
+        teaser.addEventListener('mouseenter', () => {
+            modal.classList.add('show');
+        });
+
+        teaser.addEventListener('mouseleave', () => {
+            if (lockedModal !== modal) modal.classList.remove('show');
+        });
+
+        teaser.addEventListener('click', (e) => {
+            e.stopPropagation();
+            // Unpin any other open modal first
+            if (lockedModal && lockedModal !== modal) {
+                lockedModal.classList.remove('show');
+            }
+            lockedModal = modal;
+            modal.classList.add('show');
+            researchOverlay.classList.add('active');
+        });
+    });
+
+    researchOverlay.addEventListener('click', () => {
+        if (lockedModal) {
+            lockedModal.classList.remove('show');
+            lockedModal = null;
+        }
+        researchOverlay.classList.remove('active');
+    });
 </script>
 
 </body>
