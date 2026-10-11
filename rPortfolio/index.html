@@ -221,7 +221,7 @@
         }
 
         .research-modal .modal-hint {
-            font-size: 0.65rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             text-align: center;
             margin-top: 0.4rem;
@@ -244,7 +244,7 @@
         }
 
         .research-teaser .teaser-hint {
-            font-size: 0.65rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             text-align: center;
             margin-top: 0.3rem;
@@ -264,6 +264,9 @@
             font-size: 1.05rem;
             font-weight: 600;
         }
+
+        .research-description h3 a { color: inherit; text-decoration: underline; text-decoration-color: #999; text-underline-offset: 3px; }
+        .research-description h3 a:hover { text-decoration-color: #000; }
 
         .research-description ul {
             margin: 0;
@@ -401,7 +404,7 @@
             <div class="research-item-detailed">
                 <div class="research-content-row side-by-side">
                     <div class="research-description">
-                        <h3>Adaptive In-Vehicle UI Feedback via Decision Entropy (ACM CHI 2026)</h3>
+                        <h3><a href="https://doi.org/10.1145/3772318.3791229" target="_blank" rel="noopener">Adaptive In-Vehicle UI Feedback via Decision Entropy (ACM CHI 2026)</a></h3>
                         <ul>
                             <li><strong>Challenge:</strong> UIs with the same depth of information miscalibrate user information needs: they overload users in simple scenarios and under-inform them in complex pedestrian encounters.</li>
                             <li><strong>Modeling Scene Complexity:</strong> Defined Perceived Scene Complexity (PSC) as Driving Decision Entropy (DDE), the statistical diversity in driver action choices.</li>
@@ -426,39 +429,11 @@
                 </div>
             </div>
             
-            <!-- Driver Temporal Segmentation - Side-by-side Layout with Modal -->
-            <div class="research-item-detailed">
-                <div class="research-content-row side-by-side">
-                    <div class="research-description">
-                        <h3>Driver Temporal Segmentation of Pedestrian Intentions</h3>
-                        <ul>
-                            <li><strong>The Challenge:</strong> Static AI intent labels fail to capture the continuous, dynamic updates human drivers make during real-time road negotiations.</li>
-                            <li><strong>Common Boundaries:</strong> Using DBSCAN clustering, this research identifies temporal "breakpoints" where 72% of drivers simultaneously update their assessment of a pedestrian's intent, typically within a 0.5-second window.</li>
-                            <li><strong>Clarification vs. Confusion:</strong> 75% of these shared boundaries act as "clarifying events" (e.g., lane proximity), while ambiguous cues (e.g., slow movement) trigger "confusion boundaries" where driver interpretations diverge.</li>
-                            <li><strong>Trait-Driven Dynamics:</strong> While personality does not affect initial accuracy, traits like impulsiveness and aggressiveness significantly dictate how frequently and quickly a driver re-segments their understanding of the scene.</li>
-                            <li><strong>Impact:</strong> Provides a framework for automated vehicles to recognize human cognitive breakpoints, enabling more natural and predictable AI-pedestrian negotiation.</li>
-                        </ul>
-                    </div>
-                    <div class="research-teaser">
-                        <img src="./assets/images/driver-temporal.png" alt="Driver Temporal Segmentation Research">
-                        <p class="teaser-hint">Hover to preview &middot; Click to pin</p>
-                    </div>
-                </div>
-                <div class="research-modal">
-                    <img src="./assets/images/driver-temporal.png" alt="Driver Temporal Segmentation Research - Full View">
-                    <p class="modal-hint">Click outside to dismiss</p>
-                </div>
-                <div class="research-links-row">
-                    <a href="#" class="research-link">PDF</a>
-                    <a href="#" class="research-link">Publication</a>
-                </div>
-            </div>
-            
             <!-- Quantifying Social Aptitude - Side-by-side Layout with Modal -->
             <div class="research-item-detailed">
                 <div class="research-content-row side-by-side">
                     <div class="research-description">
-                        <h3>Quantifying AI Social Aptitude in Automated Driving</h3>
+                        <h3><a href="https://doi.org/10.1080/10447318.2026.2622003" target="_blank" rel="noopener">Quantifying AI Social Aptitude in Automated Driving</a></h3>
                         <ul>
                             <li><strong>The Challenge:</strong> Traditional performance metrics like accuracy fail to capture the "social intelligence" required for AI to interact naturally and predictably with pedestrians.</li>
                             <li><strong>The "Human-Likeness" Gap:</strong> AI models often reach the correct final prediction while following temporal reasoning patterns that humans find counterintuitive or unstable.</li>
@@ -487,7 +462,7 @@
             <div class="research-item-detailed">
                 <div class="research-content-row side-by-side">
                     <div class="research-description">
-                        <h3>MindReaD Annotation Tool: Capturing Micro-Level Reasoning Data</h3>
+                        <h3><a href="https://doi.org/10.1080/10447318.2024.2406053" target="_blank" rel="noopener">MindReaD Annotation Tool: Capturing Micro-Level Reasoning Data</a></h3>
                         <ul>
                             <li><strong>The Challenge:</strong> Safety-critical ML models require "commonsense reasoning" data that connects human cognitive states to specific visual objects, which traditional tools fail to capture.</li>
                             <li><strong>The MindReaD Framework:</strong> A novel annotation tool that captures human knowledge at three granularities: Event level (timestamps), Context level (textual rationale), and Entity level (grounding text to visual objects).</li>
@@ -515,7 +490,7 @@
             <div class="research-item-detailed">
                 <div class="research-content-row side-by-side">
                     <div class="research-description">
-                        <h3>Improving Crowd's Ability for Predicting Pedestrian's Crossing Intent</h3>
+                        <h3><a href="https://doi.org/10.1145/3613905.3650930" target="_blank" rel="noopener">Improving Crowd's Ability for Predicting Pedestrian's Crossing Intent</a></h3>
                         <ul>
                             <li><strong>The Challenge:</strong> Crowdsourcing is effective for objective labeling, but eliciting subjective mental states (like predicting intent) is prone to human cognitive biases.</li>
                             <li><strong>The Status-Quo Bias:</strong> Identifies a significant "status-quo bias" where observers tend to assume a pedestrian's current state will continue, leading to poor prediction accuracy (53% at a 1s horizon).</li>
@@ -543,7 +518,7 @@
             <div class="research-item-detailed">
                 <div class="research-content-row side-by-side">
                     <div class="research-description">
-                        <h3>Transforming Natural Text Description to Structured Data</h3>
+                        <h3><a href="https://ieeexplore.ieee.org/search/searchresult.jsp?queryText=%22A%20Novel%20Adaptation%20of%20Information%20Extraction%20Algorithm%20to%20Process%20Natural%20Text%20Descriptions%20of%20Pedestrian%20Encounters%22" target="_blank" rel="noopener">Transforming Natural Text Description to Structured Data</a></h3> <!-- TODO: replace with the paper's DOI link (IEEE ITSC 2021) -->
                         <ul>
                             <li><strong>The Challenge:</strong> Converting unstructured human reasoning (natural language) into structured data for training AI models.</li>
                             <li><strong>The IE Framework:</strong> Adapts a biLSTM-CRF algorithm to automatically map free-form text into structured data objects.</li>
@@ -565,6 +540,34 @@
                     <a href="#" class="research-link">Publication</a>
                 </div>
             </div>
+            
+            <!-- Driver Temporal Segmentation - Side-by-side Layout with Modal -->
+            <div class="research-item-detailed">
+                <div class="research-content-row side-by-side">
+                    <div class="research-description">
+                        <h3><a href="https://doi.org/10.1016/j.trf.2025.07.002" target="_blank" rel="noopener">Driver Temporal Segmentation of Pedestrian Intentions</a></h3>
+                        <ul>
+                            <li><strong>The Challenge:</strong> Static AI intent labels fail to capture the continuous, dynamic updates human drivers make during real-time road negotiations.</li>
+                            <li><strong>Common Boundaries:</strong> Using DBSCAN clustering, this research identifies temporal "breakpoints" where 72% of drivers simultaneously update their assessment of a pedestrian's intent, typically within a 0.5-second window.</li>
+                            <li><strong>Clarification vs. Confusion:</strong> 75% of these shared boundaries act as "clarifying events" (e.g., lane proximity), while ambiguous cues (e.g., slow movement) trigger "confusion boundaries" where driver interpretations diverge.</li>
+                            <li><strong>Trait-Driven Dynamics:</strong> While personality does not affect initial accuracy, traits like impulsiveness and aggressiveness significantly dictate how frequently and quickly a driver re-segments their understanding of the scene.</li>
+                            <li><strong>Impact:</strong> Provides a framework for automated vehicles to recognize human cognitive breakpoints, enabling more natural and predictable AI-pedestrian negotiation.</li>
+                        </ul>
+                    </div>
+                    <div class="research-teaser">
+                        <img src="./assets/images/driver-temporal.png" alt="Driver Temporal Segmentation Research">
+                        <p class="teaser-hint">Hover to preview &middot; Click to pin</p>
+                    </div>
+                </div>
+                <div class="research-modal">
+                    <img src="./assets/images/driver-temporal.png" alt="Driver Temporal Segmentation Research - Full View">
+                    <p class="modal-hint">Click outside to dismiss</p>
+                </div>
+                <div class="research-links-row">
+                    <a href="#" class="research-link">PDF</a>
+                    <a href="#" class="research-link">Publication</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -574,23 +577,27 @@
         <div class="direction-grid">
             <div class="direction">
                 <h3>1. Private, Low-Cost Assistants on Personal Devices</h3>
-                <p>Small language models can now run on consumer hardware, which keeps conversations on the device (privacy), avoids cloud fees (cost), and responds without a remote server (speed). Students would build a desktop assistant from a single-board computer, microphones, a speaker, and a 3D-printed enclosure, and test its usability and privacy with real users.</p>
                 <ul>
-                    <li>Example uses: a lab or makerspace helper that explains equipment safety steps; a reminder device for older adults.</li>
+                    <li>Small language models on single-board computers: private, no cloud fees, fast responses</li>
+                    <li>Students build the hardware, adapt the model, and test usability and privacy with real users</li>
+                    <li><strong>Examples:</strong> a lab or makerspace safety helper; a reminder device for older adults</li>
                 </ul>
             </div>
             <div class="direction">
                 <h3>2. Human-Centered Devices Built by Students</h3>
-                <p>Students identify a real need, build a device with 3D printers and electronics, and test whether it serves its users, combining circuits, controls, mechanical design, and human factors.</p>
                 <ul>
-                    <li>Example projects: a posture and study-ergonomics monitor, low-cost solar phone chargers, an air-quality and noise monitor with a public display, and an energy-use dashboard for a residence hall.</li>
+                    <li>Students find a real need, prototype with 3D printing and electronics, and test with users</li>
+                    <li>Combines circuits, controls, mechanical design, and human factors</li>
+                    <li><strong>Examples:</strong> a campus delivery robot, a posture and study-ergonomics monitor, low-cost solar phone chargers, an air-quality and noise monitor, and a residence-hall energy dashboard</li>
                 </ul>
             </div>
             <div class="direction">
                 <h3>3. Engineering Education Studies</h3>
-                <p>My teaching raises questions that undergraduates can help answer: When and why do students need help in a mastery-based course? How do retakes and coaching relate to learning and persistence? How do students use AI tools while studying, and when does that support or weaken independent thinking?</p>
                 <ul>
-                    <li>IRB-approved, voluntary studies using anonymous surveys, de-identified course records, and optional interviews.</li>
+                    <li>When and why students need help in mastery-based courses</li>
+                    <li>How retakes and coaching relate to learning and persistence</li>
+                    <li>How students use AI tools while studying, and when it helps or hurts independent thinking</li>
+                    <li>Voluntary, IRB-approved studies with anonymous surveys and de-identified course records</li>
                 </ul>
             </div>
         </div>

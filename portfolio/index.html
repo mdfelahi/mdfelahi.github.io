@@ -19,6 +19,9 @@
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
 
+        /* All text sizes use rem, so this scales the whole page 20% larger */
+        html { font-size: 120%; }
+
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.45;
@@ -160,8 +163,6 @@
 
         .area-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.25rem 0 0.5rem 0; }
         .area { background: #fff; border: 1px solid #000; padding: 0.2rem 0.55rem; font-size: 0.82rem; font-weight: 600; }
-        .course-grid { columns: 2 260px; column-gap: 1.5rem; font-size: 0.88rem; }
-        .course-grid div { break-inside: avoid; margin-bottom: 0.25rem; }
 
         .research-grid {
             display: grid;
@@ -227,8 +228,8 @@
 <nav>
     <a href="#summary">Summary</a>
     <a href="#education">Education</a>
-    <a href="#approach">Teaching Approach</a>
     <a href="#teaching">Teaching</a>
+    <a href="#approach">Teaching Approach</a>
     <a href="#mentorship">Mentorship</a>
     <a href="#research">Research</a>
     <a href="#publications">Publications</a>
@@ -253,7 +254,7 @@
     <section id="summary">
         <h2>Summary</h2>
         <div class="summary-text">
-            I am an electrical and computer engineering educator and a human-centered AI researcher. At Elizabethtown College, I teach <em>Circuit Analysis</em> with its laboratory as a flipped, mastery-based course, and in Spring 2027 I will teach <em>Electronics</em> with its laboratory and <em>Electromagnetism</em> and co-supervise sophomore community-based design projects. Before this role, I was the lead lab instructor for an introductory electrical engineering course at Purdue University, where I taught over 200 undergraduates. I can teach undergraduate courses in circuits, electrical power and machines, electromagnetics, electronics, signal processing, digital and embedded systems, and machine learning. My research applies human-centered AI to autonomous vehicles, with work published in <strong>ACM CHI</strong>, <strong>HFES</strong>, and <strong>IEEE ITSC</strong>, and I have mentored undergraduate researchers through an NSF REU program.
+            I am an electrical and computer engineering educator and a human-centered AI researcher. At Elizabethtown College, I teach <em>Circuit Analysis</em> with its laboratory as a flipped, mastery-based course, and in Spring 2027 I will teach <em>Electronics</em> with its laboratory and <em>Electromagnetism</em> and co-supervise sophomore community-based design projects. Before this role, I was the lead lab instructor for an introductory electrical engineering course at Purdue University, where I taught over 200 undergraduates. I can teach undergraduate courses in circuits, electromagnetics, electronics, electrical power and machines, signal processing, digital and embedded systems, and machine learning. My research applies human-centered AI to autonomous vehicles, with work published in <strong>ACM CHI</strong>, <strong>HFES</strong>, and <strong>IEEE ITSC</strong>, and I have mentored undergraduate researchers through an NSF REU program.
         </div>
     </section>
 
@@ -271,53 +272,6 @@
                 <span class="card-date">February 2017</span>
                 <h3>B.Sc. in Electrical and Electronic Engineering</h3>
                 <p>Bangladesh University of Engineering and Technology (BUET), Dhaka, Bangladesh</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="approach">
-        <h2>Teaching Approach</h2>
-        <p class="section-intro">My goal is to help every student build a growth mindset: the belief that ability grows with effort, feedback, and persistence. My teaching begins with theory, which prepares students to reason through a design before they build it. Laboratory tasks and projects then allow them to test their predictions. Five strategies guide my teaching.</p>
-        <div class="strategy-grid">
-            <div class="strategy">
-                <h3><span class="num">1</span>Structured Lectures and Active Learning</h3>
-                <ul>
-                    <li>Start each topic from an everyday device, such as a phone charger for rectifiers, then work through the analysis step by step.</li>
-                    <li>Work through derivations on the board so students follow at the same pace and take notes by hand.</li>
-                    <li>Planned short quizzes (e.g., Top Hat, Canvas) let students apply ideas right away and show me what to revisit.</li>
-                </ul>
-            </div>
-            <div class="strategy">
-                <h3><span class="num">2</span>Flexible Assessment That Rewards Mastery</h3>
-                <ul>
-                    <li>Mastery-based grading with clear skills, coaching days, and retakes.</li>
-                    <li>Distributed evaluation across quizzes, labs, projects, and exams, so no single exam decides a grade.</li>
-                    <li>Optional bonus assignments for extra practice and a second chance to improve.</li>
-                </ul>
-            </div>
-            <div class="strategy">
-                <h3><span class="num">3</span>Labs and Group Projects That Test Theory</h3>
-                <ul>
-                    <li>Students predict a circuit's behavior, simulate it, build it, measure it, and explain any differences.</li>
-                    <li>When a circuit fails, I guide students to use theory to find the problem instead of fixing it for them.</li>
-                    <li>Group projects end with oral presentations that build communication skills.</li>
-                </ul>
-            </div>
-            <div class="strategy">
-                <h3><span class="num">4</span>Student Support and Inclusive Course Design</h3>
-                <ul>
-                    <li>About six hours of help sessions each week, plus email and online meetings.</li>
-                    <li>Twice-weekly progress logs show who is stuck, so I can offer help early.</li>
-                    <li>Several paths to the same goal (Universal Design for Learning) and clear assignment purpose, task, and criteria (TILT).</li>
-                </ul>
-            </div>
-            <div class="strategy">
-                <h3><span class="num">5</span>Continuous Improvement Through Feedback</h3>
-                <ul>
-                    <li>A mid-term anonymous GIFT survey asks what helps students learn, what gets in the way, and what practical changes they suggest.</li>
-                    <li>I share a summary with the class, make one or two changes, and explain the choices I keep.</li>
-                    <li>Peer feedback through a faculty Teaching Circle.</li>
-                </ul>
             </div>
         </div>
     </section>
@@ -354,37 +308,68 @@
         <h3 style="font-size: 1rem; margin: 1rem 0 0.25rem 0;">Teaching Areas</h3>
         <div class="area-list">
             <span class="area">Circuits</span>
-            <span class="area">Electrical Power and Machines</span>
             <span class="area">Electromagnetics</span>
             <span class="area">Electronics</span>
+            <span class="area">Electrical Power and Machines</span>
             <span class="area">Signal Processing and Communications</span>
             <span class="area">Digital and Embedded Systems</span>
             <span class="area">Machine Learning</span>
-            <span class="area">Engineering Design</span>
-        </div>
-        <div class="course-grid">
-            <div>Electric Circuits I and II / Circuit Analysis</div>
-            <div>Introduction to Electrical and Computer Engineering</div>
-            <div>Electrical Machines / Electromechanical Energy Conversion</div>
-            <div>Electric Power Systems</div>
-            <div>Power Electronics</div>
-            <div>Electromagnetic Fields</div>
-            <div>Electronics I and II / Microelectronic Circuits</div>
-            <div>Signals and Systems</div>
-            <div>Digital Signal Processing</div>
-            <div>Communication Systems</div>
-            <div>Digital Logic Design</div>
-            <div>Microcomputers and Embedded Systems</div>
-            <div>Machine Learning for Engineers</div>
-            <div>First-Year and Senior Design Projects</div>
         </div>
 
         <h3 style="font-size: 1rem; margin: 1rem 0 0.25rem 0;">Teaching Development</h3>
         <ul>
             <li>New Faculty Orientation, Elizabethtown College (2026): Universal Design for Learning (UDL) and assessment, TILT transparent assignment design, and advising tools.</li>
             <li>New Faculty Wednesdays series (Fall 2026): advising, strengths-based teaching, Teaching Circle, and student feedback.</li>
+            <li>Upcoming: KEEN National Conference (2027).</li>
             <li>Planned: engineering education scholarship on mastery-based and project-based instruction for the ASEE Annual Conference.</li>
         </ul>
+    </section>
+
+    <section id="approach">
+        <h2>Teaching Approach</h2>
+        <p class="section-intro">My goal is to help every student build a growth mindset: the belief that ability grows with effort, feedback, and persistence. I start with theory so students can reason through a design before they build it, and five strategies guide my teaching.</p>
+        <div class="strategy-grid">
+            <div class="strategy">
+                <h3><span class="num">1</span>Structured Lectures and Active Learning</h3>
+                <ul>
+                    <li>Theory first, introduced through everyday devices</li>
+                    <li>Derivations on the board, with notes taken by hand</li>
+                    <li>Short in-class quizzes (Top Hat, Canvas)</li>
+                </ul>
+            </div>
+            <div class="strategy">
+                <h3><span class="num">2</span>Flexible Assessment That Rewards Mastery</h3>
+                <ul>
+                    <li>Mastery-based grading with retakes</li>
+                    <li>Grades spread across quizzes, labs, projects, and exams</li>
+                    <li>Optional bonus assignments as a second chance</li>
+                </ul>
+            </div>
+            <div class="strategy">
+                <h3><span class="num">3</span>Labs and Group Projects That Test Theory</h3>
+                <ul>
+                    <li>Predict, simulate, build, measure, and explain</li>
+                    <li>Theory-guided troubleshooting</li>
+                    <li>Group projects with oral presentations</li>
+                </ul>
+            </div>
+            <div class="strategy">
+                <h3><span class="num">4</span>Student Support and Inclusive Course Design</h3>
+                <ul>
+                    <li>About six help hours a week, plus email and online meetings</li>
+                    <li>Progress logs to reach struggling students early</li>
+                    <li>Universal Design for Learning and transparent assignments (TILT)</li>
+                </ul>
+            </div>
+            <div class="strategy">
+                <h3><span class="num">5</span>Continuous Improvement Through Feedback</h3>
+                <ul>
+                    <li>Mid-term anonymous GIFT survey: what helps, what hinders, what to change</li>
+                    <li>Results shared with the class and acted on</li>
+                    <li>Peer feedback through a faculty Teaching Circle</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <section id="mentorship">
@@ -415,9 +400,9 @@
             <div class="research-card" tabindex="0">Adaptive In-Vehicle Explanations <div class="reveal-content">Feedback from an automated vehicle should become more detailed as the scene becomes more complex (ACM CHI 2026).</div></div>
             <div class="research-card" tabindex="0">Human-Like AI Metric <div class="reveal-content">A Human-Like Index that measures how closely AI predictions follow human reasoning over time (IJHCI 2026).</div></div>
             <div class="research-card" tabindex="0">MindReaD Annotation Tool <div class="reveal-content">A tool that links human reasoning to scene elements; its data improved pedestrian intent prediction by 10% (IJHCI 2025).</div></div>
-            <div class="research-card" tabindex="0">Driver Temporal Segmentation <div class="reveal-content">How drivers update their judgment of a pedestrian's intent during road negotiations (Transportation Research Part F 2025).</div></div>
             <div class="research-card" tabindex="0">Crowdsourced Cognitive Labels <div class="reveal-content">Rephrasing annotation questions reduced status-quo bias in crowd predictions of pedestrian intent (CHI 2024 Extended Abstracts).</div></div>
             <div class="research-card" tabindex="0">Text to Knowledge Graphs <div class="reveal-content">Turning natural text descriptions of pedestrian encounters into structured data for AI training (IEEE ITSC 2021, HCII 2020).</div></div>
+            <div class="research-card" tabindex="0">Driver Temporal Segmentation <div class="reveal-content">How drivers update their judgment of a pedestrian's intent during road negotiations (Transportation Research Part F 2025).</div></div>
         </div>
         <a class="cta" href="../rPortfolio/">View the full research portfolio</a>
     </section>
