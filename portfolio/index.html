@@ -221,6 +221,28 @@
             .card { min-width: 100%; }
             h1 { font-size: 1.5rem; }
         }
+        /* --- Color accents for easier skimming ---
+           Section titles: blue. Subsection titles: teal.
+           Change these two values to adjust the whole page. */
+        :root { --accent-section: #1d4ed8; --accent-sub: #0f766e; }
+        h2 { color: var(--accent-section); border-left-color: var(--accent-section); }
+        .card h3, .strategy h3, .teaching-header h3, .direction h3,
+        .research-description h3, .research-description h3 a,
+        #teaching > h3, #research > h3, #directions > h3 { color: var(--accent-sub); }
+        .pub-category h4 { color: var(--accent-sub); border-bottom-color: #cfe5e2; }
+        .research-description h3 a { text-decoration-color: #9cc9c3; }
+        .research-description h3 a:hover { text-decoration-color: var(--accent-sub); }
+        .strategy, .direction { border-top-color: var(--accent-section); }
+        .strategy .num { background: var(--accent-section); }
+        .cta, .research-link { background: var(--accent-section); }
+        .cta:hover, .research-link:hover { background: #1e40af; }
+        .card:hover { border-color: var(--accent-section); }
+        /* Third level (institution names, dates): purple */
+        :root { --accent-meta: #6b21a8; }
+        .org, .teaching-header + p, .teaching-header + p strong,
+        #education .card h3 + p, .card-date,
+        .teaching-header span { color: var(--accent-meta) !important; }
+        .card-date { font-weight: 600; }
     </style>
 </head>
 <body>
