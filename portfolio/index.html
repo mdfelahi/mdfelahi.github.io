@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md Fazle Elahi | Academic Portfolio</title>
+    <title>Md Fazle Elahi | Teaching and Research Portfolio</title>
+    <meta name="description" content="Md Fazle Elahi: engineering educator and human-centered AI researcher. Teaching approach, courses, mentorship, research, and publications.">
     <style>
         :root {
             --bg-primary: #fafafa;
@@ -20,12 +21,14 @@
 
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.4;
+            line-height: 1.45;
             color: var(--text-main);
             background-color: var(--bg-primary);
             margin: 0;
             padding-top: var(--nav-height);
         }
+
+        a { color: inherit; }
 
         /* --- Navigation Bar --- */
         nav {
@@ -40,6 +43,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow-x: auto;
+            white-space: nowrap;
         }
 
         nav a {
@@ -91,8 +96,9 @@
 
         h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.5px; }
         .sub-header { color: #cccccc; font-size: 0.95rem; margin: 0.25rem 0; font-weight: 300; }
-        .contact-minimal { font-size: 0.85rem; }
-        .contact-minimal a { color: #ffffff; text-decoration: none; border-bottom: 1px solid #666; }
+        .contact-minimal { font-size: 0.85rem; margin-top: 0.4rem; }
+        .contact-minimal a { color: #ffffff; text-decoration: none; border-bottom: 1px solid #666; margin: 0 0.4rem; }
+        .contact-minimal a:hover { border-bottom-color: #fff; }
 
         section { padding: 1rem 0; border-bottom: 1px solid #eee; scroll-margin-top: var(--nav-height); }
         section:last-of-type { border-bottom: none; }
@@ -107,6 +113,8 @@
             padding-left: 0.6rem;
         }
 
+        .section-intro { font-size: 0.92rem; margin: 0 0 0.75rem 0; }
+
         .card-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
         .card {
@@ -120,12 +128,40 @@
 
         .card:hover { border-color: #000; box-shadow: var(--card-shadow); }
         .card h3 { margin: 0 0 0.25rem 0; font-size: 0.95rem; }
+        .card p { font-size: 0.85rem; margin: 0.2rem 0; }
         .card-date { font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem; }
 
-        .teaching-header { display: flex; justify-content: space-between; flex-wrap: wrap; }
+        /* --- Teaching strategies --- */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .strategy {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-top: 3px solid #000;
+            padding: 0.85rem;
+        }
+
+        .strategy h3 { margin: 0 0 0.4rem 0; font-size: 0.95rem; }
+        .strategy .num { display: inline-block; width: 1.4rem; height: 1.4rem; line-height: 1.4rem; text-align: center; background: #000; color: #fff; font-size: 0.75rem; margin-right: 0.4rem; }
+        .strategy ul { margin: 0; }
+        .strategy li { font-size: 0.85rem; }
+
+        .teaching-item { margin-bottom: 0.9rem; }
+        .teaching-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
         .teaching-header h3 { font-size: 1rem; margin: 0; }
+        .teaching-header span { font-size: 0.8rem; color: var(--text-muted); }
+        .org { font-size: 0.85rem; margin: 0.1rem 0; font-weight: 600; }
         ul { padding-left: 1.1rem; margin: 0.35rem 0; }
-        li { margin-bottom: 0.2rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.25rem; font-size: 0.9rem; }
+
+        .area-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.25rem 0 0.5rem 0; }
+        .area { background: #fff; border: 1px solid #000; padding: 0.2rem 0.55rem; font-size: 0.82rem; font-weight: 600; }
+        .course-grid { columns: 2 260px; column-gap: 1.5rem; font-size: 0.88rem; }
+        .course-grid div { break-inside: avoid; margin-bottom: 0.25rem; }
 
         .research-grid {
             display: grid;
@@ -138,7 +174,7 @@
             background: #ffffff;
             border: 1px solid var(--border-color);
             padding: 0.75rem;
-            min-height: 80px;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -156,7 +192,21 @@
             font-size: 0.75rem; font-weight: 400; opacity: 0; transition: opacity 0.2s ease;
         }
 
-        .research-card:hover .reveal-content { opacity: 1; }
+        .research-card:hover .reveal-content, .research-card:focus .reveal-content { opacity: 1; }
+
+        .cta {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.4rem 0.9rem;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .cta:hover { background: #333; }
 
         .pub-category h4 { border-bottom: 1px solid #eee; padding-bottom: 0.2rem; margin: 1rem 0 0.5rem 0; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; }
         .pub-list { list-style: none; padding: 0; margin: 0; }
@@ -165,7 +215,8 @@
         .skill-tag { display: inline-block; background: #f0f0f0; border: 1px solid #ddd; padding: 0.1rem 0.4rem; margin: 0.1rem; font-size: 0.75rem; }
 
         @media (max-width: 768px) {
-            nav a { font-size: 0.55rem; margin: 0 4px; }
+            nav { justify-content: flex-start; padding: 0 0.5rem; }
+            nav a { font-size: 0.65rem; margin: 0 6px; }
             .card { min-width: 100%; }
             h1 { font-size: 1.5rem; }
         }
@@ -176,7 +227,9 @@
 <nav>
     <a href="#summary">Summary</a>
     <a href="#education">Education</a>
+    <a href="#approach">Teaching Approach</a>
     <a href="#teaching">Teaching</a>
+    <a href="#mentorship">Mentorship</a>
     <a href="#research">Research</a>
     <a href="#publications">Publications</a>
     <a href="#awards">Awards</a>
@@ -186,9 +239,12 @@
 <header>
     <div class="container">
         <h1>Md Fazle Elahi</h1>
-        <p class="sub-header">PhD Candidate in Electrical & Computer Engineering at Purdue University</p>
+        <p class="sub-header">Visiting Assistant Teaching Professor of Engineering, Elizabethtown College</p>
+        <p class="sub-header">Ph.D. in Electrical and Computer Engineering, Purdue University</p>
         <div class="contact-minimal">
-            <a href="mailto:fazle.elahi.fe@gmail.com">fazle.elahi.fe@gmail.com</a>
+            <a href="mailto:elahi@etown.edu">elahi@etown.edu</a>
+            <a href="https://scholar.google.com/citations?user=lugltSsAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a href="../rPortfolio/">Research Portfolio</a>
         </div>
     </div>
 </header>
@@ -197,7 +253,7 @@
     <section id="summary">
         <h2>Summary</h2>
         <div class="summary-text">
-            I am a PhD candidate in ECE at Purdue University with a strong interest in engineering education and expertise in lab-based instruction. As a lead lab instructor, I taught fundamental EE concepts including circuits, electronics, and signal processing. With my educational background and mentorship experience, I am dedicated to preparing students for success in academia and industry through experiential learning.
+            I am an electrical and computer engineering educator and a human-centered AI researcher. At Elizabethtown College, I teach <em>Circuit Analysis</em> with its laboratory as a flipped, mastery-based course, and in Spring 2027 I will teach <em>Electronics</em> with its laboratory and <em>Electromagnetism</em> and co-supervise sophomore community-based design projects. Before this role, I was the lead lab instructor for an introductory electrical engineering course at Purdue University, where I taught over 200 undergraduates. I can teach undergraduate courses in circuits, electrical power and machines, electromagnetics, electronics, signal processing, digital and embedded systems, and machine learning. My research applies human-centered AI to autonomous vehicles, with work published in <strong>ACM CHI</strong>, <strong>HFES</strong>, and <strong>IEEE ITSC</strong>, and I have mentored undergraduate researchers through an NSF REU program.
         </div>
     </section>
 
@@ -205,56 +261,165 @@
         <h2>Education</h2>
         <div class="card-row">
             <div class="card">
-                <span class="card-date">Expected May 2026</span>
+                <span class="card-date">August 2026</span>
                 <h3>Ph.D. in Electrical and Computer Engineering</h3>
-                <p style="font-size: 0.85rem; margin: 0.2rem 0;">Purdue University, West Lafayette, IN</p>
-                <p style="font-size: 0.75rem; font-style: italic; color: var(--text-muted);">Thesis: Enhancing Social Decisions of Autonomous Cars through Understanding Human Cognition-Visualization, Feedback, and Timing.</p>
+                <p>Purdue University, Indianapolis, IN</p>
+                <p style="font-size: 0.78rem; font-style: italic; color: var(--text-muted);">Dissertation: <a href="https://hammer.purdue.edu/ndownloader/files/65373168" target="_blank" rel="noopener">Towards Cognition-Informed Social Intelligence in Autonomous Driving: Human-Like Decisions and Passenger-Centric Explanations</a></p>
+                <p style="font-size: 0.78rem; color: var(--text-muted);">Advisor: Dr. Renran Tian (now at NC State University)</p>
             </div>
             <div class="card">
-                <span class="card-date">2012 – 2017</span>
-                <h3>B. Sc. in Electrical and Electronic Engineering</h3>
-                <p style="font-size: 0.85rem; margin: 0.2rem 0;">Bangladesh University of Engineering and Technology (BUET)</p>
+                <span class="card-date">February 2017</span>
+                <h3>B.Sc. in Electrical and Electronic Engineering</h3>
+                <p>Bangladesh University of Engineering and Technology (BUET), Dhaka, Bangladesh</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="approach">
+        <h2>Teaching Approach</h2>
+        <p class="section-intro">My goal is to help every student build a growth mindset: the belief that ability grows with effort, feedback, and persistence. My teaching begins with theory, which prepares students to reason through a design before they build it. Laboratory tasks and projects then allow them to test their predictions. Five strategies guide my teaching.</p>
+        <div class="strategy-grid">
+            <div class="strategy">
+                <h3><span class="num">1</span>Structured Lectures and Active Learning</h3>
+                <ul>
+                    <li>Start each topic from an everyday device, such as a phone charger for rectifiers, then work through the analysis step by step.</li>
+                    <li>Work through derivations on the board so students follow at the same pace and take notes by hand.</li>
+                    <li>Planned short quizzes (e.g., Top Hat, Canvas) let students apply ideas right away and show me what to revisit.</li>
+                </ul>
+            </div>
+            <div class="strategy">
+                <h3><span class="num">2</span>Flexible Assessment That Rewards Mastery</h3>
+                <ul>
+                    <li>Mastery-based grading with clear skills, coaching days, and retakes.</li>
+                    <li>Distributed evaluation across quizzes, labs, projects, and exams, so no single exam decides a grade.</li>
+                    <li>Optional bonus assignments for extra practice and a second chance to improve.</li>
+                </ul>
+            </div>
+            <div class="strategy">
+                <h3><span class="num">3</span>Labs and Group Projects That Test Theory</h3>
+                <ul>
+                    <li>Students predict a circuit's behavior, simulate it, build it, measure it, and explain any differences.</li>
+                    <li>When a circuit fails, I guide students to use theory to find the problem instead of fixing it for them.</li>
+                    <li>Group projects end with oral presentations that build communication skills.</li>
+                </ul>
+            </div>
+            <div class="strategy">
+                <h3><span class="num">4</span>Student Support and Inclusive Course Design</h3>
+                <ul>
+                    <li>About six hours of help sessions each week, plus email and online meetings.</li>
+                    <li>Twice-weekly progress logs show who is stuck, so I can offer help early.</li>
+                    <li>Several paths to the same goal (Universal Design for Learning) and clear assignment purpose, task, and criteria (TILT).</li>
+                </ul>
+            </div>
+            <div class="strategy">
+                <h3><span class="num">5</span>Continuous Improvement Through Feedback</h3>
+                <ul>
+                    <li>A mid-term anonymous GIFT survey asks what helps students learn, what gets in the way, and what practical changes they suggest.</li>
+                    <li>I share a summary with the class, make one or two changes, and explain the choices I keep.</li>
+                    <li>Peer feedback through a faculty Teaching Circle.</li>
+                </ul>
             </div>
         </div>
     </section>
 
     <section id="teaching">
-        <h2>Teaching & Mentorship</h2>
+        <h2>Teaching Experience</h2>
         <div class="teaching-item">
             <div class="teaching-header">
-                <h3>Graduate Teaching Assistant: Lab Instructor</h3>
-                <span style="font-size: 0.8rem; color: var(--text-muted);">Aug 2024 – Present</span>
+                <h3>Visiting Assistant Teaching Professor of Engineering</h3>
+                <span>Aug 2026 – Present</span>
             </div>
-            <p style="font-size: 0.85rem; margin: 0.1rem 0;"><strong>Purdue University, Indianapolis, IN</strong></p>
+            <p class="org">Elizabethtown College, Elizabethtown, PA</p>
             <ul>
-                <li><strong>Lead Instructor for EE Lab I:</strong> Responsible for laboratory lectures and hands-on experiments for freshman/sophomores.</li>
-                <li><strong>Supervision:</strong> Coordinated schedules and instruction for 4 Graduate TAs and 2 Undergraduate TAs across 7 sections.</li>
-                <li><strong>Curriculum:</strong> Designed lectures on circuit analysis, measurement techniques, and modern electronic instrumentation.</li>
-                <li><strong>Assessment:</strong> Managed grading for 8 lab reports, practical exams, and projects via Brightspace.</li>
+                <li><strong>Circuit Analysis</strong> (Fall 2026, instructor of record): two lecture sections with 54 students, delivered as a flipped, mastery-based course built on 12 skills, with two student mentors per section.</li>
+                <li><strong>Circuit Analysis Lab</strong> (Fall 2026): three lab sections in which students build and test designs analyzed in lecture, such as an adjustable voltage source, a D/A resistive ladder, op-amp circuits, and first-order transients, and compare them with PSpice simulation.</li>
+                <li><strong>Upcoming (Spring 2027):</strong> <em>Electronics</em> with laboratory, <em>Electromagnetism</em>, and co-supervision of <em>Community-Based Projects</em>, a sophomore design course.</li>
+                <li><strong>Assessment and student support:</strong> report course outcomes for program assessment; use progress logs and a mid-term GIFT survey to adjust instruction; hold about six help-session hours per week.</li>
             </ul>
         </div>
         <div class="teaching-item">
             <div class="teaching-header">
-                <h3>Research Mentor (NSF REU)</h3>
-                <span style="font-size: 0.8rem; color: var(--text-muted);">Summer 2023</span>
+                <h3>Graduate Teaching Assistant: Lead Lab Instructor</h3>
+                <span>Aug 2024 – 2026</span>
             </div>
+            <p class="org">Purdue University, Indianapolis, IN</p>
             <ul>
-                <li>Mentored two senior undergraduate students in design/implementation of pedestrian crossing intention prediction models.</li>
-                <li>Guided students through full research lifecycle from literature review to model development.</li>
+                <li><strong>Course:</strong> Electrical Engineering Lab Fundamentals; taught over 200 undergraduate students across four semesters.</li>
+                <li><strong>Instructional leadership:</strong> coordinated lab schedules and gave instructional direction to 4 graduate and 2 undergraduate TAs across 7 lab sections.</li>
+                <li><strong>Lab lectures and projects:</strong> delivered short lab lectures on AC/DC circuit analysis, digital circuit fundamentals, electronic device characterization, and modern instrumentation; supervised two student projects per semester.</li>
+                <li><strong>Assessment:</strong> graded lab reports, practical exams, and projects in Brightspace.</li>
             </ul>
+        </div>
+
+        <h3 style="font-size: 1rem; margin: 1rem 0 0.25rem 0;">Teaching Areas</h3>
+        <div class="area-list">
+            <span class="area">Circuits</span>
+            <span class="area">Electrical Power and Machines</span>
+            <span class="area">Electromagnetics</span>
+            <span class="area">Electronics</span>
+            <span class="area">Signal Processing and Communications</span>
+            <span class="area">Digital and Embedded Systems</span>
+            <span class="area">Machine Learning</span>
+            <span class="area">Engineering Design</span>
+        </div>
+        <div class="course-grid">
+            <div>Electric Circuits I and II / Circuit Analysis</div>
+            <div>Introduction to Electrical and Computer Engineering</div>
+            <div>Electrical Machines / Electromechanical Energy Conversion</div>
+            <div>Electric Power Systems</div>
+            <div>Power Electronics</div>
+            <div>Electromagnetic Fields</div>
+            <div>Electronics I and II / Microelectronic Circuits</div>
+            <div>Signals and Systems</div>
+            <div>Digital Signal Processing</div>
+            <div>Communication Systems</div>
+            <div>Digital Logic Design</div>
+            <div>Microcomputers and Embedded Systems</div>
+            <div>Machine Learning for Engineers</div>
+            <div>First-Year and Senior Design Projects</div>
+        </div>
+
+        <h3 style="font-size: 1rem; margin: 1rem 0 0.25rem 0;">Teaching Development</h3>
+        <ul>
+            <li>New Faculty Orientation, Elizabethtown College (2026): Universal Design for Learning (UDL) and assessment, TILT transparent assignment design, and advising tools.</li>
+            <li>New Faculty Wednesdays series (Fall 2026): advising, strengths-based teaching, Teaching Circle, and student feedback.</li>
+            <li>Planned: engineering education scholarship on mastery-based and project-based instruction for the ASEE Annual Conference.</li>
+        </ul>
+    </section>
+
+    <section id="mentorship">
+        <h2>Student Projects and Mentorship</h2>
+        <div class="card-row">
+            <div class="card">
+                <span class="card-date">Spring 2027 · Elizabethtown College</span>
+                <h3>Community-Based Project Teams</h3>
+                <p>Co-supervise sophomore teams designing solutions for community partners. Recent partner projects grew into senior capstone work, including irrigating a 3.5-acre community garden from a natural spring and an interactive table for assisted-living memory care residents.</p>
+            </div>
+            <div class="card">
+                <span class="card-date">Fall 2026 · Elizabethtown College</span>
+                <h3>Circuit Analysis Honors Projects</h3>
+                <p>Guide honors students through a self-directed project to research, build or simulate, and present a circuit used in research or engineering practice.</p>
+            </div>
+            <div class="card">
+                <span class="card-date">Summer 2023 · Purdue University</span>
+                <h3>NSF REU Research Mentor</h3>
+                <p>Mentored two senior undergraduates as they designed machine learning models that predict pedestrian crossing intention for automated vehicles, from literature review to final presentation.</p>
+            </div>
         </div>
     </section>
 
     <section id="research">
-        <h2>Research Experience</h2>
+        <h2>Research</h2>
+        <p class="section-intro">My research builds human-centered AI that understands how people think and explains its decisions clearly. My dissertation studied how autonomous vehicles can understand human cognition and explain their decisions to passengers. Across these projects, I ran human-subject studies with over 350 participants in the lab and through crowdsourcing. Going forward, I plan to involve undergraduates in building affordable, human-centered technology: private AI assistants that run on low-cost personal devices, student-built devices that serve real users, and engineering education studies. Hover over a card for a short description.</p>
         <div class="research-grid">
-            <div class="research-card">XAI & Situation Awareness <div class="reveal-content">Improving XAI by grouping Feedback based on Driverless car’s Situation Awareness.</div></div>
-            <div class="research-card">Cognitive Labels <div class="reveal-content">Enhancing quality of Crowdsourced Cognitive Labels via Question Rephrasing.</div></div>
-            <div class="research-card">MinDReaD Annotation <div class="reveal-content">Enriching Scene Understanding Datasets by Designing Data Annotation Tool: MinDReaD.</div></div>
-            <div class="research-card">Temporal Segmentation <div class="reveal-content">Investigating Driver Temporal Segmentation of Pedestrian Crossing Intention.</div></div>
-            <div class="research-card">Knowledge Graphs <div class="reveal-content">Designing Framework for Modeling Knowledge Graphs from Natural Text Description.</div></div>
-            <div class="research-card">R&D Software Engineer <div class="reveal-content">Hardware/software co-design of wireless penetration testing solutions at Celltron (2017-2018).</div></div>
+            <div class="research-card" tabindex="0">Adaptive In-Vehicle Explanations <div class="reveal-content">Feedback from an automated vehicle should become more detailed as the scene becomes more complex (ACM CHI 2026).</div></div>
+            <div class="research-card" tabindex="0">Human-Like AI Metric <div class="reveal-content">A Human-Like Index that measures how closely AI predictions follow human reasoning over time (IJHCI 2026).</div></div>
+            <div class="research-card" tabindex="0">MindReaD Annotation Tool <div class="reveal-content">A tool that links human reasoning to scene elements; its data improved pedestrian intent prediction by 10% (IJHCI 2025).</div></div>
+            <div class="research-card" tabindex="0">Driver Temporal Segmentation <div class="reveal-content">How drivers update their judgment of a pedestrian's intent during road negotiations (Transportation Research Part F 2025).</div></div>
+            <div class="research-card" tabindex="0">Crowdsourced Cognitive Labels <div class="reveal-content">Rephrasing annotation questions reduced status-quo bias in crowd predictions of pedestrian intent (CHI 2024 Extended Abstracts).</div></div>
+            <div class="research-card" tabindex="0">Text to Knowledge Graphs <div class="reveal-content">Turning natural text descriptions of pedestrian encounters into structured data for AI training (IEEE ITSC 2021, HCII 2020).</div></div>
         </div>
+        <a class="cta" href="../rPortfolio/">View the full research portfolio</a>
     </section>
 
     <section id="publications">
@@ -270,17 +435,18 @@
         <div class="pub-category">
             <h4>Conference Papers</h4>
             <ul class="pub-list">
-                <li>1. <strong>Elahi, Md Fazle</strong>, Tianyi Li, and Renran Tian. "Exploring Collective Theory of Mind on Pedestrian Behavioral Intentions." <em>In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems</em>, pp. 1-8. (2024).</li>
-                <li>2. <strong>Elahi, Md Fazle</strong>, Renran Tian, and Xiao Luo. "Flexible and scalable annotation tool to develop scene understanding datasets." <em>In Proceedings of the Workshop on Human-In-the-Loop Data Analytics (HILDA)</em>, pp. 1-7. (2022).</li>
-                <li>3. <strong>Elahi, Md Fazle</strong>, Jithesh Gugan Sreeram, Xiao Luo, and Renran Tian. "A Novel Adaptation of Information Extraction Algorithm to Process Natural Text Descriptions of Pedestrian Encounters." <em>In 2021 IEEE International Intelligent Transportation Systems Conference (ITSC)</em>, pp. 1906-1912. (2021).</li>
-                <li>4. <strong>Elahi, Md Fazle</strong>, Xiao Luo, and Renran Tian. "A framework for modeling knowledge graphs via processing natural descriptions of vehicle-pedestrian interactions." <em>In International Conference on Human-Computer Interaction</em>, pp. 40-50. (2020).</li>
+                <li>1. <strong>Elahi, Md Fazle</strong>, Yin-Chun Lu, Jing Chen, and Renran Tian. "Matching Explanation Detail to Scene Complexity: Studying Situational Awareness-Specific Feedback in Pedestrian Encounter Driving Scenarios." <em>In Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems</em>, ACM, Barcelona, Spain (2026). <a href="https://doi.org/10.1145/3772318.3791229" target="_blank" rel="noopener">doi:10.1145/3772318.3791229</a></li>
+                <li>2. <strong>Elahi, Md Fazle</strong>, Tianyi Li, and Renran Tian. "Exploring Collective Theory of Mind on Pedestrian Behavioral Intentions." <em>In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems</em>, pp. 1-8 (2024).</li>
+                <li>3. <strong>Elahi, Md Fazle</strong>, Renran Tian, and Xiao Luo. "Flexible and scalable annotation tool to develop scene understanding datasets." <em>In Proceedings of the Workshop on Human-In-the-Loop Data Analytics (HILDA)</em>, pp. 1-7 (2022).</li>
+                <li>4. <strong>Elahi, Md Fazle</strong>, Jithesh Gugan Sreeram, Xiao Luo, and Renran Tian. "A Novel Adaptation of Information Extraction Algorithm to Process Natural Text Descriptions of Pedestrian Encounters." <em>In 2021 IEEE International Intelligent Transportation Systems Conference (ITSC)</em>, pp. 1906-1912 (2021).</li>
+                <li>5. <strong>Elahi, Md Fazle</strong>, Xiao Luo, and Renran Tian. "A framework for modeling knowledge graphs via processing natural descriptions of vehicle-pedestrian interactions." <em>In International Conference on Human-Computer Interaction</em>, pp. 40-50 (2020).</li>
             </ul>
         </div>
         <div class="pub-category">
             <h4>Posters</h4>
             <ul class="pub-list">
                 <li>1. <strong>Md Fazle Elahi</strong>, Yin-Chun Lu, Jing Chen, and Renran Tian. "Studying Situational Awareness-Specific Feedback in Improving In-Vehicle Visualization." <em>ASPIRE – The 69th HFES International Annual Meeting</em>, Chicago, IL, October 13-17, 2025.</li>
-                <li>2. <strong>Md Fazle Elahi</strong>, Jiachen Jiang, Joshua Domeyer, and Renran Tian. "Assessing AI Social Aptitude Using Crowd Sourced Cognitive Labels." <em>ASPIRE – The 68th HFES International Annual Meeting</em>, Phoenix, AZ, September 9 -13, 2024.</li>
+                <li>2. <strong>Md Fazle Elahi</strong>, Jiachen Jiang, Joshua Domeyer, and Renran Tian. "Assessing AI Social Aptitude Using Crowd Sourced Cognitive Labels." <em>ASPIRE – The 68th HFES International Annual Meeting</em>, Phoenix, AZ, September 9-13, 2024.</li>
             </ul>
         </div>
     </section>
@@ -289,32 +455,32 @@
         <h2>Technical Skills</h2>
         <div class="card-row">
             <div class="card">
-                <h3>Programming</h3>
-                <span class="skill-tag">C</span> <span class="skill-tag">Python</span> <span class="skill-tag">Verilog HDL</span> <span class="skill-tag">MATLAB</span>
+                <h3>Programming and Machine Learning</h3>
+                <span class="skill-tag">Python</span> <span class="skill-tag">C</span> <span class="skill-tag">Verilog HDL</span> <span class="skill-tag">MATLAB</span> <span class="skill-tag">Neural Networks</span> <span class="skill-tag">Pattern Recognition</span>
             </div>
             <div class="card">
                 <h3>Instrumentation</h3>
-                <span class="skill-tag">Oscilloscopes</span> <span class="skill-tag">Digital Multimeters</span> <span class="skill-tag">Signal Generators</span> <span class="skill-tag">Power Supplies</span>
+                <span class="skill-tag">Oscilloscopes</span> <span class="skill-tag">Digital Multimeters</span> <span class="skill-tag">Signal Generators</span> <span class="skill-tag">Power Supplies</span> <span class="skill-tag">Breadboard Prototyping</span>
             </div>
             <div class="card">
-                <h3>Software & LMS</h3>
-                <span class="skill-tag">LTspice</span> <span class="skill-tag">Quartus</span> <span class="skill-tag">Brightspace</span> <span class="skill-tag">Canvas</span> <span class="skill-tag">Gradescope</span>
+                <h3>Simulation and Course Tools</h3>
+                <span class="skill-tag">PSpice</span> <span class="skill-tag">LTspice</span> <span class="skill-tag">Multisim</span> <span class="skill-tag">Proteus</span> <span class="skill-tag">Quartus</span> <span class="skill-tag">Canvas</span> <span class="skill-tag">Brightspace</span> <span class="skill-tag">Gradescope</span>
             </div>
         </div>
     </section>
 
     <section id="awards">
-        <h2>Awards & Scholarships</h2>
+        <h2>Awards and Scholarships</h2>
         <div class="card-row">
             <div class="card">
                 <h3>Travel Grants</h3>
-                <p style="font-size: 0.8rem;">PGSG Travel Award ($1000) by Purdue Graduate Student Government, 2025.</p>
-                <p style="font-size: 0.8rem;">IUPUI Graduate Travel Fellowship ($750) by Indiana University Graduate School, 2024.</p>
+                <p>PGSG Travel Award ($1000), Purdue Graduate Student Government, 2025.</p>
+                <p>IUPUI Graduate Student Travel Fellowship ($750), IU Graduate School Indianapolis, 2024.</p>
             </div>
             <div class="card">
                 <h3>Assistantships</h3>
-                <p style="font-size: 0.8rem;">Graduate Teaching Assistantship, Purdue University (2024-Present).</p>
-                <p style="font-size: 0.8rem;">Graduate ResearchAssistantship, IUPUI (2019-2024).</p>
+                <p>Graduate Teaching Assistantship, Purdue University in Indianapolis, 2024-2026.</p>
+                <p>Graduate Assistantship, Indiana University-Purdue University Indianapolis, 2019-2024.</p>
             </div>
         </div>
     </section>
@@ -324,19 +490,19 @@
         <div class="card-row">
             <div class="card">
                 <h3>Peer Review</h3>
-                <p style="font-size: 0.8rem;">IEEE Intelligent Vehicles Symposium (IV) 2021-2025.</p>
-                <p style="font-size: 0.8rem;">IEEE International Conference on Intelligent Transportation Systems (ITSC) 2021-2025.</p>
-                <p style="font-size: 0.8rem;">IISE Transactions on Healthcare Systems Engineering 2025.</p>
+                <p>IEEE Intelligent Vehicles Symposium (IV), 2021-2025.</p>
+                <p>IEEE International Conference on Intelligent Transportation Systems (ITSC), 2021-2025.</p>
+                <p>IISE Transactions on Healthcare Systems Engineering, 2025.</p>
             </div>
             <div class="card">
                 <h3>Memberships</h3>
-                <p style="font-size: 0.8rem;">Student Member: IEEE, HFES, ACM.</p>
-                <p style="font-size: 0.8rem;">Student Volunteer: IEEE ITSC 2021.</p>
+                <p>Member: IEEE, HFES, ACM.</p>
+                <p>Student Volunteer: IEEE ITSC 2021.</p>
             </div>
             <div class="card">
                 <h3>Website Management</h3>
-                <p style="font-size: 0.8rem;">Maintainer: 3rd Workshop on Pedestrian Behaviors (ITSC 2023).</p>
-                <p style="font-size: 0.8rem;">Maintainer: Workshop on Trust Calibration in AI-Enabled Vehicle Systems.</p>
+                <p>Maintainer: 3rd Workshop on the Prediction of Pedestrian Behaviors for Automated Driving (ITSC 2023).</p>
+                <p>Maintainer: Workshop on Trust Calibration and Feedback Generation in AI-Enabled Vehicle Systems.</p>
             </div>
         </div>
     </section>
@@ -345,7 +511,7 @@
 <div id="backToTop" onclick="window.scrollTo(0,0)">↑</div>
 
 <footer style="text-align: center; padding: 1.5rem; color: #777; font-size: 0.75rem; background: #fff; border-top: 1px solid #eee;">
-    &copy; 2025 Md Fazle Elahi • Used Gemini to build this website and GitHub to host it.
+    &copy; 2026 Md Fazle Elahi • Used Gemini to build this website and GitHub to host it.
 </footer>
 
 <script>

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Md Fazle Elahi | Academic Portfolio</title>
+    <title>Md Fazle Elahi | Research Portfolio</title>
+    <meta name="description" content="Md Fazle Elahi: human-centered AI research on autonomous vehicles, explainable feedback, and human-AI interaction, with future research directions.">
     <style>
         :root {
             --bg-primary: #fafafa;
@@ -321,8 +322,22 @@
         #teaching li { font-size: 1.08rem; }
         #skills .skill-tag { font-size: 0.9rem; }
 
+        /* Research directions */
+        .direction-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+        .direction { background: #fff; border: 1px solid var(--border-color); border-top: 3px solid #000; padding: 0.85rem; }
+        .direction h3 { margin: 0 0 0.4rem 0; font-size: 1.05rem; }
+        .direction p, .direction li { font-size: 0.98rem; }
+        .direction ul { margin: 0.3rem 0 0 0; }
+        #directions > ul li { font-size: 0.98rem; }
+        .section-intro { font-size: 1rem; margin: 0 0 0.75rem 0; }
+        .cta { display: inline-block; margin-top: 0.5rem; padding: 0.4rem 0.9rem; background: #000; color: #fff; text-decoration: none; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .cta:hover { background: #333; }
+        .contact-minimal a { margin: 0 0.4rem; }
+
         @media (max-width: 768px) {
-            nav a { font-size: 0.55rem; margin: 0 4px; }
+            nav { justify-content: flex-start; overflow-x: auto; white-space: nowrap; padding: 0 0.5rem; }
+            .research-content-row.side-by-side { grid-template-columns: 1fr; }
+            nav a { font-size: 0.65rem; margin: 0 6px; }
             .card { min-width: 100%; }
             h1 { font-size: 1.5rem; }
         }
@@ -334,18 +349,22 @@
     <a href="#summary">Summary</a>
     <a href="#education">Education</a>
     <a href="#research">Research</a>
+    <a href="#directions">Directions</a>
     <a href="#publications">Publications</a>
-    <a href="#awards">Awards</a>
     <a href="#teaching">Teaching</a>
+    <a href="#awards">Awards</a>
     <a href="#service">Service</a>
 </nav>
 
 <header>
     <div class="container">
         <h1>Md Fazle Elahi</h1>
-        <p class="sub-header">PhD Candidate in Electrical & Computer Engineering at Purdue University</p>
+        <p class="sub-header">Visiting Assistant Teaching Professor of Engineering, Elizabethtown College</p>
+        <p class="sub-header">Ph.D. in Electrical and Computer Engineering, Purdue University</p>
         <div class="contact-minimal">
-            <a href="mailto:melahi@purdue.edu">melahi@purdue.edu</a>
+            <a href="mailto:elahi@etown.edu">elahi@etown.edu</a>
+            <a href="https://scholar.google.com/citations?user=lugltSsAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a href="../portfolio/">Teaching Portfolio</a>
         </div>
     </div>
 </header>
@@ -354,7 +373,7 @@
     <section id="summary">
         <h2>Summary</h2>
         <div class="summary-text">
-            I am a PhD candidate in Electrical and Computer Engineering at Purdue University specializing in <strong>Human-Centered AI</strong>, <strong>Human-Automation Interaction</strong>, and <strong>Cognitive Engineering</strong>. My research focuses on designing socially intelligent, explainable computer systems(e.g., automated vehicles, user interfaces) that understand nuances in human behavior and proactively interact with humans. Working with my advisor, <a href="https://ise.ncsu.edu/people/rtian2/" target="_blank">Dr. Renran Tian</a>, at the <a href="https://ise.ncsu.edu/icel/">Intelligent Cognitive and Ergonomics Laboratory (ICEL)</a> at North Carolina State University, I am doing interdisciplinary research grounded in behavioral science, cognitive psychology, and machine learning. My work has been published in leading human factors and HCI venues, including <strong>ACM SIGCHI</strong>, the <strong>HFES Annual Meeting</strong>, and the <strong>HILDA Workshop</strong>. Additionally, I have been serving as the <strong>lead instructor</strong> for undergraduate laboratory courses at Purdue ECE for the past four semesters, demonstrating a strong foundation in teaching and technical leadership.
+            My research builds <strong>human-centered AI</strong> that understands how people think and explains its decisions clearly, with a focus on <strong>human-automation interaction</strong> and <strong>cognitive engineering</strong>. My Ph.D. work at Purdue University, advised by <a href="https://ise.ncsu.edu/people/rtian2/" target="_blank">Dr. Renran Tian</a> (now at the <a href="https://ise.ncsu.edu/icel/" target="_blank">Intelligent Cognitive and Ergonomics Laboratory (ICEL)</a>, North Carolina State University), studied how autonomous vehicles can understand human cognition and explain their decisions to passengers. This interdisciplinary work combines behavioral science, cognitive psychology, and machine learning. I have run human-subject studies with over 350 participants in the lab and through crowdsourcing, and published in <strong>ACM CHI</strong>, the <strong>International Journal of Human–Computer Interaction</strong>, <strong>Transportation Research Part F</strong>, the <strong>HFES Annual Meeting</strong>, and <strong>IEEE ITSC</strong>. I am now a Visiting Assistant Teaching Professor of Engineering at Elizabethtown College, where I plan to involve undergraduates in building affordable, human-centered technology.
         </div>
     </section>
 
@@ -362,14 +381,14 @@
         <h2>Education</h2>
         <div class="card-row">
             <div class="card">
-                <span class="card-date">Expected May 2026</span>
+                <span class="card-date">August 2026</span>
                 <h3>Ph.D. in Electrical and Computer Engineering</h3>
-                <p style="font-size: 1.02rem; margin: 0.2rem 0;">Purdue University, West Lafayette, IN</p>
-                <p style="font-size: 0.9rem; font-style: italic; color: var(--text-muted);">Thesis: Enhancing Social Decisions of Autonomous Cars through Understanding Human Cognition: Organization, Visualization, and Timing of Feedback.</p>
+                <p style="font-size: 1.02rem; margin: 0.2rem 0;">Purdue University, Indianapolis, IN</p>
+                <p style="font-size: 0.9rem; font-style: italic; color: var(--text-muted);">Dissertation: <a href="https://hammer.purdue.edu/ndownloader/files/65373168" target="_blank" rel="noopener">Towards Cognition-Informed Social Intelligence in Autonomous Driving: Human-Like Decisions and Passenger-Centric Explanations</a></p>
             </div>
             <div class="card">
-                <span class="card-date">2012 – 2017</span>
-                <h3>B. Sc. in Electrical and Electronic Engineering</h3>
+                <span class="card-date">February 2017</span>
+                <h3>B.Sc. in Electrical and Electronic Engineering</h3>
                 <p style="font-size: 1.02rem; margin: 0.2rem 0;">Bangladesh University of Engineering and Technology (BUET)</p>
             </div>
         </div>
@@ -382,10 +401,10 @@
             <div class="research-item-detailed">
                 <div class="research-content-row side-by-side">
                     <div class="research-description">
-                        <h3>Adaptive In-Vehicle UI Feedback via Decision Entropy</h3>
+                        <h3>Adaptive In-Vehicle UI Feedback via Decision Entropy (ACM CHI 2026)</h3>
                         <ul>
-                            <li><strong>Challenge:</strong> UIs with the same depth of information miscalibrates user information needs—overloading in simple scenarios, under-informing in complex pedestrian encounters.</li>
-                            <li><strong>Modeling Scene Complexity:</strong> Defined Perceived Scene Complexity (PSC) as Driving Decision Entropy (DDE)—the statistical diversity in driver action choices.</li>
+                            <li><strong>Challenge:</strong> UIs with the same depth of information miscalibrate user information needs: they overload users in simple scenarios and under-inform them in complex pedestrian encounters.</li>
+                            <li><strong>Modeling Scene Complexity:</strong> Defined Perceived Scene Complexity (PSC) as Driving Decision Entropy (DDE), the statistical diversity in driver action choices.</li>
                             <li><strong>Intent-Uncertainty Link:</strong> Higher pedestrian intent uncertainty strongly correlates with higher DDE, showing behavioral ambiguity increases decision diversity.</li>
                             <li><strong>Dynamic Feedback Scaling:</strong> Evaluated three Situational Awareness (SA)-level interface concepts: Perception, Comprehension, and Projection.</li>
                             <li><strong>Key Findings:</strong> Perception-only feedback suits low-entropy scenarios; richer SA-specific details preferred as complexity rises. Predictive feedback reduces cognitive load and improves perceived system performance.</li>
@@ -549,6 +568,40 @@
         </div>
     </section>
 
+    <section id="directions">
+        <h2>Research Directions</h2>
+        <p class="section-intro">Going forward, my research aims to build <strong>affordable, human-centered technology that is easy to use on everyday devices</strong> and benefits the people around us. I see research as a way for undergraduates to practice engineering: they meet real users, build physical prototypes, test them, and share what they learn.</p>
+        <div class="direction-grid">
+            <div class="direction">
+                <h3>1. Private, Low-Cost Assistants on Personal Devices</h3>
+                <p>Small language models can now run on consumer hardware, which keeps conversations on the device (privacy), avoids cloud fees (cost), and responds without a remote server (speed). Students would build a desktop assistant from a single-board computer, microphones, a speaker, and a 3D-printed enclosure, and test its usability and privacy with real users.</p>
+                <ul>
+                    <li>Example uses: a lab or makerspace helper that explains equipment safety steps; a reminder device for older adults.</li>
+                </ul>
+            </div>
+            <div class="direction">
+                <h3>2. Human-Centered Devices Built by Students</h3>
+                <p>Students identify a real need, build a device with 3D printers and electronics, and test whether it serves its users, combining circuits, controls, mechanical design, and human factors.</p>
+                <ul>
+                    <li>Example projects: a posture and study-ergonomics monitor, low-cost solar phone chargers, an air-quality and noise monitor with a public display, and an energy-use dashboard for a residence hall.</li>
+                </ul>
+            </div>
+            <div class="direction">
+                <h3>3. Engineering Education Studies</h3>
+                <p>My teaching raises questions that undergraduates can help answer: When and why do students need help in a mastery-based course? How do retakes and coaching relate to learning and persistence? How do students use AI tools while studying, and when does that support or weaken independent thinking?</p>
+                <ul>
+                    <li>IRB-approved, voluntary studies using anonymous surveys, de-identified course records, and optional interviews.</li>
+                </ul>
+            </div>
+        </div>
+        <h3 style="font-size: 1.05rem; margin: 1rem 0 0.25rem 0;">Involving Undergraduates and Sharing Results</h3>
+        <ul>
+            <li>Small undergraduate research teams, with honors and summer research projects that continue the same work over time.</li>
+            <li>Remote crowdsourced studies with my graduate-level collaborators, giving undergraduates exposure to graduate-level research.</li>
+            <li>Student co-authored work for ASEE, ACM CHI late-breaking work, and the HFES Annual Meeting, supported by internal funds and external sources such as NSF REU.</li>
+        </ul>
+    </section>
+
     <section id="publications">
         <h2>Publications</h2>
         <div class="pub-category">
@@ -562,7 +615,7 @@
         <div class="pub-category">
             <h4>Conference Papers</h4>
             <ul class="pub-list">
-                <li>1. <strong>Elahi, Md Fazle</strong>, Yin-Chun Lu, Jing Chen, and Renran Tian. "Matching Explanation Detail to Scene Complexity: Studying Situational Awareness-Specific Feedback in Pedestrian Encounter Driving Scenarios." <em>In Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems</em>, ACM, Barcelona, Spain. (Accepted*).</li>
+                <li>1. <strong>Elahi, Md Fazle</strong>, Yin-Chun Lu, Jing Chen, and Renran Tian. "Matching Explanation Detail to Scene Complexity: Studying Situational Awareness-Specific Feedback in Pedestrian Encounter Driving Scenarios." <em>In Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems</em>, ACM, Barcelona, Spain (2026). <a href="https://doi.org/10.1145/3772318.3791229" target="_blank" rel="noopener">doi:10.1145/3772318.3791229</a></li>
                 <li>2. <strong>Elahi, Md Fazle</strong>, Tianyi Li, and Renran Tian. "Exploring Collective Theory of Mind on Pedestrian Behavioral Intentions." <em>In Extended Abstracts of the CHI Conference on Human Factors in Computing Systems</em>, pp. 1-8. (2024).</li>
                 <li>3. <strong>Elahi, Md Fazle</strong>, Renran Tian, and Xiao Luo. "Flexible and scalable annotation tool to develop scene understanding datasets." <em>In Proceedings of the Workshop on Human-In-the-Loop Data Analytics (HILDA)</em>, pp. 1-7. (2022).</li>
                 <li>4. <strong>Elahi, Md Fazle</strong>, Jithesh Gugan Sreeram, Xiao Luo, and Renran Tian. "A Novel Adaptation of Information Extraction Algorithm to Process Natural Text Descriptions of Pedestrian Encounters." <em>In 2021 IEEE International Intelligent Transportation Systems Conference (ITSC)</em>, pp. 1906-1912. (2021).</li>
@@ -578,18 +631,28 @@
         </div>
     </section>
     <section id="teaching">
-        <h2>Teaching & Mentorship</h2>
+        <h2>Teaching &amp; Mentorship</h2>
         <div class="teaching-item">
             <div class="teaching-header">
-                <h3>Graduate Teaching Assistant: Lab Instructor</h3>
-                <span style="font-size: 0.96rem; color: var(--text-muted);">Aug 2024 – Present</span>
+                <h3>Visiting Assistant Teaching Professor of Engineering</h3>
+                <span style="font-size: 0.96rem; color: var(--text-muted);">Aug 2026 – Present</span>
+            </div>
+            <p style="font-size: 1.02rem; margin: 0.1rem 0;"><strong>Elizabethtown College, Elizabethtown, PA</strong></p>
+            <ul>
+                <li><strong>Circuit Analysis with laboratory</strong> (Fall 2026): 54 students, taught as a flipped, mastery-based course.</li>
+                <li><strong>Upcoming (Spring 2027):</strong> Electronics with laboratory, Electromagnetism, and co-supervision of sophomore community-based design projects.</li>
+                <li><strong>Mentoring:</strong> honors projects in Circuit Analysis; community partner projects that continue into senior capstone.</li>
+            </ul>
+        </div>
+        <div class="teaching-item">
+            <div class="teaching-header">
+                <h3>Graduate Teaching Assistant: Lead Lab Instructor</h3>
+                <span style="font-size: 0.96rem; color: var(--text-muted);">Aug 2024 – 2026</span>
             </div>
             <p style="font-size: 1.02rem; margin: 0.1rem 0;"><strong>Purdue University, Indianapolis, IN</strong></p>
             <ul>
-                <li><strong>Lead Instructor for EE Lab I:</strong> Responsible for laboratory lectures and hands-on experiments for freshman/sophomores.</li>
-                <li><strong>Supervision:</strong> Coordinated schedules and instruction for 4 Graduate TAs and 2 Undergraduate TAs across 7 sections.</li>
-                <li><strong>Curriculum:</strong> Designed lectures on circuit analysis, measurement techniques, and modern electronic instrumentation.</li>
-                <li><strong>Assessment:</strong> Managed grading for 8 lab reports, practical exams, and projects via Brightspace.</li>
+                <li><strong>Electrical Engineering Lab Fundamentals:</strong> taught over 200 undergraduates across four semesters.</li>
+                <li><strong>Instructional leadership:</strong> coordinated 4 graduate and 2 undergraduate TAs across 7 lab sections.</li>
             </ul>
         </div>
         <div class="teaching-item">
@@ -598,10 +661,10 @@
                 <span style="font-size: 0.96rem; color: var(--text-muted);">Summer 2023</span>
             </div>
             <ul>
-                <li>Mentored two senior undergraduate students in design/implementation of pedestrian crossing intention prediction models.</li>
-                <li>Guided students through full research lifecycle from literature review to model development.</li>
+                <li>Mentored two senior undergraduates in designing machine learning models that predict pedestrian crossing intention, from literature review to final presentation.</li>
             </ul>
         </div>
+        <a class="cta" href="../portfolio/">View the full teaching portfolio</a>
     </section>
     <section id="skills">
         <h2>Technical Skills</h2>
@@ -616,7 +679,7 @@
             </div>
             <div class="card">
                 <h3>Software & LMS</h3>
-                <span class="skill-tag">LTspice</span> <span class="skill-tag">Quartus</span> <span class="skill-tag">Brightspace</span> <span class="skill-tag">Canvas</span> <span class="skill-tag">Gradescope</span>
+                <span class="skill-tag">PSpice</span> <span class="skill-tag">LTspice</span> <span class="skill-tag">Multisim</span> <span class="skill-tag">Quartus</span> <span class="skill-tag">Canvas</span> <span class="skill-tag">Brightspace</span> <span class="skill-tag">Gradescope</span>
             </div>
         </div>
     </section>
@@ -631,8 +694,8 @@
             </div>
             <div class="card">
                 <h3>Assistantships</h3>
-                <p style="font-size: 0.96rem;">Graduate Teaching Assistantship, Purdue University (2024-Present).</p>
-                <p style="font-size: 0.96rem;">Graduate ResearchAssistantship, IUPUI (2019-2024).</p>
+                <p style="font-size: 0.96rem;">Graduate Teaching Assistantship, Purdue University in Indianapolis (2024-2026).</p>
+                <p style="font-size: 0.96rem;">Graduate Assistantship, IUPUI (2019-2024).</p>
             </div>
         </div>
     </section>
@@ -647,7 +710,7 @@
             </div>
             <div class="card">
                 <h3>Memberships</h3>
-                <p style="font-size: 0.96rem;">Student Member: IEEE, HFES, ACM.</p>
+                <p style="font-size: 0.96rem;">Member: IEEE, HFES, ACM.</p>
                 <p style="font-size: 0.96rem;">Student Volunteer: IEEE ITSC 2021.</p>
             </div>
             <div class="card">
@@ -664,7 +727,7 @@
 <div id="backToTop" onclick="window.scrollTo(0,0)">↑</div>
 
 <footer style="text-align: center; padding: 1.5rem; color: #777; font-size: 0.75rem; background: #fff; border-top: 1px solid #eee;">
-    &copy; 2025 Md Fazle Elahi.
+    &copy; 2026 Md Fazle Elahi.
 </footer>
 
 <script>
